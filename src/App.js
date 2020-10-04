@@ -1,14 +1,13 @@
-import React from 'react';
-import './assets/styles/global.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./assets/styles/global.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={} className="App-logo" alt="logo" /> */}
-        <p>
-         Now its sfds
-        </p>
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Now its sfds</p>
         <a
           className="App-link"
           href="https://reactjs.org"
