@@ -3,7 +3,7 @@ import { BrowserRouter, Route , Switch} from 'react-router-dom';
 
 import Home from './pages/Home';
 import Feed from './pages/Feed';
-import NotFound from './pages/NotFound';
+import NotFoundPage from './pages/NotFoundPage';
 
 function Routes() {
     return (
@@ -11,7 +11,8 @@ function Routes() {
             <Switch>
                 <Route path="/" component={Home} exact/>
                 <Route path="/feed" component={Feed} />
-                <Route component={NotFound}/>
+                <Route component={NotFoundPage}/>
+                {/* <Redirect to="/404"/> */}
             </Switch>
         </BrowserRouter>
     )
