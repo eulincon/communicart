@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 
@@ -9,11 +10,11 @@ const NotFound = () => {
             <div class="wrap">
                 <h1>Uh-Oh! Not Found</h1>
                 <canvas width="560" height="312"></canvas>
-                <p>You’re in the middle of nowhere. The page you requested either was moved or doesn’t exist.</p>
-                <p>What you can do:</p>
+                <p>Você está no meio do nada. A página que você solicitou foi movida ou não existe.</p>
+                <p>O que você pode fazer:</p>
                 <ul>
-                    <li>Go back home</li>
-                    <li>Contact to me if you believe this happened in error</li>
+                    <li>Volte para <Link to="/">home</Link></li>
+                    <li>Entre em contato conosco se achar que isso aconteceu por engano</li>
                 </ul>
             </div>
         </main>
