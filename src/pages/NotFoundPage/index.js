@@ -12,7 +12,7 @@ class NotFound extends Component {
 		// window.addEventListener("DOMContentLoaded",game);
 		return (
 			<main className="body-error">
-				<div class="wrap">
+				<div className="wrap">
 					<h1 className="title-error">Uh-Oh! Not Found</h1>
 					<canvas width="560" height="312" className="canvas-effect"></canvas>
 					<p>Você está no meio do nada. A página que você solicitou foi movida ou não existe.</p>
