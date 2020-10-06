@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-const NotFound = () => {
-        window.addEventListener("DOMContentLoaded",game);
-    return(
-        <main>
-            <div class="wrap">
-                <h1>Uh-Oh! Not Found</h1>
-                <canvas width="560" height="312"></canvas>
-                <p>Você está no meio do nada. A página que você solicitou foi movida ou não existe.</p>
-                <p>O que você pode fazer:</p>
-                <ul>
-                    <li>Volte para <Link to="/">home</Link></li>
-                    <li>Entre em contato conosco se achar que isso aconteceu por engano</li>
-                </ul>
-            </div>
-        </main>
-    );
+
+class NotFound extends Component {
+	componentDidMount(){
+		game();
+	};
+	render(){
+		// window.addEventListener("DOMContentLoaded",game);
+		return (
+			<main className="body-error">
+				<div className="wrap">
+					<h1 className="title-error">Uh-Oh! Not Found</h1>
+					<canvas width="560" height="312" className="canvas-effect"></canvas>
+					<p>Você está no meio do nada. A página que você solicitou foi movida ou não existe.</p>
+					<p>O que você pode fazer:</p>
+					<ul className="todo-list">
+						<li>Volte para <Link to="/">home</Link></li>
+						<li>Entre em contato conosco se achar que isso aconteceu por engano</li>
+					</ul>
+				</div>
+			</main>
+		);
+	}
 };
 
 export default NotFound;
