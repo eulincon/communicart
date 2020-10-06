@@ -1,0 +1,103 @@
+main{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    background-color: rgb(119, 119, 119);
+    height: 100vh;
+}
+
+main>section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 1em;
+    color: white;
+}
+
+a:hover, a:active{
+    text-decoration: none;
+}
+
+.btnCadastrar{
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    width: 10em;
+    height: 4em;
+    padding: 0.5em;
+    border-radius: 2em;
+}
+
+main>form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    background-color: rgb(68, 68, 68);
+    height: auto;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    border-radius: 1em;
+}
+
+main>form>input{
+ width: 85vw;
+ height: 2em;
+ margin-bottom: 1em;
+ border-radius: 0.5em;
+ border: none;
+ 
+}
+
+main>form>div{
+    display: flex;
+}
+
+main>form>div>a{
+    color: white;
+}
+
+.btnLogin{
+    margin-right: 2em;
+    margin-bottom: 1em;
+    color: white;
+    background-color: black;
+    font-weight: 700;
+    width: 7em;
+    height: 2.1em;
+    border-radius: 1em;
+    border: 1px black;
+}
+
+@media(min-width: 600px){
+    main{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    main>section{
+        width: 40vw;
+    }
+    main>form{
+      width: 40vw;
+      height: 37vh;
+    }
+
+    main>form>label{
+        margin-top: 1em;
+      }
+
+    main>form>input{
+        width: 35vw; 
+        margin-bottom: 0em; 
+       }
+
+    main>form>div{
+        margin-top: 2em;
+    }
+
+    
+}

@@ -7,6 +7,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import PageDefault from './pages/PageDefaullt';
 import Payments from './pages/Payments';
 
+
 function Routes() {
     return (
         <BrowserRouter>
@@ -16,7 +17,7 @@ function Routes() {
                 <Route path="/page-default" component={PageDefault}/>
                 <Route path="/payments" component={Payments}/>
                 <Route component={NotFoundPage} />
-                {/* <Redirect to="/404"/> */}
+                {/*<Redirect to="/404"/> */}
             </Switch>
         </BrowserRouter>
     )
