@@ -1,0 +1,51 @@
+body {
+    padding: 50px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 30px;
+    color: #000000;
+}
+
+.colorDate {
+    color: #CB0303;
+    font-size: 25px;
+}
+
+.succeedTransaction {
+    color: #61C171;
+    text-align: center;
+    font-size: 25px;
+}
+
+.info {
+    color: #1C51B8;
+    text-align: center;
+    font-size: 25px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0.2);
+    transition: 0.3s;
+    border-radius: 25px;
+    padding: 30px;
+    background: #EBEBEB;
+}
+
+.photo {
+    position: absolute; right: 0;
+    float: right;
+    height: 250px;
+    width: 200px;
+    padding: 30px;
+}
+.pendingTransaction {
+    color: #A59615;
+    text-align: center;
+    font-size: 25px;
+}
+
+.iconDate {
+    height: 30px;
+}

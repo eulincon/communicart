@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Feed from './pages/Feed';
 import NotFoundPage from './pages/NotFoundPage';
 import PageDefault from './pages/PageDefaullt';
+import Payments from './pages/Payments';
 
 function Routes() {
     return (
@@ -13,6 +14,7 @@ function Routes() {
                 <Route path="/" component={Home} exact/>
                 <Route path="/feed" component={Feed} />
                 <Route path="/page-default" component={PageDefault}/>
+                <Route path="/payments" component={Payments}/>
                 <Route component={NotFoundPage} />
                 {/* <Redirect to="/404"/> */}
             </Switch>
