@@ -1,6 +1,5 @@
 import React from 'react';
 
-import iconDate from './iconDate.svg';
 import { ReactComponent as SvgPhoto } from './photo.svg';
 import { ReactComponent as SvgIconDate } from './iconDate.svg';
 
@@ -20,7 +19,7 @@ const Payments = () => {
                 <div className="container">
                 
                 <p className="succeedTransaction">Pagamento realizado</p>
-                <p className="info">Ver</p>
+                <p className="info">Ver publicação</p>
                 </div>
             </div>
             <br />
@@ -44,7 +43,7 @@ const Payments = () => {
                 <div className="container">
                 
                 <p className="succeedTransaction">Pagamento realizado</p>
-                <p className="info">Ver</p>
+                <p className="info">Ver publicação</p>
                 </div>
             </div>
 
