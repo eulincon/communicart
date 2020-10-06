@@ -10,11 +10,18 @@ const PageDefault = ({children}) => {
     return (
         <>
             {/* <Menu /> */}
-            <Sidebar/>
-            <Main>
-                {/* {children} */}
-                <CardVaga />
-            </Main>
+            <div>
+                <Sidebar/>
+                <Main>
+                    {/* {children} */}
+                    <CardVaga />
+                    <CardVaga />
+                    <CardVaga />
+                    <CardVaga />
+                    <CardVaga />
+                    <CardVaga />
+                </Main>
+            </div>
         </>
     );
 };

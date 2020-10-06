@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Main = () => {
+import './styles.css';
+
+const Main = ({children}) => {
     return (
-        <main className="bg-primary col-8">Main</main>
+        <div className="col-md-8 shadow mt-5 p-5 ml-auto mr-5 main-style">
+            {children}
+        </div>
     );
 };
 
