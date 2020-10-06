@@ -1,5 +1,6 @@
 import React from 'react';
 
+import CardVaga from '../../components/CardVaga';
 import Main from '../../components/Main';
 import Sidebar from '../../components/Sidebar';
 
@@ -11,7 +12,8 @@ const PageDefault = ({children}) => {
             {/* <Menu /> */}
             <Sidebar/>
             <Main>
-                {children}
+                {/* {children} */}
+                <CardVaga />
             </Main>
         </>
     );
