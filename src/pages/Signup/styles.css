@@ -1,0 +1,14 @@
+body {
+  padding: 0;
+  background-color: var(--color-background);
+}
+
+.form-box {
+  border-radius: 15px;
+}
+
+button {
+  display: inline-block;
+  margin-left: auto;
+  border-radius: 25px;
+}

@@ -1,25 +1,27 @@
-import React from 'react';
-import { BrowserRouter, Route , Switch} from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Home from './pages/Home';
-import Feed from './pages/Feed';
-import NotFoundPage from './pages/NotFoundPage';
-import PageDefault from './pages/PageDefaullt';
-import Payments from './pages/Payments';
+import Home from "./pages/Home";
+import Feed from "./pages/Feed";
+import NotFoundPage from "./pages/NotFoundPage";
+import PageDefault from "./pages/PageDefaullt";
+import Payments from "./pages/Payments";
+import Signup from "./pages/Signup";
 
 function Routes() {
-    return (
-        <BrowserRouter>
-            <Switch>
-                <Route path="/" component={Home} exact/>
-                <Route path="/feed" component={Feed} />
-                <Route path="/page-default" component={PageDefault}/>
-                <Route path="/payments" component={Payments}/>
-                <Route component={NotFoundPage} />
-                {/* <Redirect to="/404"/> */}
-            </Switch>
-        </BrowserRouter>
-    )
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/feed" component={Feed} />
+        <Route path="/page-default" component={PageDefault} />
+        <Route path="/payments" component={Payments} />
+        <Route path="/cadastro" component={Signup} />
+        <Route component={NotFoundPage} />
+        {/* <Redirect to="/404"/> */}
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default Routes;
