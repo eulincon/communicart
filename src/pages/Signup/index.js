@@ -38,7 +38,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="py-5">
+    <div className="py-5 full-cadastro">
       <div className="container bg-white py-3 px-5 form-box">
         <h1 className="text-center">Cadastro</h1>
         <form id="cadastro mb-5">
@@ -139,7 +139,7 @@ const Signup = () => {
         </form>
         <div className="d-flex mt-5 mb-3">
           <button
-            className="text-white text-center bg-dark px-4 py-2"
+            className="text-white text-center bg-dark px-4 py-2 btn-cadastro"
             onClick={handleSubmit}
           >
             Avançar
