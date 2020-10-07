@@ -7,7 +7,7 @@ import './styles.css'
 
 const Payments = () => {
     return(
-        <div>            
+        <div className="body-payments">            
             <h1>Pagamentos</h1>
             <p>Veja abaixo a lista de pagamentos pendentes ou finalizados:</p>
 
