@@ -1,8 +1,8 @@
-body {
+.body {
     padding: 50px;
 }
 
-p {
+.p_tag {
     font-size: 20px;
 }
 
@@ -32,6 +32,15 @@ p {
     border-radius: 25px;
     padding: 30px;
     background: #EBEBEB;
+
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
 }
 
 .photo {
