@@ -16,10 +16,10 @@ const MainComponents = ({children}) => {
                 <small className="text-white">H E A D E R  P R O V I S Ó R I O</small>
             </header>
             <div className="row">
-                <div className="col-2">
+                <div className="col-lg-2 d-none d-lg-block">
                     <Sidebar/>
                 </div>
-                <div className="col-10 d-flex justify-content-center px-5">
+                <div className="col-12 col-lg-10 d-flex justify-content-center px-1 px-lg-5">
                     <Main>
                         {children}
                     </Main>
