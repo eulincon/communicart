@@ -9,6 +9,8 @@ import {
 } from "react-icons/fa";
 
 const EditProfile = () => {
+  let history = useHistory();
+
   const [perfil, setPerfil] = useState({
     bio: "",
     servicos: {
@@ -57,6 +59,9 @@ const EditProfile = () => {
   function handleSubmit(e) {
     e.preventDefault();
     console.log(perfil);
+    setTimeout(() => {
+      history.push("/feed");
+    }, 5000);
   }
 
   return (
