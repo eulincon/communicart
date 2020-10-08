@@ -2,17 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 
-import './styles.css';
+import style from './styles.module.css';
 
 
 const Sidebar = () => {
     return (
-        <div className="col-md-2 shadow m-5 fixed-top sidebar">
+        <div className={`col-md-2 shadow m-5 fixed-top ${style.sidebar}`}>
             <ul class="nav flex-column my-3">
                 {SidebarData.map((item, index) => {
                     return (
                         <li key={index} className={`${item.cName} nav-item`}>
-                            <Link to={item.path} className="nav-link">
+                            <Link to={item.path} className={`nav-link ${style.nav_link}`}>
                                 {item.icon}
                                 <span className="ml-2">{item.title}</span>
                             </Link>

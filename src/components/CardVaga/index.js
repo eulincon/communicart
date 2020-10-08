@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './styles.css';
-
 const CardVaga = () => {
     return (
         <div className="card my-4">
