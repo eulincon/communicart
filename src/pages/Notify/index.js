@@ -6,33 +6,28 @@ import AlertNotificacaoMensagem from '../../components/AlertNotificacaoMensagem'
 import AlertSemNotificacao from '../../components/AlertSemNotificacao';
 import CardNotificacaoCandidatura from '../../components/CardNotificacaoCandidatura';
 import CardNotificacaoMensagem from '../../components/CardNotificacaoMensagem';
+import Main from '../../components/Main';
 import NotifyBackground from "../../components/NotifyBackground";
 
 
 const Notify = () => {
     return (
-        <div className="container-fluid bg-light">
-            <div className="row">
-                <div className="m-0 p-0 col-2">
-                    <Sidebar/>
-                </div>
-                <div className="col-10 pl-5">
-                    <NotifyBackground>
-                        <section>
+        <div className="container-fluid bg-light m-0 px-4 pt-1">
+            <Sidebar/>
+            <Main>
+                <section>
                             <AlertNotificacaoCandidatura/>
                             <AlertNotificacaoMensagem/>
                             <AlertSemNotificacao/>
                         </section>
-                        <hr/>
-                        <section>
+                <hr className="bg-primary-darker" />
+                <section>
                             <CardNotificacaoCandidatura/>
                             <CardNotificacaoCandidatura/>
                             <CardNotificacaoMensagem/>
                             <CardNotificacaoMensagem/>
                         </section>
-                    </NotifyBackground>
-                </div>
-            </div>
+            </Main>
         </div>
     );
 };

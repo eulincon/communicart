@@ -20,7 +20,8 @@ const CardNotificacaoMensagem = () => {
                 </div>
             </div>
             <div className="card-footer d-flex justify-content-around">
-                <Link to="#" className="font-weight-bold text-decoration-none">RESPONDER</Link><Link to="#" className="font-weight-bold text-decoration-none">ARQUIVAR</Link>
+                <Link to="#" className="font-weight-bold text-decoration-none txt-secondary_">RESPONDER</Link>
+                <Link to="#" className="font-weight-bold text-decoration-none text-danger">ARQUIVAR</Link>
             </div>
         </div>
     );

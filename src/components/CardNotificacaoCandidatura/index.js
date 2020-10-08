@@ -22,8 +22,8 @@ const CardNotificacaoCandidatura = () => {
                 </div>
             </div>
             <div className="card-footer d-flex justify-content-around">
-                <Link to="#" className="font-weight-bold text-decoration-none">CONTATAR</Link>
-                <Link to="#" className="font-weight-bold text-decoration-none">ARQUIVAR</Link>
+                <Link to="#" className="font-weight-bold text-decoration-none txt-secondary_">CONTATAR</Link>
+                <Link to="#" className="font-weight-bold text-decoration-none text-danger">ARQUIVAR</Link>
             </div>
         </div>
     );

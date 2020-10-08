@@ -62,3 +62,92 @@ textarea{
         font-size: 62.5%;
     }
 } */
+
+/* Background with css colors */
+
+.bg-primary-lighter{
+    background-color: var(--color-primary-lighter);
+}
+
+.bg-primary-light{
+    background-color: var(--color-primary-light);
+}
+
+.bg-primary_{
+    background-color: var(--color-primary);
+}
+
+.bg-primary-dark{
+    background-color: var(--color-primary-dark);
+}
+
+.bg-primary-darker{
+    background-color: var(--color-primary-darker);
+}
+
+.bg-secondary_{
+    background-color: var(--color-secondary);
+}
+
+.bg-secondary-dark{
+    background-color: var(--color-secondary-dark);
+}
+
+/* Text colors with css */
+
+.txt-primary-lighter{
+    color: var(--color-primary-lighter);
+}
+
+.txt-primary-light{
+    color: var(--color-primary-light);
+}
+
+.txt-primary_{
+    color: var(--color-primary);
+}
+
+.txt-primary-dark{
+    color: var(--color-primary-dark);
+}
+
+.txt-primary-darker{
+    color: var(--color-primary-darker);
+}
+
+.txt-secondary_{
+    color: var(--color-secondary);
+}
+
+.txt-secondary-dark{
+    color: var(--color-secondary-dark);
+}
+
+/* Buttons with css */
+
+.btn-primary_ {
+    background-color: var(--color-primary);
+    color: white;
+    border-top: var(--color-primary) 1px solid;
+}
+
+.btn-primary_:hover {
+    background-color: var(--color-primary-darker);
+    color: white;
+    border-top: var(--color-primary-darker) 1px solid;
+    transition: all 0.4s;
+}
+
+.btn-secondary_ {
+    background-color: var(--color-secondary);
+    color: white;
+    border-top: var(--color-secondary) 1px solid;
+}
+
+.btn-secondary_:hover {
+    background-color: var(--color-secondary-dark);
+    color: white;
+    border-top: var(--color-secondary-dark) 1px solid;
+    transition: all 0.4s;
+}
+
