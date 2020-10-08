@@ -1,0 +1,9 @@
+.img-round {
+  border-radius: 50%;
+  align-self: flex-start;
+  justify-self: center;
+}
+
+.divider {
+  border-top: 3px solid white;
+}

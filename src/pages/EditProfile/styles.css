@@ -1,6 +1,7 @@
 .full-editar-perfil {
   background-color: var(--color-background);
-  min-height: 100vh;
+  min-height: calc(100vh - 72px);
+  position: relative;
 }
 
 .form-servicos {
@@ -17,4 +18,10 @@
 .social-row {
   display: flex;
   align-items: flex-start;
+}
+
+#cadastro-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

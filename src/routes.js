@@ -10,6 +10,7 @@ import VagaPage from "./pages/VagaPage";
 import Notify from "./pages/Notify";
 import Signup from "./pages/Signup";
 import EditProfile from "./pages/EditProfile";
+import UserProfile from "./pages/UserProfile";
 
 function Routes() {
   return (
@@ -19,6 +20,7 @@ function Routes() {
         <Route path="/feed" component={PageDefault} />
         <Route path="/page-default" component={Feed} />
         <Route path="/vagas/1" component={VagaPage} />
+        <Route path="/usuarios/1" component={UserProfile} />
         <Route path="/payments" component={Payments} />
         <Route path="/notify" component={Notify} />
         <Route path="/cadastro" component={Signup} />
