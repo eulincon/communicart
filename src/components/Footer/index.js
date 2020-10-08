@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 
 const Footer = () => {
     return (
-        <footer className="bg-secondary-dark text-center p-4">
+        <footer className="bg-secondary-dark text-center p-4 col-12">
             <Logo width="200px" alt="CommunicArt" className="mr-3"/>
             <small className="text-light"><strong>CommunicArt 2020©</strong> Todos os direitos reservados.</small>
         </footer>

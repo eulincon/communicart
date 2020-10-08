@@ -6,7 +6,7 @@ import style from "./styles.module.css";
 
 const Sidebar = () => {
     return (
-        <div className={`col-md-2 shadow d-inline-block fixed-top m-4 vh-100 ${style.sidebar}`}>
+        <div className={`mt-5 col-12 shadow d-inline-block m-4 ${style.sidebar}`}>
             <ul class="nav flex-column my-3">
                 {SidebarData.map((item, index) => {
                     return (

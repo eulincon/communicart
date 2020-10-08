@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import "./styles.css";
 
 import MainComponents from "../../components/MainComponents";
-import Sidebar from "../../components/Sidebar";
 
 const UserProfile = () => {
   return (
     <MainComponents>
-      <Sidebar />
       <div className="row">
         <div className="col-sm-3 img-container d-flex justify-content-center align-content-center">
           <img

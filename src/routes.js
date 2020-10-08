@@ -30,7 +30,7 @@ function Routes() {
         <Route path="/payments" component={Payments} />
         <Route path="/notify" component={Notify} />
         <Route path="/cadastro" component={Signup} />
-        <Route path="/editar-perfil" component={CreateProfile} />
+        <Route path="/criar-perfil" component={CreateProfile} />
         <Route component={NotFoundPage} />
         {/* <Redirect to="/404"/> */}
       </Switch>
