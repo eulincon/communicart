@@ -1,14 +1,10 @@
 import React from 'react';
 
-<<<<<<< HEAD
-import { ReactComponent as IconFixingBugs } from '../../assets/images/vaga_details/undraw_fixing_bugs.svg';
-=======
 import { ReactComponent as IconFixingBugs } from '../../assets/images/vaga_details/undraw_fixing_bugs.svg'; 
 import { ReactComponent as IconOptimizeImage } from '../../assets/images/vaga_details/undraw_Optimize_image.svg'; 
 import { ReactComponent as IconPhotograph } from '../../assets/images/vaga_details/undraw_Photograph.svg'; 
 import { ReactComponent as IconTeamUp } from '../../assets/images/vaga_details/undraw_team_up.svg'; 
 
->>>>>>> 2d93bccd6255dfcd1899a3c794c149ac7e1b45d9
 const VagaDetails = (props) => {
     return (
         <>
