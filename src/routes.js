@@ -7,6 +7,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import PageDefault from './pages/PageDefaullt';
 import Payments from './pages/Payments';
 import VagaPage from './pages/VagaPage';
+import Notify from './pages/Notify';
 
 function Routes() {
     return (
@@ -17,6 +18,7 @@ function Routes() {
                 <Route path="/page-default" component={Feed} />
                 <Route path="/vagas/1" component={VagaPage}/> 
                 <Route path="/payments" component={Payments}/>
+                <Route path="/notify" component={Notify}/>
                 <Route component={NotFoundPage} />
                 {/* <Redirect to="/404"/> */}
             </Switch>
