@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaComments } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const CardNotificacaoMensagem = () => {
@@ -8,7 +9,7 @@ const CardNotificacaoMensagem = () => {
                 <div className="row">
                     <div className="col-8">
                         <h6 className="text-primary card-title small font-weight-bold">
-                            <i className="fas fa-comments"></i> Mensagem</h6>
+                            <FaComments/> Mensagem</h6>
                         <p className="card-text mb-0"><strong>Nome da pessoa</strong> enviou uma nova mensagem.</p>
                         <p className="text-muted mt-0">Mensagem</p>
                     </div>

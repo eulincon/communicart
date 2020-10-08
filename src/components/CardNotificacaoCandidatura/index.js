@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaBookmark } from "react-icons/fa";
+
 
 const CardNotificacaoCandidatura = () => {
     return (
@@ -8,7 +10,7 @@ const CardNotificacaoCandidatura = () => {
                 <div className="row">
                     <div className="col-8">
                         <h6 className="text-success card-title small font-weight-bold">
-                            <i className="fas fa-bookmark"></i> Candidatura</h6>
+                            <FaBookmark/> Candidatura</h6>
 
                         <p className="card-text"><strong>Nome</strong> tem interesse na sua postagem <Link
                             to="#">Nome da Postagem</Link>.</p>

@@ -13,7 +13,7 @@ const Notify = () => {
     return (
         <div className="container-fluid bg-light">
             <div className="row">
-                <div className="col-2">
+                <div className="m-0 p-0 col-2">
                     <Sidebar/>
                 </div>
                 <div className="col-10 pl-5">
@@ -33,7 +33,6 @@ const Notify = () => {
                     </NotifyBackground>
                 </div>
             </div>
-
         </div>
     );
 };
