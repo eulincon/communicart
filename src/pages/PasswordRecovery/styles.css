@@ -1,0 +1,93 @@
+.corpoRecovery{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    background-color: var(--color-background);
+    height: 100vh;
+}
+
+.informacaoRecovery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 1em;
+    color: var(--color-text-title);
+}
+
+
+.formRecovery{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1em;
+    background-color: var(--color-text-base);
+    height: 30vh;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    border-radius: 1em;
+}
+
+.inputRecovery{
+ width: 85vw;
+ height: 2em;
+ margin-bottom: 2em;
+ margin-top: 1em;
+ border-radius: 0.5em;
+ border: none;
+ 
+}
+
+.link{
+    display: flex;
+    width: 95%;
+    justify-content: flex-start;
+}
+
+.btnRecovery{
+    color: white;
+    background-color: var(--color-text-title);
+    font-weight: 700;
+    width: 7em;
+    height: 2.1em;
+    border-radius: 1em;
+    border: 1px var(--color-text-title);
+}
+
+@media(min-width: 600px){
+    .corpoRecovery{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .informacaoRecovery{
+        width: 40vw;
+    }
+    .formRecovery{
+      width: 40vw;
+      height: 37vh;
+    }
+
+    .labelRecovery{
+        margin-top: 1em;
+      }
+
+    .inputRecovery{
+        width: 35vw; 
+        margin-bottom: 0em; 
+       }
+
+    .formRecovery>div{
+        margin-top: 2em;
+    }
+
+    .link{
+        display: flex;
+        width: 89%;
+        justify-content: flex-start;
+    }
+
+    
+}

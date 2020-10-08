@@ -10,12 +10,18 @@ import VagaPage from "./pages/VagaPage";
 import Notify from "./pages/Notify";
 import Signup from "./pages/Signup";
 import EditProfile from "./pages/EditProfile";
+import Login from './pages/Login';
+import PasswordRecovery from './pages/PasswordRecovery';
+import PasswordRegistration from './pages/PasswordRegistration';
 
 function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={Home} exact />
+       <Route path="/" exact component={Login} />
+                <Route path="/recuperacao" exact component={PasswordRecovery} />
+                <Route path="/novaSenha" exact component={PasswordRegistration} />
+        <Route path="/home" component={Home} exact />
         <Route path="/feed" component={PageDefault} />
         <Route path="/page-default" component={Feed} />
         <Route path="/vagas/1" component={VagaPage} />
