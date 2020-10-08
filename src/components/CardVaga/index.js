@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import Jump from 'react-reveal/Jump';
 
-import styles from './styles.module.css';
-
 const CardVaga = () => {
     const [likeHeart, setLikeHeart] = useState(false);
 
@@ -18,7 +16,7 @@ const CardVaga = () => {
                 <h4 className="card-title">Título do anúncio</h4>
                 <span>Nome da empresa</span>
                 <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <Link to="/vagas/1" className={`btn btn-primary ${styles.btn_primary}`}>Ver mais</Link>
+                <Link to="/vagas/1" className={`btn btn-primary btn-secondary_`}>Ver mais</Link>
                 {likeHeart ?
                     <div className="float-right">
                         <Jump>

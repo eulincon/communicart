@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ReactComponent as IconFixingBugs } from '../../assets/images/vaga_details/undrawn_fixing_bugs.svg'; 
+
 const VagaDetails = (props) => {
     return (
         <div className="shadow card">
@@ -23,6 +25,7 @@ const VagaDetails = (props) => {
                 </div>
                 <hr />
                 <h2>Imagens aqui</h2>
+                <IconFixingBugs />
 
                 <button className="btn btn-primary">Candidatar-me</button>
             
