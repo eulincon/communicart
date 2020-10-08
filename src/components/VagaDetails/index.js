@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as IconFixingBugs } from '../../assets/images/vaga_details/undrawn_fixing_bugs.svg'; 
-
+import { ReactComponent as IconFixingBugs } from '../../assets/images/vaga_details/undraw_fixing_bugs.svg';
 const VagaDetails = (props) => {
     return (
         <div className="shadow card">

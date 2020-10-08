@@ -8,7 +8,7 @@ const CardVaga = () => {
 
     const like = () => {
         setLikeHeart(!likeHeart);
-    }
+    };
 
     return (
         <div className="card my-4">
