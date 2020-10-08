@@ -1,0 +1,20 @@
+.full-editar-perfil {
+  background-color: var(--color-background);
+  min-height: 100vh;
+}
+
+.form-servicos {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.col-form-label {
+  padding-top: 0;
+  padding-right: 0;
+}
+
+.social-row {
+  display: flex;
+  align-items: flex-start;
+}

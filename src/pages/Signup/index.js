@@ -34,14 +34,14 @@ const Signup = () => {
         cadastro.cnpj
       );
     }
-    history.push("/feed");
+    history.push("/editar-perfil");
   }
 
   return (
     <div className="py-5 full-cadastro">
       <div className="container bg-white py-3 px-5 form-box">
         <h1 className="text-center">Cadastro</h1>
-        <form id="cadastro mb-5">
+        <form id="cadastro" className="mb-5">
           <div className="form-group">
             <div className="form-check form-check-inline mr-5">
               <input
