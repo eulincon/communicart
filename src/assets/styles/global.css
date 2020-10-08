@@ -110,13 +110,13 @@ html, body, #root {
 .btn-secondary_ {
     background-color: var(--color-secondary);
     color: white;
-    border-top: var(--color-secondary) 1px solid;
+    border: var(--color-secondary) 1px solid;
 }
 
 .btn-secondary_:hover {
     background-color: var(--color-secondary-dark);
     color: white;
-    border-top: var(--color-secondary-dark) 1px solid;
+    border: var(--color-secondary-dark) 1px solid;
     transition: all 0.4s;
 }
 
