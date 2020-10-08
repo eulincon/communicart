@@ -1,0 +1,93 @@
+.corpoRegistration{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    background-color: var(--color-background);
+    height: 100vh;
+}
+
+.infoRegistration{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 1em;
+    color: var(--color-text-title);
+}
+
+
+
+.formRegistration{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1em;
+    background-color: var(--color-text-base);
+    height: 45vh;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    border-radius: 1em;
+}
+
+.inputRegistration{
+ width: 85vw;
+ height: 2em;
+ margin-bottom: 2em;
+ margin-top: 1em;
+ border-radius: 0.5em;
+ border: none;
+}
+
+.link{
+    display: flex;
+    width: 95%;
+    justify-content: flex-start;
+}
+
+
+.btnConfirm{
+    color: white;
+    background-color: var(--color-text-title);;
+    font-weight: 700;
+    width: 7em;
+    height: 2.1em;
+    border-radius: 1em;
+    border: 1px var(--color-text-title);;
+}
+
+@media(min-width: 600px){
+    .corpoRegistration{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .infoRegistration{
+        width: 40vw;
+    }
+    .formRegistration{
+      width: 40vw;
+      height: 45vh;
+    }
+
+    .labelRegistration{
+        margin-top: 1em;
+      }
+
+    .inputRegistration{
+        width: 35vw; 
+        height: 5vh;
+        margin-bottom: 0em; 
+       }
+
+
+    .link{
+        margin-top: 1em;
+        display: flex;
+        width: 89%;
+        justify-content: flex-start;
+    }
+
+    
+}

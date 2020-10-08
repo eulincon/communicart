@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-import Main from "../../components/Main";
+import MainComponents from "../../components/MainComponents";
 import Sidebar from "../../components/Sidebar";
 
 const UserProfile = () => {
   return (
-    <Main>
+    <MainComponents>
       <Sidebar />
       <div className="row">
         <div className="col-sm-3 img-container d-flex justify-content-center align-content-center">
           <img
-            src="https://i.ibb.co/dJ815rh/pp.jpg"
+            src="https://ibb.co/vv0gjHt"
             alt=""
             className="img-round w-100"
           />
@@ -37,7 +37,7 @@ const UserProfile = () => {
         </div>
       </div>
       <hr className="divider" />
-    </Main>
+    </MainComponents>
   );
 };
 

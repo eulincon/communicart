@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
 import {
@@ -10,8 +10,12 @@ import {
 
 import Footer from "../../components/Footer";
 
-const EditProfile = () => {
+const CreateProfile = () => {
   let history = useHistory();
+
+  useEffect(() => {
+    console.log(history);
+  }, []);
 
   const [perfil, setPerfil] = useState({
     bio: "",
@@ -271,4 +275,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default CreateProfile;

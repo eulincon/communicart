@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import "./styles.css";
 
 import Footer from "../../components/Footer";
+import Menu from "../../components/Menu";
 
 const Signup = () => {
   const [cadastro, setCadastro] = useState({
@@ -36,11 +37,14 @@ const Signup = () => {
         cadastro.cnpj
       );
     }
-    history.push("/editar-perfil");
+    history.push("/criar-perfil");
   }
 
   return (
     <>
+      <header>
+        <Menu />
+      </header>
       <div className="py-5 full-cadastro">
         <div className="container bg-white py-3 px-5 form-box">
           <h1 className="text-center">Cadastro</h1>
