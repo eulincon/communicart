@@ -1,0 +1,14 @@
+div.aside ul li:hover a{
+    background-color: var(--color-primary-lighter);
+    color: var(--color-primary-darker);
+    transition: all 0.2s;
+}
+
+div.aside ul li a {
+    color: #ffffff;
+}
+
+div.aside{
+    position: sticky;
+    top: 3vw;
+}
