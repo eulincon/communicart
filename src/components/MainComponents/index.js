@@ -1,9 +1,5 @@
 import React from 'react';
-import { FaComments } from "react-icons/fa";
-import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/images/logo.svg';
-import style from "../Sidebar/styles.module.css";
-import {SidebarData} from "../Sidebar/SidebarData";
+
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
 import Main from "../Main";
