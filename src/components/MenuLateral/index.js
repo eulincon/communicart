@@ -5,8 +5,8 @@ import './style.css';
 
 const MenuLateral = () => {
     return (
-        <div className={`mt-5 col-lg-3 d-none d-lg-inline-block aside-sticky mx-auto pl-5`}>
-            <ul class="nav flex-column mt-1 bg-lighter_ shadow p-3">
+        <div className={`mt-5 col-lg-3 d-none d-lg-inline-block aside-sticky pl-5`}>
+            <ul class="nav flex-column h-100 bg-lighter_ shadow p-3">
                 {SidebarData.map((item, index) => {
                     return (
                         <li key={index} className={`${item.cName} nav-item`}>
