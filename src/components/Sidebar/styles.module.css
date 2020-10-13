@@ -1,7 +1,8 @@
 .sidebar {
     background-color: var(--color-primary);
-    position: sticky;
-    top: 3vw;
+    /* position: fixed;
+    display: flex;
+    flex-direction: column; */
 }
 
 .nav_link {
@@ -13,5 +14,4 @@
 .nav_link:hover {
     background-color: var(--color-secondary);
     color: #fff;
-    transition: all 0.3s;
 }

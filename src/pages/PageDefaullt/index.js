@@ -7,14 +7,17 @@ import MainComponents from "../../components/MainComponents";
 
 const PageDefault = ({children}) => {
     return (
-        <MainComponents>
-            <CardVaga />
-            <CardVaga />
-            <CardVaga />
-            <CardVaga />
-            <CardVaga />
-            <CardVaga />
-        </MainComponents>
+        <div>
+            <Sidebar/>
+            <Main>
+                <CardVaga />
+                <CardVaga />
+                <CardVaga />
+                <CardVaga />
+                <CardVaga />
+                <CardVaga />
+            </Main>
+        </div>
     );
 };
 
