@@ -1,9 +1,5 @@
 import React from "react";
-import { FaComments } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "../../assets/images/logo.svg";
-import style from "../Sidebar/styles.module.css";
-import { SidebarData } from "../Sidebar/SidebarData";
+
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
 import Main from "../Main";
@@ -16,10 +12,10 @@ const MainComponents = ({ children }) => {
         <small className="text-white">H E A D E R P R O V I S Ó R I O</small>
       </header>
       <div className="row">
-        <div className="col-2">
+        <div className="col-lg-2 d-none d-lg-block">
           <Sidebar />
         </div>
-        <div className="col-10 d-flex justify-content-center px-5">
+        <div className="col-12 col-lg-10 d-flex justify-content-center px-1 px-lg-5">
           <Main>{children}</Main>
         </div>
       </div>
