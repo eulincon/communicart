@@ -8,6 +8,7 @@ import PageDefault from "./pages/PageDefaullt";
 import Payments from "./pages/Payments";
 import VagaPage from "./pages/VagaPage";
 import Notify from "./pages/Notify";
+import Registration from "./pages/Registration";
 import Signup from "./pages/Signup";
 import CreateProfile from "./pages/CriarPerfil";
 import UserProfile from "./pages/UserProfile";
@@ -29,7 +30,8 @@ function Routes() {
         <Route path="/usuarios/1" component={UserProfile} />
         <Route path="/payments" component={Payments} />
         <Route path="/notify" component={Notify} />
-        <Route path="/cadastro" component={Signup} />
+        <Route path="/cadastro" component={Registration} />
+        <Route path="/signup" component={Signup} />
         <Route path="/criar-perfil" component={CreateProfile} />
         <Route component={NotFoundPage} />
         {/* <Redirect to="/404"/> */}

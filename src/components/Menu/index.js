@@ -23,7 +23,7 @@ function Menu() {
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item active">
-              <Link className="linkMenu" to="/cadastro">
+              <Link className="linkMenu" to="/signup">
                 Cadastre-se
               </Link>
             </li>

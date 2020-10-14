@@ -27,17 +27,6 @@ const UserProfile = () => {
     dataCadastro: "08/09/2020",
     tipo: "Pessoa Física",
   };
-  const bio = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime
-  soluta saepe dolorem a ratione necessitatibus ipsam incidunt
-  adipisci voluptatibus. Ut iusto eligendi delectus, iure eius sunt
-  temporibus repellendus dicta consequatur? Placeat incidunt impedit
-  culpa asperiores possimus alias illo laudantium accusantium dolore
-  enim veritatis quas id unde dolorum suscipit, porro doloribus.`;
-  const servicos = ["Redação", "Edição"];
-  const midias = {
-    facebook: "www.facebook.com",
-    instagram: "www.instagram.com",
-  };
 
   function socialMediaLink(midia) {
     const site = midia[0];
