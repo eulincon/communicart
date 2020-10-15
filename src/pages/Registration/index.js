@@ -48,7 +48,7 @@ const Registration = () => {
       <div className="py-5 full-cadastro">
         <div className="container bg-white py-3 px-5 form-box">
           <h1 className="text-center">Cadastro</h1>
-          <form id="cadastro" className="mb-5">
+          <form id="cadastro" className="mb-3" onSubmit={handleSubmit}>
             <div className="form-group">
               <div className="form-check form-check-inline mr-5">
                 <input
@@ -72,13 +72,14 @@ const Registration = () => {
                   id="cadastro-cnpj"
                   value="cnpj"
                   onChange={handleRadio}
+                  required
                 />
                 <label className="form-check-label" htmlFor="inlineRadio2">
                   Pessoa Jurídica
                 </label>
               </div>
             </div>
-            <div className="form-group">
+            <div className="form-group mb-5">
               {cadastro.tipo === "cpf" ? (
                 <>
                   <label htmlFor="nome-pessoa-fisica">Nome*</label>
@@ -89,6 +90,7 @@ const Registration = () => {
                     placeholder="Insira seu nome"
                     onChange={handleChange}
                     name="nome"
+                    required
                   />
                   <label htmlFor="sobrenome-pessoa-fisica">Sobrenome*</label>
                   <input
@@ -98,6 +100,7 @@ const Registration = () => {
                     placeholder="Insira seu sobrenome"
                     onChange={handleChange}
                     name="sobrenome"
+                    required
                   />
                   <label htmlFor="cpf-pessoa-fisica">CPF*</label>
                   <input
@@ -107,6 +110,7 @@ const Registration = () => {
                     placeholder="Insira seu CPF"
                     onChange={handleChange}
                     name="cpf"
+                    required
                   />
                 </>
               ) : (
@@ -119,6 +123,7 @@ const Registration = () => {
                     placeholder="Insira o nome fantasia da empresa"
                     onChange={handleChange}
                     name="nomeFantasia"
+                    required
                   />
                   <label htmlFor="nome-representante-PJ">
                     Nome do representante*
@@ -130,6 +135,7 @@ const Registration = () => {
                     placeholder="Insira o nome do representante"
                     onChange={handleChange}
                     name="nomeRepresentante"
+                    required
                   />
                   <label htmlFor="sobrenome-pessoa-fisica">CNPJ*</label>
                   <input
@@ -139,19 +145,20 @@ const Registration = () => {
                     placeholder="Insira o CNPJ"
                     onChange={handleChange}
                     name="cnpj"
+                    required
                   />
                 </>
               )}
             </div>
+            <div className="d-flex mt-5">
+              <button
+                className="text-white text-center bg-dark px-4 py-2 btn-cadastro"
+                type="submit"
+              >
+                Avançar
+              </button>
+            </div>
           </form>
-          <div className="d-flex mt-5 mb-3">
-            <button
-              className="text-white text-center bg-dark px-4 py-2 btn-cadastro"
-              onClick={handleSubmit}
-            >
-              Avançar
-            </button>
-          </div>
         </div>
       </div>
       <Footer id="cadastro-footer" />
