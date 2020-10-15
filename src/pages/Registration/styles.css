@@ -1,0 +1,21 @@
+.full-cadastro {
+  background-color: var(--color-background);
+  min-height: calc(100vh - 72px);
+  position: relative;
+}
+
+.form-box {
+  border-radius: 15px;
+}
+
+.btn-cadastro {
+  display: inline-block;
+  margin-left: auto;
+  border-radius: 25px;
+}
+
+#cadastro-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
