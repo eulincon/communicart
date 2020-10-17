@@ -1,0 +1,16 @@
+.corpo-Cadastro{
+    background-color: #080808;
+}
+
+.cadastro-job{
+color: white;
+background-color: #282929;
+}
+
+.btnPublicar{
+    width: 10em;
+    border-radius: 5em;
+    background-color: black;
+    color: white;
+    font-weight: 600;
+}
