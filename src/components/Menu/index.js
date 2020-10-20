@@ -33,7 +33,7 @@ function Menu() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="linkMenu linkLogin" to="/">
+              <Link className="linkMenu linkLogin b" to="/">
                 Fazer Login
               </Link>
             </li>

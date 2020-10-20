@@ -35,6 +35,10 @@ html, body, #root {
     height: 100vh;
 }
 
+.bg-default_ {
+    background-color: var(--color-background);
+}
+
 .bg-lighter_ {
     background-color: var(--color-lighter);
 }

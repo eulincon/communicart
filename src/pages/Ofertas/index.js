@@ -5,7 +5,7 @@ const ListaDeOfertas = () => {
     return (
         <div>
             <MainComponents>
-                <h1 className="txt-primary-lighter">Lista de Ofertaws</h1>
+                <h1 className="txt-primary-lighter">Lista de Ofertas</h1>
                 
             </MainComponents>                         
                        

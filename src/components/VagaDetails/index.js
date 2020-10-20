@@ -11,7 +11,7 @@ const VagaDetails = (props) => {
   return (
     <>
       <div className="shadow card">
-        <div className="card-body">
+        <div className="card-body bg-lighter_ text-white">
           <h5 className="card-title">Título da vaga</h5>
           <div>
             <span className="font-weight-bold">Nome da empresa: </span>Digital

@@ -6,7 +6,7 @@ import Container from "../Container";
 
 const MainComponents = ({ children }) => {
   return (
-    <div className="container-fluid bg-light">
+    <div className="container-fluid bg-default_">
       <header className="bg-dark row p-4">
         <small className="text-white">H E A D E R P R O V I S Ó R I O</small>
       </header>

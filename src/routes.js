@@ -15,6 +15,7 @@ import UserProfile from "./pages/UserProfile";
 import Login from "./pages/Login";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PasswordRegistration from "./pages/PasswordRegistration";
+import Wishlist from "./pages/Wishlist";
 
 function Routes() {
   return (
@@ -33,6 +34,7 @@ function Routes() {
         <Route path="/cadastro" component={Registration} />
         <Route path="/signup" component={Signup} />
         <Route path="/criar-perfil" component={CreateProfile} />
+        <Route path="/wishlist" component={Wishlist} />
         <Route component={NotFoundPage} />
         {/* <Redirect to="/404"/> */}
       </Switch>
