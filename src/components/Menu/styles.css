@@ -24,7 +24,7 @@
 .linkMenu{
     font-weight: 600;
     font-style: normal;
-    color: var( --color-title-in-primary);
+    color: var( --color-button-text);
     margin-left: 1.5em ;
     text-decoration: none;
 
@@ -36,7 +36,7 @@
 }
 
 .linkLogin{
-    background-color: var(--color-text-title);
+    background-color: var(--color-lighter);
     padding: 0.5em;
     border-radius: 50px;
 }

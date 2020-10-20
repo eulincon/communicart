@@ -3,23 +3,23 @@
 :root {
     /* font-size: 60%; */
 
-    --color-background: #F0F0F7;
-    --color-lighter: #aa94f5;
-    --color-primary-lighter: #9871F5;
-    --color-primary-light: #916BEA;
-    --color-primary: #8257E5;
-    --color-primary-dark: #774DD6;
-    --color-primary-darker: #6842C2;
+    --color-background: #050505f6;
+    --color-lighter: #141414;
+    --color-primary-lighter: #1D06B1;
+    --color-primary-light: #18068d;
+    --color-primary: #160583;
+    --color-primary-dark: #2007C5;
+    --color-primary-darker: #11036d;
     --color-secondary: #04D361;
     --color-secondary-dark: #04BF58;
     --color-title-in-primary: #FFFFFF;
-    --color-text-in-primary: #D4C2FF;
-    --color-text-title: #32264D;
+    --color-text-in-primary: #282929;
+    --color-text-title: #FFFFFF;
     --color-text-complement: #9C98A6;
-    --color-text-base: #6A6180;
-    --color-line-in-white: #E6E6F0;
+    --color-text-base: #000000;
+    --color-line-in-white: #1f1f25;
     --color-input-background: #F8F8FC;
-    --color-button-text: #FFFFFF;
+    --color-button-text: #1BF786;
     --color-box-base: #FFFFFF;
     --color-box-footer: #FAFAFC;
 }
@@ -70,7 +70,7 @@ html, body, #root {
 /* Text colors with css */
 
 .txt-primary-lighter{
-    color: var(--color-primary-lighter);
+    color: var(--color-text-title);
 }
 
 .txt-primary-light{

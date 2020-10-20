@@ -1,5 +1,5 @@
 div.aside-sticky ul li:hover a{
-    background-color: var(--color-primary-lighter);
+    background-color: var(--color-secondary);
     color: var(--color-primary-darker);
     transition: all 0.2s;
 }

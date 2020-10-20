@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  color: var(--color-title-in-primary);
 }
 
 .col-form-label {
