@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Sidebar from '../../components/Sidebar';
+/*import Sidebar from '../../components/Sidebar';*/
 import AlertNotificacaoCandidatura from '../../components/AlertNotificacaoCandidatura';
 import AlertNotificacaoMensagem from '../../components/AlertNotificacaoMensagem';
 import AlertSemNotificacao from '../../components/AlertSemNotificacao';
@@ -8,8 +8,8 @@ import CardNotificacaoCandidatura from '../../components/CardNotificacaoCandidat
 import CardNotificacaoMensagem from '../../components/CardNotificacaoMensagem';
 /*import Main from '../../components/Main';
 import Footer from '../../components/Footer';
-import NotifyBackground from "../../components/NotifyBackground";
-import MainComponents from "../../components/MainComponents";*/
+import NotifyBackground from "../../components/NotifyBackground";*/
+import MainComponents from "../../components/MainComponents";
 
 
 const Notify = () => {

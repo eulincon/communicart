@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.css'
 import Footer from '../../components/Footer'
-import MenuLateral from '../../components/MenuLateral'
+/*import MenuLateral from '../../components/MenuLateral'*/
 
 function CadastroJob() {
 

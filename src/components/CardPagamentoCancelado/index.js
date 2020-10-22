@@ -4,7 +4,7 @@ const CardPagamentoCancelado = () => {
 
     return (
         <div className="card my-4 bg-lighter_">
-            <div className="card-body text-danger text-center">
+            <div className="card-body text-danger">
                 <s>
                     <h4 className="card-title">Título</h4>
                     <p>Nome do cliente</p>
