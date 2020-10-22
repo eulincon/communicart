@@ -5,7 +5,7 @@ import { ReactComponent as IconOptimizeImage } from "../../assets/images/vaga_de
 import { ReactComponent as IconPhotograph } from "../../assets/images/vaga_details/undraw_Photograph.svg";
 import { ReactComponent as IconTeamUp } from "../../assets/images/vaga_details/undraw_team_up.svg";
 
-import ButtonLikeVaga from "../../components/ButtonLikeVaga";
+import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
 
 const VagaDetails = (props) => {
   return (
