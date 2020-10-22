@@ -95,7 +95,7 @@ const VagaDetails = (props) => {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body bg-lighter_ text-white">
               <form>
                 <div className="form-row">
                   <div class="form-group col">
@@ -136,7 +136,7 @@ const VagaDetails = (props) => {
                 </div>
               </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer bg-lighter_">
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -144,7 +144,7 @@ const VagaDetails = (props) => {
               >
                 Fechar
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" class="btn btn-primary bg-secondary_">
                 Enviar proposta
               </button>
             </div>

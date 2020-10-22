@@ -13,7 +13,7 @@ const Payments = () => {
                 <CardPagamentoPendente />
                 <CardPagamentoRealizado />
                 <CardPagamentoCancelado />
-            </MainComponents>                         
+            </MainComponents>                        
                        
         </div>
     );

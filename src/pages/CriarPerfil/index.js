@@ -72,8 +72,8 @@ const CreateProfile = () => {
 
   return (
     <>
-      <div className="py-5 full-editar-perfil">
-        <div className="container bg-white py-3 px-5 form-box">
+      <div className="py-5 full-editar-perfil text-white">
+        <div className="container bg-lighter_ py-3 px-5 form-box">
           <h1 className="text-center">Edição de Perfil</h1>
           <form id="editar-perfil" className="mb-5">
             <div className="form-group mb-4">
@@ -262,7 +262,7 @@ const CreateProfile = () => {
           </form>
           <div className="d-flex mt-5 mb-3">
             <button
-              className="text-white text-center bg-dark px-4 py-2 btn-cadastro"
+              className="text-center bg-dark px-4 py-2 btn-cadastro txt-secondary_"
               onClick={handleSubmit}
             >
               Avançar

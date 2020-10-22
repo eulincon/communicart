@@ -45,8 +45,8 @@ const Registration = () => {
       <header>
         <Menu />
       </header>
-      <div className="py-5 full-cadastro">
-        <div className="container bg-white py-3 px-5 form-box">
+      <div className="py-5 full-cadastro text-white">
+        <div className="container bg-lighter_ py-3 px-5 form-box">
           <h1 className="text-center">Cadastro</h1>
           <form id="cadastro" className="mb-3" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -152,7 +152,7 @@ const Registration = () => {
             </div>
             <div className="d-flex mt-5">
               <button
-                className="text-white text-center bg-dark px-4 py-2 btn-cadastro"
+                className="text-center bg-dark px-4 py-2 btn-cadastro txt-secondary_"
                 type="submit"
               >
                 Avançar
