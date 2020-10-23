@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaComments } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+/*import { FaComments } from "react-icons/fa";
+import { Link } from 'react-router-dom';*/
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 
 
