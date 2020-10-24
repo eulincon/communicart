@@ -3,7 +3,7 @@ import SkeletonPage from '..';
 
 const Teste = () => {
     return (
-        <SkeletonPage sidebar={true} footer={true}/>
+        <SkeletonPage sidebar={false} footer={true}/>
     )
 };
 

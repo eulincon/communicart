@@ -7,3 +7,12 @@
 .min_height {
     min-height: 80.7vh;
 }
+
+.tugle {
+    background-color: yellowgreen;
+    flex-basis: 100%;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-align: center;
+    align-items: center;
+}
