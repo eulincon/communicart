@@ -10,7 +10,7 @@ const Main = ({ sidebar = false, footer = false, children }) => {
     <>
       <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light mb-2">
         <Link className="navbar-brand	d-none d-lg-block" to={'#'}>
-          <Logo width={200} alt="Communicart"/>
+          <Logo width={200} alt="Communicart" />
         </Link>
         <button
           className="navbar-toggler"
@@ -22,22 +22,25 @@ const Main = ({ sidebar = false, footer = false, children }) => {
           aria-label="Toggle navigation"
         >
           <Link className="navbar-brand" to={'#'}>
-            <Logo width={200} alt="Communicart"/>
+            <Logo width={200} alt="Communicart" />
           </Link>
           {/* <span className="navbar-toggler-icon"></span> */}
           {/* <Logo width={200} alt="Communicart"/> */}
         </button>
+
+        {sidebar && (
         <button
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
+          data-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+        )}
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           {/* <Link className="navbar-brand" to={'#'}>
             <Logo width={200} alt="Communicart"/>
@@ -54,26 +57,48 @@ const Main = ({ sidebar = false, footer = false, children }) => {
             </li>
           </ul>
         </div>
+
+        {sidebar && (
+          <aside className={`collapse ${styles.tugle}`} id="navbarTogglerDemo02">
+            <div className="bg-secondary rounded h-100 mr-3 d-block d-lg-none">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link active text-light" to={'#'}>Active</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-light" to={'#'}>Link</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-light" to={'#'}>Link</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link disabled text-light" to={'#'}>Disabled</Link>
+                </li>
+              </ul>
+            </div>
+          </aside>
+        )}
       </nav>
 
       <div className="mb-2 bg-dark mx-3">
         {sidebar && (
-          <aside 
+          <aside
+            role="navigation"
             className={`position-fixed col-2 ${styles.aside_position} d-none d-lg-block`}
           >
             <div className="bg-secondary rounded h-100 mr-3">
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <Link class="nav-link active text-light" to={'#'}>Active</Link>
+              <ul className="nav flex-column">
+                <li className="nav-item">
+                  <Link className="nav-link active text-light" to={'#'}>Active</Link>
                 </li>
-                <li class="nav-item">
-                  <Link class="nav-link text-light" to={'#'}>Link</Link>
+                <li className="nav-item">
+                  <Link className="nav-link text-light" to={'#'}>Link</Link>
                 </li>
-                <li class="nav-item">
-                  <Link class="nav-link text-light" to={'#'}>Link</Link>
+                <li className="nav-item">
+                  <Link className="nav-link text-light" to={'#'}>Link</Link>
                 </li>
-                <li class="nav-item">
-                  <Link class="nav-link disabled text-light" to={'#'}>Disabled</Link>
+                <li className="nav-item">
+                  <Link className="nav-link disabled text-light" to={'#'}>Disabled</Link>
                 </li>
               </ul>
             </div>
@@ -86,9 +111,9 @@ const Main = ({ sidebar = false, footer = false, children }) => {
 
       {footer && (
         // <!-- Footer -->
-        <footer class="page-footer font-small blue bg-light position-sticky ">
+        <footer className="page-footer font-small blue bg-light position-sticky ">
           {/* <!-- Copyright --> */}
-          <div class="footer-copyright text-center py-3">© 2020 Copyright:
+          <div className="footer-copyright text-center py-3">© 2020 Copyright:
                     <Link href="https://mdbootstrap.com/"> Communicart.com.br</Link>
           </div>
           {/* <!-- Copyright --> */}
