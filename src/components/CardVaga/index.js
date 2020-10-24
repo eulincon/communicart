@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import ButtonLikeVaga from '../../components/ButtonLikeVaga';
+import ButtonLikeVaga from '../../components/CardVaga/ButtonLikeVaga';
 
 const CardVaga = () => {
     

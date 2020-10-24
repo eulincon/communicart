@@ -1,0 +1,9 @@
+.aside_position {
+    height: 80.7vh;
+    /* background-color: white; */
+    padding: 0;
+}
+
+.min_height {
+    min-height: 80.7vh;
+}

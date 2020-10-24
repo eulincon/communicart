@@ -18,6 +18,7 @@ import PasswordRegistration from "./pages/PasswordRegistration";
 import Wishlist from "./pages/Wishlist";
 import ServiceRegistration from "./pages/ServiceRegistration";
 import JobOffers from "./pages/JobOffers";
+import Teste from "./components/SkeletonPage/Teste";
 
 function Routes() {
   return (
@@ -39,6 +40,8 @@ function Routes() {
         <Route path="/wishlist" component={Wishlist} />
         <Route path="/cadastro-job" exact component={ServiceRegistration} />
         <Route path="/job-offers/1" component={JobOffers} />
+        {/* Apenas para teste e criação de componentes */}
+        <Route path="/lincon-dev" component={Teste} />
         <Route component={NotFoundPage} />
         {/* <Redirect to="/404"/> */}
       </Switch>
