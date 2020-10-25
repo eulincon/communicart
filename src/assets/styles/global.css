@@ -3,7 +3,7 @@
 :root {
     /* font-size: 60%; */
 
-    --color-background: #050505f6;
+    --color-background: #141414;
     --color-lighter: #141414;
     --color-primary-lighter: #1D06B1;
     --color-primary-light: #18068d;
@@ -29,6 +29,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Poppins, Oxygen, Roboto, 'Open Sans', sans-serif;
+    /* color: var(--color-input-background); */
 }
 
 html, body, #root {
