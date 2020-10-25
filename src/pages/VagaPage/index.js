@@ -1,19 +1,14 @@
 import React from 'react';
-import Main from '../../components/Main';
-import Sidebar from '../../components/Sidebar';
 
+import SkeletonPage from '../../components/SkeletonPage';
 import VagaDetails from '../../components/VagaDetails';
 
 const VagaPage = () => {
     return (
-        <>
-            <Sidebar />
-            <Main>
-                {/* {children} */}
-                <h1 className="text-center text-white">Detalhes da vaga</h1>
-                <VagaDetails />
-            </Main>
-        </>
+        <SkeletonPage sidebar={true} footer={true}>
+            <h1 className="text-center text-white">Detalhes da vaga</h1>
+            <VagaDetails />
+        </SkeletonPage>
     );
 };
 

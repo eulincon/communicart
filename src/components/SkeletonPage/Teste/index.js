@@ -1,9 +1,15 @@
 import React from 'react';
-import SkeletonPage from '..';
+import SkeletonPage from '../index';
 
 const Teste = () => {
     return (
-        <SkeletonPage sidebar={false} footer={true}/>
+        <SkeletonPage sidebar={true} footer={true}>
+            sfdsfdsfd
+            <br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/>
+        </SkeletonPage>
     )
 };
 

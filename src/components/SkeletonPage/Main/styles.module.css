@@ -1,15 +1,15 @@
 .aside_position {
-    height: 80.7vh;
+    height: 80vh;
     /* background-color: white; */
     padding: 0;
 }
 
 .min_height {
-    min-height: 80.7vh;
+    min-height: 79.8vh;
 }
 
 .tugle {
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     flex-basis: 100%;
     -ms-flex-positive: 1;
     flex-grow: 1;
