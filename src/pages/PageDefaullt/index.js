@@ -1,23 +1,26 @@
 import React from "react";
 
 import CardVaga from "../../components/CardVaga";
-import Main from "../../components/Main";
-import Sidebar from "../../components/Sidebar";
-/*import MainComponents from "../../components/MainComponents";*/
+import SkeletonPage from '../../components/SkeletonPage'
 
 const PageDefault = ({ children }) => {
   return (
-    <div>
-      <Sidebar />
-      <Main>
+    <SkeletonPage sidebar={true} footer={false}>
         <CardVaga />
         <CardVaga />
         <CardVaga />
         <CardVaga />
         <CardVaga />
         <CardVaga />
-      </Main>
-    </div>
+        <CardVaga />
+        <CardVaga />
+        <CardVaga />
+        <CardVaga />
+        <CardVaga />
+        <CardVaga />
+        <CardVaga />
+        <CardVaga />
+    </SkeletonPage>
   );
 };
 
