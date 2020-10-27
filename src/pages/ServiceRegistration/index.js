@@ -2,6 +2,8 @@ import React from 'react';
 
 import './styles.css'
 import Footer from '../../components/Footer'
+import MainComponents from '../../components/MainComponents';
+import Menu from '../../components/Menu';
 /*import MenuLateral from '../../components/MenuLateral'*/
 
 function CadastroJob() {
@@ -15,11 +17,9 @@ function CadastroJob() {
 
     return (
         <>
-            <main className="container-fluid corpo-Cadastro">
+            <MainComponents>
                 <div className="row d-flex ">
-                    <div className="col-3 ">
-                    </div>
-                    <div className="col-9 cadastro-job">
+                    <div className="col cadastro-job">
                         <form className="container-fluid d-flex flex-column">
                             <h1 className="align-self-center">Cadastro Job</h1>
                             <section className="row ">
@@ -119,41 +119,40 @@ function CadastroJob() {
                             <h3 className="align-self-center">Formas de Contato</h3>
                             <section className="d-flex flex-column ">
                                 <div className="col-10 align-self-center">
-                                <section>
-                                    <input className="form-check-input" type="checkbox" value="" id="contatoEmail" />
-                                <label className="form-check-label" for="contatoEmail">
-                                    E-mail
+                                    <section>
+                                        <input className="form-check-input" type="checkbox" value="" id="contatoEmail" />
+                                        <label className="form-check-label" for="contatoEmail">
+                                            E-mail
                                 </label>
-                                </section>
-                                <section>
-                                    <input className="form-check-input" type="checkbox" value="" id="contatoTelefone" />
-                                <label className="form-check-label" for="contatoTelefone">
-                                    Telefone
+                                    </section>
+                                    <section>
+                                        <input className="form-check-input" type="checkbox" value="" id="contatoTelefone" />
+                                        <label className="form-check-label" for="contatoTelefone">
+                                            Telefone
                                 </label>
-                                </section>
-                                <section>
-                                    <input className="form-check-input" type="checkbox" value="" id="contatoLinkdin" />
-                                <label className="form-check-label" for="contatoLinkdin">
-                                    Linkedin
+                                    </section>
+                                    <section>
+                                        <input className="form-check-input" type="checkbox" value="" id="contatoLinkdin" />
+                                        <label className="form-check-label" for="contatoLinkdin">
+                                            Linkedin
                                 </label>
-                                </section>
-                                <section>
-                                    <input className="form-check-input" type="checkbox" value="" id="contatoChat" />
-                                <label className="form-check-label" for="contatoChat">
-                                    Bate-pao
+                                    </section>
+                                    <section>
+                                        <input className="form-check-input" type="checkbox" value="" id="contatoChat" />
+                                        <label className="form-check-label" for="contatoChat">
+                                            Bate-pao
                                 </label>
-                                </section>
+                                    </section>
                                 </div>
                             </section>
-                            <br/><hr/>
+                            <br /><hr />
 
                             <button type="submit" className="btn align-self-center btnPublicar">Publicar</button>
-                            <br/><br/>
+                            <br /><br />
                         </form>
                     </div>
                 </div>
-            </main>
-          <Footer />
+            </MainComponents>
         </>
     );
 }

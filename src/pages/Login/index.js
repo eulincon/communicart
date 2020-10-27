@@ -17,7 +17,7 @@ function PaginaLogin() {
 
   return (
     <>
-      <Menu />
+      <Menu logar={false}/>
       <main className="container-fluid corpo">
         <section className="informacoes">
           <h1>Faça já seu login</h1>

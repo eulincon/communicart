@@ -25,12 +25,30 @@
     font-weight: 600;
     font-style: normal;
     color: var( --color-button-text);
-    margin-left: 1.5em ;
+    margin-left: 3em ;
     text-decoration: none;
 
 }
 
-.linkMenu:hover, .linkMenu:active{
+.linkSair{
+    display: flex;
+    background-color: var(--color-lighter);
+    border-radius: 50px;
+    width: 8em;
+    height: 3em;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3em;
+}
+
+.linkSairText{
+    font-weight: 600;
+    font-style: normal;
+    color: var( --color-button-text);
+    text-decoration: none;
+}
+
+.linkSairText:hover, .linkSairText:active, .linkMenu:hover, .linkMenu:active{
     text-decoration: none;
     color: rgb(201, 201, 201);
 }
@@ -43,6 +61,11 @@
 
 .linkLogin:hover{
     background-color: var(--color-primary-dark) 
+}
+
+.listaMenu{
+    display: flex;
+    align-items: center;
 }
 
 @media(max-width: 720px){
