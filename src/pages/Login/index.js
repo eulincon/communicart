@@ -3,16 +3,24 @@ import React from "react";
 import "./styles.css";
 import Menu from "../../components/Menu";
 import { Link } from "react-router-dom";
+import {useAuth} from "../../contexts/auth";
 
 function PaginaLogin() {
   let email = "";
   let senha = "";
 
-  async function handleLogin(e) {
+  const { signed, user, signIn } = useAuth();
+
+  console.log(signed);
+  console.log(user);
+
+  // async
+  function handleLogin(e) {
     e.preventDefault();
     console.log(
       `Seu email é ${email} e a senha é ${senha} aqui ocorre a chamada a API para a autenticação do usuario`
     );
+    signIn();
   }
 
   return (
