@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-import AuthContext from "./contexts/auth";
+import { useAuth } from "./contexts/auth";
 
 import Home from "./pages/Home";
 import Feed from "./pages/Feed";
@@ -21,10 +21,17 @@ import Wishlist from "./pages/Wishlist";
 import ServiceRegistration from "./pages/ServiceRegistration";
 import JobOffers from "./pages/JobOffers";
 import Teste from "./components/SkeletonPage/Teste";
-import { signIn } from "./services/auth";
+
+function CustomRoute({isPrivate, ...rest}){
+  const { signed } = useAuth();
+  if(isPrivate && !signed){
+    return <Redirect to="/"/>
+  }
+  return <Route {...rest}/>
+}
+
 
 function Routes() {
-  const { signed } = useContext(AuthContext);
     return (
       <BrowserRouter>
         <Switch>
@@ -32,11 +39,9 @@ function Routes() {
           <Route path="/recuperacao" exact component={PasswordRecovery} />
           <Route path="/novaSenha" exact component={PasswordRegistration} />
           <Route path="/home" component={Home} exact />
-          <Route path="/feed" component={PageDefault} />
+          <CustomRoute isPrivate path="/feed" component={PageDefault} />
           <Route path="/page-default" component={Feed} />
-          <Route path="/vagas/1">
-            {signed ? <VagaPage/> : <Redirect to="/"/>}
-          </Route>
+          <Route path="/vagas/1" component={VagaPage} />
           <Route path="/usuarios/1" component={UserProfile} />
           <Route path="/payments" component={Payments} />
           <Route path="/notify" component={Notify} />

@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import "./styles.css";
 import Menu from "../../components/Menu";
 import { Link } from "react-router-dom";
-import AuthContext from "../../contexts/auth";
+import {useAuth} from "../../contexts/auth";
 
 function PaginaLogin() {
   let email = "";
   let senha = "";
 
-  const { signed, user, signIn } = useContext(AuthContext);
+  const { signed, user, signIn } = useAuth();
 
   console.log(signed);
   console.log(user);
