@@ -121,7 +121,7 @@ const Main = ({ sidebar = false, footer = false, children }) => {
       {/* Footer */}
       {footer && (
         <footer className="page-footer font-small blue bg-primary_ position-sticky" >
-          <div className="footer-copyright text-center py-3">© 2020 Copyright:
+          <div className="footer-copyright text-center py-3 text-light">© 2020 Copyright:
                     <Link to="https://mdbootstrap.com/" className="text-light"> Communicart.com.br</Link>
           </div>
         </footer>

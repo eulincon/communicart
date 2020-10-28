@@ -7,7 +7,7 @@ const CardVaga = () => {
     
 
     return (
-        <div className="card my-4 bg-lighter_ text-white">
+        <div className="card my-4 bg-lighter_ text-white shadow">
             <div className="card-body">
                 <h4 className="card-title">Título do anúncio</h4>
                 <span>Nome da empresa</span>
