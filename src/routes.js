@@ -6,7 +6,6 @@ import { useAuth } from "./contexts/auth";
 import Home from "./pages/Home";
 import Feed from "./pages/Feed";
 import NotFoundPage from "./pages/NotFoundPage";
-import PageDefault from "./pages/PageDefaullt";
 import Payments from "./pages/Payments";
 import VagaPage from "./pages/VagaPage";
 import Notify from "./pages/Notify";
@@ -22,9 +21,10 @@ import ServiceRegistration from "./pages/ServiceRegistration";
 import JobOffers from "./pages/JobOffers";
 import Teste from "./components/SkeletonPage/Teste";
 
-function CustomRoute({isPrivate, ...rest}){
-  const { signed } = useAuth();
-  if(isPrivate && !signed){
+function PrivateRoute({...rest}){
+  const { signed } =  useAuth();
+  // console.log(`is signed: ${signed} - user: ${user}`)
+  if (!signed) {
     return <Redirect to="/"/>
   }
   return <Route {...rest}/>
@@ -39,7 +39,7 @@ function Routes() {
           <Route path="/recuperacao" exact component={PasswordRecovery} />
           <Route path="/novaSenha" exact component={PasswordRegistration} />
           <Route path="/home" component={Home} exact />
-          <CustomRoute isPrivate path="/feed" component={PageDefault} />
+          <PrivateRoute path="/feed" component={Feed} />
           <Route path="/page-default" component={Feed} />
           <Route path="/vagas/1" component={VagaPage} />
           <Route path="/usuarios/1" component={UserProfile} />

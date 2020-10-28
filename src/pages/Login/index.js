@@ -9,10 +9,10 @@ function PaginaLogin() {
   let email = "";
   let senha = "";
 
-  const { signed, user, signIn } = useAuth();
+  const { signIn } = useAuth();
 
-  console.log(signed);
-  console.log(user);
+  // console.log(signed);
+  // console.log(user);
 
   // async
   function handleLogin(e) {

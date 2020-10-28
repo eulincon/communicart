@@ -17,14 +17,15 @@ const AuthContext = createContext(AuthContextData);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
+  const [loadinng, setLoading] = useState(true);
+  
+  
   useEffect(() => {
     async function loadStoragedData() {
       const storagedUser = localStorage.getItem('@RNAuth:user');
       const storagedToken = localStorage.getItem('@RNAuth:token');
       
       if(storagedUser && storagedToken) {
-        
         api.defaults.headers['Authorization'] = `Bearer ${storagedToken}`;
         
         setUser(JSON.parse(storagedUser));
@@ -32,8 +33,10 @@ export const AuthProvider = ({ children }) => {
     };
 
     loadStoragedData();
+    
+    setLoading(false);
   }, []);
-
+  
   async function signIn() {
     const response = await auth.signIn();
 
@@ -48,6 +51,10 @@ export const AuthProvider = ({ children }) => {
     // api.defaults.headers.Authorization = undefined;
     setUser(null);
     return (<Redirect push to="/"/>)
+  }
+
+  if (loadinng) {
+    return <h1 className="text-light">loading..</h1>
   }
 
   return (
