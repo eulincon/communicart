@@ -6,15 +6,17 @@ import { Link } from "react-router-dom";
 import {useAuth} from "../../contexts/auth";
 
 function PaginaLogin() {
+
   let email = "";
   let senha = "";
 
-  const { signIn } = useAuth();
+  const { signed, user, signIn, loading } = useAuth();
 
-  // console.log(signed);
-  // console.log(user);
+  console.log(signed);
+  console.log(user);
 
   // async
+  
   function handleLogin(e) {
     e.preventDefault();
     console.log(
@@ -22,7 +24,6 @@ function PaginaLogin() {
     );
     signIn();
   }
-
   return (
     <>
       <Menu logar={false}/>
