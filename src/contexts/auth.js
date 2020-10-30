@@ -5,9 +5,10 @@ import * as auth from '../services/auth';
 import { Redirect } from 'react-router-dom';
 
 const AuthContextData = {
+  loading: Boolean,
   signed: Boolean,
   user: Object || null,
-  signIn: () => (Promise),
+  signIn: () => { },
   signOut: () => { }
 }
 
@@ -17,11 +18,11 @@ const AuthContext = createContext(AuthContextData);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loadinng, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   
   
   useEffect(() => {
-    async function loadStoragedData() {
+    function loadStoragedData() {
       const storagedUser = localStorage.getItem('@RNAuth:user');
       const storagedToken = localStorage.getItem('@RNAuth:token');
       
@@ -30,18 +31,18 @@ export const AuthProvider = ({ children }) => {
         
         setUser(JSON.parse(storagedUser));
       }
+      setLoading(false);
     };
 
     loadStoragedData();
     
-    setLoading(false);
   }, []);
   
   async function signIn() {
     const response = await auth.signIn();
 
     setUser(response.user);
-
+    
     localStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
     localStorage.setItem('@RNAuth:token', response.token);
   }
@@ -53,12 +54,8 @@ export const AuthProvider = ({ children }) => {
     return (<Redirect push to="/"/>)
   }
 
-  if (loadinng) {
-    return <h1 className="text-light">loading..</h1>
-  }
-
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut }}>
+    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, loading }}>
       {children}
     </AuthContext.Provider>
   );

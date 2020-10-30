@@ -2,19 +2,20 @@ import React from "react";
 
 import "./styles.css";
 import Menu from "../../components/Menu";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {useAuth} from "../../contexts/auth";
+import Loading from "../../components/Loading";
 
 function PaginaLogin() {
+  let history = useHistory();
+  const { signed, signIn, loading } = useAuth();
   let email = "";
   let senha = "";
 
-  const { signIn } = useAuth();
+  if(signed){
+    history.push("/feed");
+  }
 
-  // console.log(signed);
-  // console.log(user);
-
-  // async
   function handleLogin(e) {
     e.preventDefault();
     console.log(
@@ -22,7 +23,11 @@ function PaginaLogin() {
     );
     signIn();
   }
-
+  
+  if(loading){
+    return <Loading />
+    // return <h1 className="text-light">Loading</h1>
+  }
   return (
     <>
       <Menu logar={false}/>
