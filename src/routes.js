@@ -20,12 +20,14 @@ import Wishlist from "./pages/Wishlist";
 import ServiceRegistration from "./pages/ServiceRegistration";
 import JobOffers from "./pages/JobOffers";
 import Teste from "./components/SkeletonPage/Teste";
+import Loading from "./components/Loading";
 
 function PrivateRoute({...rest}){
-  const { signed, loading } =  useAuth();
-  // console.log(`is signed: ${signed} - user: ${user}`)
+  const { signed, user, loading } =  useAuth();
+  console.log(`is signed: ${signed} - user: ${user}`)
   if (loading) {
-    return <h1 className="text-light">loading..</h1>
+    return <Loading />
+    // return <h1 className="text-light">Loading</h1>
   }
   if (!signed) {
     return <Redirect to="/"/>
