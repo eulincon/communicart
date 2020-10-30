@@ -1,15 +1,9 @@
 import React from 'react';
-import SkeletonPage from '../index';
+import Loading from '../../Loading';
 
 const Teste = () => {
     return (
-        <SkeletonPage sidebar={true} footer={true}>
-            sfdsfdsfd
-            <br/><br/><br/><br/><br/><br/>
-            <br/><br/><br/><br/><br/><br/>
-            <br/><br/><br/><br/><br/><br/>
-            <br/><br/><br/><br/><br/><br/>
-        </SkeletonPage>
+        <Loading />
     )
 };
 

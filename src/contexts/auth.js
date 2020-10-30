@@ -42,6 +42,8 @@ export const AuthProvider = ({ children }) => {
     const response = await auth.signIn();
 
     setUser(response.user);
+
+    console.log("Entrou aqui");
     
     localStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
     localStorage.setItem('@RNAuth:token', response.token);
