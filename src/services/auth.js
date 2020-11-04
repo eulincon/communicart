@@ -5,7 +5,8 @@ export function signIn() {
       resolve({
         token: 'asdfdsfadsf.sdtgretert.rgbvdf52725',
         user: {
-          name: 'Lincon',
+          id: 1,
+          nome: 'Lincon',
           email: 'lincon@teste.com.br'
         }
       })

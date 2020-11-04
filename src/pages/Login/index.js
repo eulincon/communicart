@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./styles.css";
 import Menu from "../../components/Menu";
@@ -9,8 +9,8 @@ import Loading from "../../components/Loading";
 function PaginaLogin() {
   let history = useHistory();
   const { signed, signIn, loading } = useAuth();
-  let email = "";
-  let senha = "";
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
 
   if(signed){
     history.push("/feed");
@@ -19,9 +19,9 @@ function PaginaLogin() {
   function handleLogin(e) {
     e.preventDefault();
     console.log(
-      `Seu email é ${email} e a senha é ${senha} aqui ocorre a chamada a API para a autenticação do usuario`
+      {email, password}
     );
-    signIn();
+    signIn({email, password});
   }
   
   if(loading){
@@ -48,7 +48,8 @@ function PaginaLogin() {
             type="text"
             className="inputLogin"
             placeholder="insira seu e-mail"
-            onChange={(e) => (email = e.target.value)}
+            // onChange={(e) => (email = e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <label className="labelLogin">Senha</label>
@@ -56,7 +57,8 @@ function PaginaLogin() {
             type="text"
             className="inputLogin"
             placeholder="insira sua senha"
-            onChange={(e) => (senha = e.target.value)}
+            // onChange={(e) => (senha = e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
           <div className="opcoesLogin">

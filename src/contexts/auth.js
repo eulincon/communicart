@@ -38,15 +38,28 @@ export const AuthProvider = ({ children }) => {
     
   }, []);
   
-  async function signIn() {
-    const response = await auth.signIn();
-
+  
+  async function signIn(data) {
+    // const response = await auth.signIn();
+    const response = await api.post('/api/login', {email: 'user3@teste.com', password: '!123Abcde'})
+      .then((response) => {
+        console.log("Entrou aqui no ok");
+        return response;
+      })
+      .then((error) => {
+        console.log("erro");
+        return console.log(error.response.data);
+      }
+      );
+      
     setUser(response.user);
 
-    console.log("Entrou aqui");
-    
+    console.log(response)
+
     localStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
     localStorage.setItem('@RNAuth:token', response.token);
+    // setUser(response.user);
+
   }
 
   function signOut() {
