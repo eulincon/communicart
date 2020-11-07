@@ -36,6 +36,7 @@ function PrivateRoute({...rest}){
 }
 
 function Routes() {
+  const {signOut} = useAuth();
   
   return (
     <BrowserRouter>
@@ -56,6 +57,7 @@ function Routes() {
         <Route path="/wishlist" component={Wishlist} />
         <Route path="/cadastro-job" exact component={ServiceRegistration} />
         <Route path="/job-offers/1" component={JobOffers} />
+        <Route path="/logout" render={signOut}/>
         {/* Apenas para teste e criação de componentes */}
         <Route path="/lincon-dev" component={Teste} />
         <Route component={NotFoundPage} />

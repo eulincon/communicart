@@ -41,30 +41,24 @@ export const AuthProvider = ({ children }) => {
   
   async function signIn(data) {
     // const response = await auth.signIn();
-    const response = await api.post('/api/login', {email: 'user3@teste.com', password: '!123Abcde'})
+    await api.post('/api/login', data)
       .then((response) => {
-        console.log("Entrou aqui no ok");
-        return response;
+        setUser(response.data.user);
+        localStorage.setItem('@RNAuth:user', JSON.stringify(response.data.user));
+        localStorage.setItem('@RNAuth:token', response.data.jwt);
       })
-      .then((error) => {
-        console.log("erro");
-        return console.log(error.response.data);
+      .catch((error) => {
+        console.log(error.response.data);
       }
       );
-      
-    setUser(response.user);
 
-    console.log(response)
-
-    localStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
-    localStorage.setItem('@RNAuth:token', response.token);
     // setUser(response.user);
 
   }
 
   function signOut() {
     localStorage.clear();
-    // api.defaults.headers.Authorization = undefined;
+    api.defaults.headers.Authorization = undefined;
     setUser(null);
     return (<Redirect push to="/"/>)
   }
