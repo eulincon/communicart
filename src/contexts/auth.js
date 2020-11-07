@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import api from '../services/api';
 import { useContext } from 'react';
-import * as auth from '../services/auth';
+// import * as auth from '../services/auth';
 import { Redirect } from 'react-router-dom';
 
 const AuthContextData = {
@@ -38,20 +38,27 @@ export const AuthProvider = ({ children }) => {
     
   }, []);
   
-  async function signIn() {
-    const response = await auth.signIn();
+  
+  async function signIn(data) {
+    // const response = await auth.signIn();
+    await api.post('/api/login', data)
+      .then((response) => {
+        setUser(response.data.user);
+        localStorage.setItem('@RNAuth:user', JSON.stringify(response.data.user));
+        localStorage.setItem('@RNAuth:token', response.data.jwt);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      }
+      );
 
-    setUser(response.user);
+    // setUser(response.user);
 
-    console.log("Entrou aqui");
-    
-    localStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
-    localStorage.setItem('@RNAuth:token', response.token);
   }
 
   function signOut() {
     localStorage.clear();
-    // api.defaults.headers.Authorization = undefined;
+    api.defaults.headers.Authorization = undefined;
     setUser(null);
     return (<Redirect push to="/"/>)
   }
