@@ -43,9 +43,10 @@ export const AuthProvider = ({ children }) => {
     // const response = await auth.signIn();
     await api.post('/api/login', data)
       .then((response) => {
-        setUser(response.data.user);
         localStorage.setItem('@RNAuth:user', JSON.stringify(response.data.user));
         localStorage.setItem('@RNAuth:token', response.data.jwt);
+        api.defaults.headers['Authorization'] = `Bearer ${response.data.jwt}`;
+        setUser(response.data.user);
       })
       .catch((error) => {
         console.log(error.response.data);

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
+import api from '../../services/api';
 
+import {useAuth} from '../../contexts/auth';
 import Footer from "../../components/Footer";
 import Menu from "../../components/Menu";
 
 const Registration = () => {
+  const {user} = useAuth();
   const [cadastro, setCadastro] = useState({
     nome: "",
     sobrenome: "",
@@ -13,31 +16,33 @@ const Registration = () => {
     nomeRepresentante: "",
     cpf: "",
     cnpj: "",
-    tipo: "cpf",
+    tipoPessoa: 0,
   });
-
   let history = useHistory();
 
   function handleRadio(e) {
-    setCadastro({ ...cadastro, tipo: e.target.value });
+    setCadastro({ ...cadastro, tipoPessoa: Number(e.target.value) });
+    console.log(cadastro)
   }
 
   function handleChange(e) {
     setCadastro({ ...cadastro, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (cadastro.tipo === "cpf") {
-      console.log(cadastro.nome, cadastro.sobrenome, cadastro.cpf);
-    } else {
-      console.log(
-        cadastro.nomeFantasia,
-        cadastro.nomeRepresentante,
-        cadastro.cnpj
-      );
+    console.log(cadastro)
+    const res = await api.patch(`/api/perfil/${user.id}`, cadastro)
+    .then(response => {
+      return response;
+    })
+    .catch(err => {
+      console.log(err.response);
+      console.log("Este é o erro");
+    })
+    if(res.status === 200){
+      history.push("/criar-perfil");
     }
-    history.push("/criar-perfil");
   }
 
   return (
@@ -56,7 +61,7 @@ const Registration = () => {
                   type="radio"
                   name="tipoCadastro"
                   id="cadastro-cpf"
-                  value="cpf"
+                  value={0}
                   defaultChecked="true"
                   onChange={handleRadio}
                 />
@@ -70,7 +75,7 @@ const Registration = () => {
                   type="radio"
                   name="tipoCadastro"
                   id="cadastro-cnpj"
-                  value="cnpj"
+                  value={1}
                   onChange={handleRadio}
                   required
                 />
@@ -80,7 +85,7 @@ const Registration = () => {
               </div>
             </div>
             <div className="form-group mb-5">
-              {cadastro.tipo === "cpf" ? (
+              {cadastro.tipoPessoa === 0 ? (
                 <>
                   <label htmlFor="nome-pessoa-fisica">Nome*</label>
                   <input
@@ -89,6 +94,7 @@ const Registration = () => {
                     id="nome-pessoa-fisica"
                     placeholder="Insira seu nome"
                     onChange={handleChange}
+                    value={cadastro.nome}
                     name="nome"
                     required
                   />
@@ -99,6 +105,7 @@ const Registration = () => {
                     id="sobrenome-pessoa-fisica"
                     placeholder="Insira seu sobrenome"
                     onChange={handleChange}
+                    value={cadastro.sobrenome}
                     name="sobrenome"
                     required
                   />
@@ -109,6 +116,7 @@ const Registration = () => {
                     id="cpf-pessoa-fisica"
                     placeholder="Insira seu CPF"
                     onChange={handleChange}
+                    value={cadastro.cpf}
                     name="cpf"
                     required
                   />
@@ -122,6 +130,7 @@ const Registration = () => {
                     id="nome-fantasia-PJ"
                     placeholder="Insira o nome fantasia da empresa"
                     onChange={handleChange}
+                    value={cadastro.nomeFantasia}
                     name="nomeFantasia"
                     required
                   />
@@ -134,6 +143,7 @@ const Registration = () => {
                     id="nome-representante-PJ"
                     placeholder="Insira o nome do representante"
                     onChange={handleChange}
+                    value={cadastro.nomeRepresentante}
                     name="nomeRepresentante"
                     required
                   />
@@ -144,6 +154,7 @@ const Registration = () => {
                     id="cnpj-pj"
                     placeholder="Insira o CNPJ"
                     onChange={handleChange}
+                    value={cadastro.cnpj}
                     name="cnpj"
                     required
                   />

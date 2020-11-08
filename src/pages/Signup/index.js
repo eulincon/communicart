@@ -1,24 +1,35 @@
 import React from "react";
+import api from '../../services/api';
 
 import "./styles.css";
 import Menu from "../../components/Menu";
 import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "../../contexts/auth";
 
 const Signup = () => {
   let email = "";
   let senha = "";
   let confirmarSenha = "";
   let history = useHistory();
+  const {signIn} = useAuth();
 
-  function handleSubmit(e) {
+  async function signUpApi(data){
+    const res = await api.post('/api/usuarios', data).then(response => {
+      signIn(data);
+      return response;
+    }).catch(err => {
+      console.log(err);
+      return err;
+    })
+
+    return res;
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault();
     if (senha === confirmarSenha) {
-      console.log(
-        `Seu email é ${email} e a senha é ${senha}, a senha confirmada é ${confirmarSenha}`
-      );
-      setTimeout(() => {
-        history.push("/cadastro");
-      }, 3000);
+      const response = await signUpApi({email: email, password: senha})
+      response.status == 201 ? history.push("/cadastro") : alert("Erro ao criar usuário");
     } else {
       alert("A senha não corresponde à confirmação.");
     }
