@@ -29,7 +29,7 @@ const Signup = () => {
     e.preventDefault();
     if (senha === confirmarSenha) {
       const response = await signUpApi({email: email, password: senha})
-      response.status == 201 ? history.push("/cadastro") : alert("Erro ao criar usuário");
+      response.status === 201 ? history.push("/cadastro") : alert("Erro ao criar usuário");
     } else {
       alert("A senha não corresponde à confirmação.");
     }

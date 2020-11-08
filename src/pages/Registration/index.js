@@ -39,6 +39,7 @@ const Registration = () => {
     .catch(err => {
       console.log(err.response);
       console.log("Este é o erro");
+      alert("Ops! Algo de errado aconteceu. :/");
     })
     if(res.status === 200){
       history.push("/criar-perfil");
