@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import api from '../services/api';
 import { useContext } from 'react';
-// import * as auth from '../services/auth';
 import { Redirect } from 'react-router-dom';
 
 const AuthContextData = {
@@ -40,19 +39,22 @@ export const AuthProvider = ({ children }) => {
   
   
   async function signIn(data) {
-    // const response = await auth.signIn();
-    await api.post('/api/login', data)
+    const res = await api.post('/api/login', data)
       .then((response) => {
-        setUser(response.data.user);
         localStorage.setItem('@RNAuth:user', JSON.stringify(response.data.user));
         localStorage.setItem('@RNAuth:token', response.data.jwt);
+        api.defaults.headers['Authorization'] = `Bearer ${response.data.jwt}`;
+        setUser(response.data.user);
+        return true;
       })
       .catch((error) => {
-        console.log(error.response.data);
+        console.log("erro ao fazer login");
+        console.log(error.response);
+        return false;
       }
       );
 
-    // setUser(response.user);
+    return res;
 
   }
 

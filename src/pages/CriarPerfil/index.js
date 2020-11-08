@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
+import api from '../../services/api';
 import {
   FaFacebookSquare,
   FaTwitterSquare,
@@ -9,8 +10,10 @@ import {
 } from "react-icons/fa";
 
 import Footer from "../../components/Footer";
+import { useAuth } from "../../contexts/auth";
 
 const CreateProfile = () => {
+  const {user} = useAuth();
   let history = useHistory();
 
   useEffect(() => {
@@ -26,10 +29,10 @@ const CreateProfile = () => {
       ilustracao: false,
       edicao: false,
     },
-    linkPortfolio: "",
-    imagem: "",
-    interesses: "",
-    redesSociais: {
+    website: "",
+    imagemPerfil: "",
+    interesses: [],
+    midiasSociais: {
       facebook: "",
       twitter: "",
       linkedin: "",
@@ -58,16 +61,27 @@ const CreateProfile = () => {
   function handleSocialMedia(e) {
     setPerfil({
       ...perfil,
-      redesSociais: { ...perfil.redesSociais, [e.target.name]: e.target.value },
+      midiasSociais: { ...perfil.midiasSociais, [e.target.name]: e.target.value },
     });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log(perfil);
-    setTimeout(() => {
-      history.push("/feed");
-    }, 5000);
+    const bodyRequest = Object.assign({}, perfil);
+    delete bodyRequest.imagemPerfil;
+    console.log(bodyRequest);
+    const res = await api.put(`/api/perfil/${user.id}`, bodyRequest)
+      .then(response => {
+        console.log('Tudo ok');
+        return response;
+      })
+      .catch(err => {
+        console.log('Tudo errou');
+        console.log(err);
+        alert("Ops! Algo de errado aconteceu. :/");
+      });
+      if(res.status === 204) history.push("/feed");
   }
 
   return (
@@ -162,7 +176,7 @@ const CreateProfile = () => {
                     className="form-control mb-4"
                     id="portfolio"
                     placeholder="Insira o link"
-                    name="linkPortfolio"
+                    name="website"
                     onChange={handleChange}
                   />
                 </div>

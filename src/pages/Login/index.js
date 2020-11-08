@@ -16,12 +16,10 @@ function PaginaLogin() {
     history.push("/feed");
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    console.log(
-      {email, password}
-    );
-    signIn({email, password});
+    let res = await signIn({email, password});
+    if(res === false) alert("Ops! Algo de errado aconteceu. :/");
   }
   
   if(loading){

@@ -46,7 +46,7 @@ function Routes() {
         <Route path="/novaSenha" exact component={PasswordRegistration} />
         <Route path="/home" component={Home} exact />
         <PrivateRoute path="/feed" component={Feed} />
-        <Route path="/page-default" component={Feed} />
+        {/* <Route path="/page-default" component={Feed} /> */}
         <Route path="/vagas/1" component={VagaPage} />
         <Route path="/usuarios/1" component={UserProfile} />
         <Route path="/payments" component={Payments} />
