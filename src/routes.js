@@ -22,22 +22,22 @@ import JobOffers from "./pages/JobOffers";
 import Teste from "./components/SkeletonPage/Teste";
 import Loading from "./components/Loading";
 
-function PrivateRoute({...rest}){
-  const { signed, user, loading } =  useAuth();
-  console.log(`is signed: ${signed} - user: ${user}`)
+function PrivateRoute({ ...rest }) {
+  const { signed, user, loading } = useAuth();
+  console.log(`is signed: ${signed} - user: ${user}`);
   if (loading) {
-    return <Loading />
+    return <Loading />;
     // return <h1 className="text-light">Loading</h1>
   }
   if (!signed) {
-    return <Redirect to="/"/>
+    return <Redirect to="/" />;
   }
-  return <Route {...rest}/>
+  return <Route {...rest} />;
 }
 
 function Routes() {
-  const {signOut} = useAuth();
-  
+  const { signOut } = useAuth();
+
   return (
     <BrowserRouter>
       <Switch>
@@ -55,9 +55,13 @@ function Routes() {
         <Route path="/signup" component={Signup} />
         <Route path="/criar-perfil" component={CreateProfile} />
         <Route path="/wishlist" component={Wishlist} />
-        <Route path="/cadastro-job" exact component={ServiceRegistration} />
+        <PrivateRoute
+          path="/cadastro-job"
+          exact
+          component={ServiceRegistration}
+        />
         <Route path="/job-offers/1" component={JobOffers} />
-        <Route path="/logout" render={signOut}/>
+        <Route path="/logout" render={signOut} />
         {/* Apenas para teste e criação de componentes */}
         <Route path="/lincon-dev" component={Teste} />
         <Route component={NotFoundPage} />
