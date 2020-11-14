@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import Menu from "../../components/Menu";
 import { Link, useHistory } from "react-router-dom";
-import {useAuth} from "../../contexts/auth";
+import { useAuth } from "../../contexts/auth";
 import Loading from "../../components/Loading";
 
 function PaginaLogin() {
@@ -12,23 +12,23 @@ function PaginaLogin() {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
 
-  if(signed){
+  if (signed) {
     history.push("/feed");
   }
 
   async function handleLogin(e) {
     e.preventDefault();
-    let res = await signIn({email, password});
-    if(res === false) alert("Ops! Algo de errado aconteceu. :/");
+    let res = await signIn({ email, password });
+    if (res === false) alert("Ops! Algo de errado aconteceu. :/");
   }
-  
-  if(loading){
-    return <Loading />
+
+  if (loading) {
+    return <Loading />;
     // return <h1 className="text-light">Loading</h1>
   }
   return (
     <>
-      <Menu logar={false}/>
+      <Menu logar={false} />
       <main className="container-fluid corpo">
         <section className="informacoes">
           <h1>Faça já seu login</h1>
@@ -52,7 +52,7 @@ function PaginaLogin() {
           />
           <label className="labelLogin">Senha</label>
           <input
-            type="text"
+            type="password"
             className="inputLogin"
             placeholder="insira sua senha"
             // onChange={(e) => (senha = e.target.value)}
