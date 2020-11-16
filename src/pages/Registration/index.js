@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
-import api from '../../services/api';
+import api from "../../services/api";
 
-import {useAuth} from '../../contexts/auth';
+import { useAuth } from "../../contexts/auth";
 import Footer from "../../components/Footer";
 import Menu from "../../components/Menu";
 
 const Registration = () => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const [cadastro, setCadastro] = useState({
     nome: "",
     sobrenome: "",
@@ -22,7 +22,7 @@ const Registration = () => {
 
   function handleRadio(e) {
     setCadastro({ ...cadastro, tipoPessoa: Number(e.target.value) });
-    console.log(cadastro)
+    console.log(cadastro);
   }
 
   function handleChange(e) {
@@ -31,17 +31,18 @@ const Registration = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(cadastro)
-    const res = await api.patch(`/api/perfil/${user.id}`, cadastro)
-    .then(response => {
-      return response;
-    })
-    .catch(err => {
-      console.log(err.response);
-      console.log("Este é o erro");
-      alert("Ops! Algo de errado aconteceu. :/");
-    })
-    if(res.status === 200){
+    console.log(cadastro);
+    const res = await api
+      .patch(`/api/perfil/${user.id}`, cadastro)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log(err.response);
+        console.log("Este é o erro");
+        alert("Ops! Algo de errado aconteceu. :/");
+      });
+    if (res.status === 200) {
       history.push("/criar-perfil");
     }
   }
