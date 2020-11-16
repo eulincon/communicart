@@ -21,7 +21,7 @@ const Feed = () => {
   return (
     <SkeletonPage sidebar={true} footer={false}>
       {vagas.map((vaga) => {
-        return <CardVaga key={vaga.id} />;
+        return <CardVaga key={vaga.id} vaga={vaga} />;
       })}
     </SkeletonPage>
   );

@@ -1,22 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import ButtonLikeVaga from '../../components/CardVaga/ButtonLikeVaga';
+import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
 
-const CardVaga = () => {
-    
+const CardVaga = (vaga) => {
+  const { titleJob, description, id, jobOwner } = vaga.vaga;
 
-    return (
-        <div className="card my-4 bg-lighter_ text-white shadow">
-            <div className="card-body">
-                <h4 className="card-title">Título do anúncio</h4>
-                <span>Nome da empresa</span>
-                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <Link to="/vagas/1" className={`btn btn-primary btn-secondary_`}>Ver mais</Link>
-                <ButtonLikeVaga />
-            </div>
-        </div>
-    );
+  return (
+    <div className="card my-4 bg-lighter_ text-white shadow">
+      <div className="card-body">
+        <h4 className="card-title">{titleJob}</h4>
+        <span>{jobOwner}</span>
+        <p className="card-text">{description}</p>
+        <Link to={`/vagas/${id}`} className={`btn btn-primary btn-secondary_`}>
+          Ver mais
+        </Link>
+        <ButtonLikeVaga />
+      </div>
+    </div>
+  );
 };
 
 export default CardVaga;
