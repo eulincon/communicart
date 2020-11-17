@@ -1,129 +1,134 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap");
 
 :root {
-    /* font-size: 60%; */
+  /* font-size: 60%; */
 
-    --color-background: #141414;
-    --color-lighter: #141414;
-    --color-primary-lighter: #1D06B1;
-    --color-primary-light: #18068d;
-    --color-primary: #160583;
-    --color-primary-dark: #2007C5;
-    --color-primary-darker: #11036d;
-    --color-secondary: #04D361;
-    --color-secondary-dark: #04BF58;
-    --color-title-in-primary: #FFFFFF;
-    --color-text-in-primary: #282929;
-    --color-text-title: #FFFFFF;
-    --color-text-complement: #9C98A6;
-    --color-text-base: #000000;
-    --color-line-in-white: #1f1f25;
-    --color-input-background: #F8F8FC;
-    --color-button-text: #1BF786;
-    --color-box-base: #FFFFFF;
-    --color-box-footer: #FAFAFC;
+  --color-background: #141414;
+  --color-lighter: #141414;
+  --color-primary-lighter: #1d06b1;
+  --color-primary-light: #18068d;
+  --color-primary: #160583;
+  --color-primary-dark: #2007c5;
+  --color-primary-darker: #11036d;
+  --color-secondary: #04d361;
+  --color-secondary-dark: #04bf58;
+  --color-title-in-primary: #ffffff;
+  --color-text-in-primary: #282929;
+  --color-text-title: #ffffff;
+  --color-text-complement: #9c98a6;
+  --color-text-base: #000000;
+  --color-line-in-white: #1f1f25;
+  --color-input-background: #f8f8fc;
+  --color-button-text: #1bf786;
+  --color-box-base: #ffffff;
+  --color-box-footer: #fafafc;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Poppins, Oxygen, Roboto, 'Open Sans', sans-serif;
-    /* color: var(--color-input-background); */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, Oxygen, Roboto, "Open Sans", sans-serif;
+  /* color: var(--color-input-background); */
 }
 
-html, body, #root {
-    height: 100vh;
-    background-color: var(--color-background);
+html,
+body,
+#root {
+  height: 100vh;
+  background-color: var(--color-background);
 }
 
 .bg-lighter_ {
-    background-color: var(--color-lighter);
+  background-color: var(--color-lighter);
 }
 
-.bg-primary-lighter{
-    background-color: var(--color-primary-lighter);
+.bg-primary-lighter {
+  background-color: var(--color-primary-lighter);
 }
 
-.bg-primary-light{
-    background-color: var(--color-primary-light);
+.bg-primary-light {
+  background-color: var(--color-primary-light);
 }
 
-.bg-primary_{
-    background-color: var(--color-primary);
+.bg-primary_ {
+  background-color: var(--color-primary);
 }
 
-.bg-primary-dark{
-    background-color: var(--color-primary-dark);
+.bg-primary-dark {
+  background-color: var(--color-primary-dark);
 }
 
-.bg-primary-darker{
-    background-color: var(--color-primary-darker);
+.bg-primary-darker {
+  background-color: var(--color-primary-darker);
 }
 
-.bg-secondary_{
-    background-color: var(--color-secondary);
+.bg-secondary_ {
+  background-color: var(--color-secondary);
 }
 
-.bg-secondary-dark{
-    background-color: var(--color-secondary-dark);
+.bg-secondary-dark {
+  background-color: var(--color-secondary-dark);
+}
+
+.bg-text-complement {
+  background-color: var(--color-text-complement);
 }
 
 /* Text colors with css */
 
-.txt-primary-lighter{
-    color: var(--color-text-title);
+.txt-primary-lighter {
+  color: var(--color-text-title);
 }
 
-.txt-primary-light{
-    color: var(--color-primary-light);
+.txt-primary-light {
+  color: var(--color-primary-light);
 }
 
-.txt-primary_{
-    color: var(--color-primary);
+.txt-primary_ {
+  color: var(--color-primary);
 }
 
-.txt-primary-dark{
-    color: var(--color-primary-dark);
+.txt-primary-dark {
+  color: var(--color-primary-dark);
 }
 
-.txt-primary-darker{
-    color: var(--color-primary-darker);
+.txt-primary-darker {
+  color: var(--color-primary-darker);
 }
 
-.txt-secondary_{
-    color: var(--color-secondary);
+.txt-secondary_ {
+  color: var(--color-secondary);
 }
 
-.txt-secondary-dark{
-    color: var(--color-secondary-dark);
+.txt-secondary-dark {
+  color: var(--color-secondary-dark);
 }
 
 /* Buttons with css */
 
 .btn-primary_ {
-    background-color: var(--color-primary);
-    color: white;
-    border-top: var(--color-primary) 1px solid;
+  background-color: var(--color-primary);
+  color: white;
+  border-top: var(--color-primary) 1px solid;
 }
 
 .btn-primary_:hover {
-    background-color: var(--color-primary-darker);
-    color: white;
-    border-top: var(--color-primary-darker) 1px solid;
-    transition: all 0.4s;
+  background-color: var(--color-primary-darker);
+  color: white;
+  border-top: var(--color-primary-darker) 1px solid;
+  transition: all 0.4s;
 }
 
 .btn-secondary_ {
-    background-color: var(--color-secondary);
-    color: white;
-    border: var(--color-secondary) 1px solid;
+  background-color: var(--color-secondary);
+  color: white;
+  border: var(--color-secondary) 1px solid;
 }
 
 .btn-secondary_:hover {
-    background-color: var(--color-secondary-dark);
-    color: white;
-    border: var(--color-secondary-dark) 1px solid;
-    transition: all 0.4s;
+  background-color: var(--color-secondary-dark);
+  color: white;
+  border: var(--color-secondary-dark) 1px solid;
+  transition: all 0.4s;
 }
-

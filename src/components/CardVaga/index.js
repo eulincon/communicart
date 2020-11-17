@@ -5,14 +5,21 @@ import { useAuth } from "../../contexts/auth";
 import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
 
 const CardVaga = (vaga) => {
-  const { titleJob, description, id, jobOwner, perfilId } = vaga.vaga;
+  const { titleJob, description, id, jobOwner, perfilId, typeJob } = vaga.vaga;
 
   const { user } = useAuth();
 
   return (
     <div className="card my-4 bg-lighter_ text-white shadow">
       <div className="card-body">
-        <h4 className="card-title">{titleJob}</h4>
+        <div className="d-flex justify-content-between">
+          <h4 className="card-title">{titleJob}</h4>
+          <h4>
+            <span className="badge badge-info bg-text-complement p-2">
+              {typeJob}
+            </span>
+          </h4>
+        </div>
         <span>{jobOwner}</span>
         <p className="card-text">{description}</p>
         <div>
