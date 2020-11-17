@@ -5,18 +5,21 @@ import api from "../../services/api";
 
 const Feed = () => {
   const [vagas, setVagas] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  async function getVagas() {
-    console.log("running");
-    await api.get("api/vagas").then((res) => {
-      setVagas([...res.data]);
-      setLoading(false);
-    });
-    console.log(vagas);
-  }
-
-  useEffect(() => getVagas(), []);
+  const [setLoading] = useState(true);
+  
+  useEffect(() => {
+    
+      async function getVagas() {
+        console.log("running");
+        await api.get("api/vagas").then((res) => {
+          setVagas([...res.data]);
+          setLoading(false);
+        });
+        console.log(vagas);
+      }
+    
+    getVagas()
+  }, [setLoading, vagas]);
 
   return (
     <SkeletonPage sidebar={true} footer={false}>

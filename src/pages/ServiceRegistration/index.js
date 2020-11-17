@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 
 import "./styles.css";
-import MainComponents from "../../components/MainComponents";
 import SkeletonPage from "../../components/SkeletonPage";
-
-/*import MenuLateral from '../../components/MenuLateral'*/
 
 function CadastroJob() {
   const [faixaPrecoMin, setFaixaPrecoMin] = useState(0.0);
@@ -23,7 +20,6 @@ function CadastroJob() {
   const [contatoLinkdin, setContatoLinkdin] = useState(false);
   const [contatoChat, setContatoChat] = useState(false);
   const [arquivoUpload, setArquivoUpload] = useState(false);
-  const arquivo = new FormData();
   const faixaPreco = {
     faixaPrecoMin,
     faixaPrecoMax,
@@ -51,11 +47,11 @@ function CadastroJob() {
 
   async function handleCadastro(e) {
     e.preventDefault();
-    let data = new Date();
-    let dia = data.getDate();
-    let mes = data.getMonth();
-    let ano = data.getFullYear();
-    let resp = compareDates(dataPagamento);
+    // let data = new Date();
+    // let dia = data.getDate();
+    // let mes = data.getMonth();
+    // let ano = data.getFullYear();
+    // let resp = compareDates(dataPagamento);
 
     if (prazoNegociar || compareDates(dataPagamento) === true) {
       if (faixaPrecoMax >= faixaPrecoMin) {
@@ -82,11 +78,6 @@ function CadastroJob() {
     } else {
       alert("data invalida ");
     }
-  }
-
-  function func01(event) {
-    let value = event.target.value;
-    console.log(value);
   }
 
   return (
@@ -268,7 +259,6 @@ function CadastroJob() {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value={true}
                         id="PagamentoNegociar"
                         value={pagamentoNegociar}
                         onChange={(e) => setPagamentoNegociar(e.target.value)}
@@ -284,7 +274,6 @@ function CadastroJob() {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value={true}
                         id="notaFiscal"
                         value={notaFiscal}
                         onChange={(e) => setNotaFiscal(e.target.value)}

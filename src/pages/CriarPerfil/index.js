@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
 import api from '../../services/api';
@@ -15,10 +15,6 @@ import { useAuth } from "../../contexts/auth";
 const CreateProfile = () => {
   const {user} = useAuth();
   let history = useHistory();
-
-  useEffect(() => {
-    console.log(history);
-  }, []);
 
   const [perfil, setPerfil] = useState({
     bio: "",
