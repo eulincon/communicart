@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/auth";
 
 import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
 
 const CardVaga = (vaga) => {
-  const { titleJob, description, id, jobOwner } = vaga.vaga;
+  const { titleJob, description, id, jobOwner, perfilId } = vaga.vaga;
+
+  const { user } = useAuth();
 
   return (
     <div className="card my-4 bg-lighter_ text-white shadow">
@@ -12,9 +15,24 @@ const CardVaga = (vaga) => {
         <h4 className="card-title">{titleJob}</h4>
         <span>{jobOwner}</span>
         <p className="card-text">{description}</p>
-        <Link to={`/vagas/${id}`} className={`btn btn-primary btn-secondary_`}>
-          Ver mais
-        </Link>
+        <div>
+          <Link to={`/vagas/${id}`} className={`btn btn-secondary_`}>
+            Ver mais
+          </Link>
+          {user.id === perfilId ? (
+            <>
+              <Link
+                to={`/vagas/editar/${id}`}
+                className={"btn btn-primary_ ml-2"}
+              >
+                Editar
+              </Link>
+              <button className={"btn btn-danger ml-2"}>Desativar</button>
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
         <ButtonLikeVaga />
       </div>
     </div>
