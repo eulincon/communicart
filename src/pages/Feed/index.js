@@ -10,10 +10,15 @@ const Feed = () => {
   
   async function getVagas() {
     console.log("running");
-    await api.get("api/vagas").then((res) => {
+    await api.get("api/vagas")
+    .then((res) => {
       setVagas([...res.data]);
       setLoading(false);
+    })
+    .catch(err => {
+      alert("Ops, um erro inesperado aconteceu ao carregas as vagas. :/");
     });
+
   
       console.log(vagas);
   }
