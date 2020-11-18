@@ -61,7 +61,7 @@ function Menu({logar}) {
   return (
     <header className="baseMenu">
       <nav class="navbar navbar-expand-lg menuPrincipal">
-        <img src={logoMenu} />
+        <img src={logoMenu} alt="logo"/>
         <button
           class="navbar-toggler"
           type="button"

@@ -63,7 +63,7 @@ function Routes() {
         <Route path="/job-offers/1" component={JobOffers} />
         <Route path="/logout" render={signOut} />
         {/* Apenas para teste e criação de componentes */}
-        <Route path="/lincon-dev" component={Teste} />
+        <Route path="/lincon-dev" component={Feed} />
         <Route component={NotFoundPage} />
         {/* <Redirect to="/404"/> */}
       </Switch>

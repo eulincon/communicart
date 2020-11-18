@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import api from '../../services/api';
 
 import "./styles.css";
-import MainComponents from "../../components/MainComponents";
 import SkeletonPage from "../../components/SkeletonPage";
-
-/*import MenuLateral from '../../components/MenuLateral'*/
+import { useHistory } from "react-router-dom";
 
 function CadastroJob() {
-  const [faixaPrecoMin, setFaixaPrecoMin] = useState(0.0);
-  const [faixaPrecoMax, setFaixaPrecoMax] = useState(0.0);
+  const history = useHistory();
+  const [propostaPreco, setPropostaPreco] = useState(0.0);
   const [tituloJob, setTituloJob] = useState("");
   const [tipoJob, setTipoJob] = useState("");
   const [nivelExpJob, setNivelExpJob] = useState("");
@@ -16,23 +15,22 @@ function CadastroJob() {
   const [dataPagamento, setDataPagamento] = useState("");
   const [formaPagamento, setFormaPagamento] = useState("");
   const [pagamentoNegociar, setPagamentoNegociar] = useState(false);
-  const [notaFiscal, setNotaFiscal] = useState(false);
   const [prazoNegociar, setPrazoNegociar] = useState(false);
   const [contatoEmail, setContatoEmail] = useState(false);
   const [contatoTelefone, setContatoTelefone] = useState(false);
-  const [contatoLinkdin, setContatoLinkdin] = useState(false);
-  const [contatoChat, setContatoChat] = useState(false);
+  const [contatoLinkedin, setcontatoLinkedin] = useState(false);
+  const [contatoInsta, setcontatoInsta] = useState(false);
+  const [contatoFacebook, setContatoFacebook] = useState(false);
+  const [contatoTwitter, setContatoTwitter] = useState(false);
   const [arquivoUpload, setArquivoUpload] = useState(false);
-  const arquivo = new FormData();
-  const faixaPreco = {
-    faixaPrecoMin,
-    faixaPrecoMax,
-  };
-  const contato = {
-    contatoChat,
-    contatoLinkdin,
-    contatoTelefone,
-    contatoEmail,
+  const contactForms = {
+    instagram: contatoInsta,
+    linkedin: contatoLinkedin,
+    // telefone: contatoTelefone,
+    facebook: contatoFacebook,
+    twitter: contatoTwitter,
+    email: contatoEmail,
+    other: "other"
   };
 
   function prazoANegociar() {
@@ -51,48 +49,46 @@ function CadastroJob() {
 
   async function handleCadastro(e) {
     e.preventDefault();
-    let data = new Date();
-    let dia = data.getDate();
-    let mes = data.getMonth();
-    let ano = data.getFullYear();
-    let resp = compareDates(dataPagamento);
+    // let data = new Date();
+    // let dia = data.getDate();
+    // let mes = data.getMonth();
+    // let ano = data.getFullYear();
+    // let resp = compareDates(dataPagamento);
 
     if (prazoNegociar || compareDates(dataPagamento) === true) {
-      if (faixaPrecoMax >= faixaPrecoMin) {
         const cadastroJob = {
-          tituloJob,
-          tipoJob,
-          descricaoJob,
-          nivelExpJob,
-          faixaPreco,
-          dataPagamento,
-          prazoNegociar,
-          formaPagamento,
-          pagamentoNegociar,
-          notaFiscal,
-          contato,
-          arquivoUpload,
+          titleJob:tituloJob,
+          typeJob: tipoJob,
+          description: descricaoJob,
+          price: propostaPreco,
+          // dataPagamento,
+          // prazoNegociar,
+          paymentType: formaPagamento,
+          paymentToNegotiate: pagamentoNegociar,
+          contactForms,
+          // arquivoUpload,
         };
 
         console.log(arquivoUpload);
         console.log(cadastroJob);
-      } else {
-        alert("valor maximo menor que valor minimo");
-      }
+
+        await api.post('/api/vagas', cadastroJob)
+        .then(response => {
+          alert('Vaga cadastrada com sucesso!');
+          history.push('feed');
+        })
+        .catch(err => {
+          alert('Ops! Algum erro inesperado ocorreu! :/');
+        })
     } else {
       alert("data invalida ");
     }
   }
 
-  function func01(event) {
-    let value = event.target.value;
-    console.log(value);
-  }
-
   return (
     <>
       <SkeletonPage sidebar={true} footer={true}>
-        <div className="row d-flex ">
+        <div className="row d-flex">
           <div className="col cadastro-job">
             <form
               className="container-fluid d-flex flex-column"
@@ -122,11 +118,12 @@ function CadastroJob() {
                       onChange={(e) => setTipoJob(e.target.value)}
                       required
                     >
-                      <option value="1">Edição de Imagem</option>
-                      <option value="2">Escrita</option>
-                      <option value="3">Ilustração</option>
-                      <option value="4">Foto</option>
-                      <option value="5">Edição de video</option>
+                      <option value="1">Fotografia</option>
+                      <option value="2">Design</option>
+                      <option value="3">Edição de Imagem</option>
+                      <option value="4">Redação</option>
+                      <option value="5">Ilustração</option>
+                      {/* <option value="5">Edição de video</option> */}
                     </select>
                   </section>
                   <br />
@@ -146,32 +143,9 @@ function CadastroJob() {
               </section>
               <br />
               <hr />
-              <h3 className="align-self-center">Requisitos</h3>
+              <h3 className="align-self-center">Anexar arquivos</h3>
               <section className="row justify-content-start">
                 <div className="col-6 d-flex flex-column ">
-                  <label for="nivelExpJob">Nível de experiência</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="nivelExpJob"
-                    value={nivelExpJob}
-                    onChange={(e) => setNivelExpJob(e.target.value)}
-                    required
-                  />
-                  <br />
-                  <label for="habilidadeJob">Habilidade específica</label>
-                  <select
-                    class="custom-select"
-                    id="habilidadeJob"
-                    size="3"
-                    required
-                  >
-                    <option value="1">Técnico deilustração</option>
-                    <option value="2">Tipo de áudio</option>
-                    <option value="3">Tipo de documento</option>
-                    <option value="4">Software</option>
-                  </select>
-                  <br />
                   <div class="custom-file">
                     <input
                       type="file"
@@ -187,6 +161,7 @@ function CadastroJob() {
                   </div>
                 </div>
               </section>
+
               <br />
               <hr />
               <h3 className="align-self-center">Datas e pagamento</h3>
@@ -200,21 +175,9 @@ function CadastroJob() {
                       id="faixaPrecoMin"
                       placeholder="R$ min"
                       min="1"
-                      value={faixaPrecoMin}
+                      value={propostaPreco}
                       onChange={(e) =>
-                        setFaixaPrecoMin(parseFloat(e.target.value))
-                      }
-                      required
-                    />
-                    <input
-                      type="number"
-                      className="form-control ml-3"
-                      id="faixaPrecoMax"
-                      min="1"
-                      placeholder="R$ max"
-                      value={faixaPrecoMax}
-                      onChange={(e) =>
-                        setFaixaPrecoMax(parseFloat(e.target.value))
+                        setPropostaPreco(parseFloat(e.target.value))
                       }
                       required
                     />
@@ -256,11 +219,11 @@ function CadastroJob() {
                   onChange={(e) => setFormaPagamento(e.target.value)}
                   required
                 >
-                  <option value="1">Boleto</option>
-                  <option value="2">Crédito</option>
-                  <option value="3">Debito</option>
-                  <option value="4">Paypal</option>
-                  <option value="5">Picpay</option>
+                  <option value="BOLETO">Boleto</option>
+                  <option value="CREDITO">Crédito</option>
+                  <option value="DEBITO">Debito</option>
+                  <option value="PAYPAL">Paypal</option>
+                  <option value="PICPAY">Picpay</option>
                 </select>
                 <section className="col ml-3">
                   <div className="row">
@@ -268,7 +231,6 @@ function CadastroJob() {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value={true}
                         id="PagamentoNegociar"
                         value={pagamentoNegociar}
                         onChange={(e) => setPagamentoNegociar(e.target.value)}
@@ -278,19 +240,6 @@ function CadastroJob() {
                         for="PagamentoNegociar"
                       >
                         A definir/negociar
-                      </label>
-                    </div>
-                    <div className="col">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value={true}
-                        id="notaFiscal"
-                        value={notaFiscal}
-                        onChange={(e) => setNotaFiscal(e.target.value)}
-                      />
-                      <label className="form-check-label" for="notaFiscal">
-                        Obrigatorio nota fiscal para CNPJ
                       </label>
                     </div>
                   </div>
@@ -319,6 +268,7 @@ function CadastroJob() {
                       className="form-check-input"
                       type="checkbox"
                       value={true}
+                      id="contatoTelefone"
                       onChange={(e) => setContatoTelefone(e.target.value)}
                     />
                     <label className="form-check-label" for="contatoTelefone">
@@ -330,10 +280,10 @@ function CadastroJob() {
                       className="form-check-input"
                       type="checkbox"
                       value={true}
-                      id="contatoLinkdin"
-                      onChange={(e) => setContatoLinkdin(e.target.value)}
+                      id="contatoLinkedin"
+                      onChange={(e) => setcontatoLinkedin(e.target.value)}
                     />
-                    <label className="form-check-label" for="contatoLinkdin">
+                    <label className="form-check-label" for="contatoLinkedin">
                       Linkedin
                     </label>
                   </section>
@@ -342,11 +292,35 @@ function CadastroJob() {
                       className="form-check-input"
                       type="checkbox"
                       value={true}
-                      id="contatoChat"
-                      onChange={(e) => setContatoChat(e.target.value)}
+                      id="contatoInsta"
+                      onChange={(e) => setcontatoInsta(e.target.value)}
                     />
-                    <label className="form-check-label" for="contatoChat">
-                      Bate-pao
+                    <label className="form-check-label" for="contatoInsta">
+                      Instagram
+                    </label>
+                  </section>
+                  <section>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value={true}
+                      id="contatoFacebook"
+                      onChange={(e) => setContatoFacebook(e.target.value)}
+                    />
+                    <label className="form-check-label" for="contatoFacebook">
+                      Facebook
+                    </label>
+                  </section>
+                  <section>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value={true}
+                      id="contatoTwitter"
+                      onChange={(e) => setContatoTwitter(e.target.value)}
+                    />
+                    <label className="form-check-label" for="contatoTwitter">
+                      Twitter
                     </label>
                   </section>
                 </div>
@@ -356,7 +330,7 @@ function CadastroJob() {
 
               <button
                 type="submit"
-                className="btn align-self-center btnPublicar"
+                className="btn align-self-center btn-secondary_"
               >
                 Publicar
               </button>

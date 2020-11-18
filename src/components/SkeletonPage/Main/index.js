@@ -3,14 +3,22 @@ import { Link, useLocation } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 import styles from "./styles.module.css";
-import { ReactComponent as Logo } from '../../../assets/images/logo.svg';
-import { NavbarData } from './NavbarData';
+import { ReactComponent as Logo } from '../../../assets/images/logo_menu.svg';
+import { NavbarData, NavbarDataLogout } from './NavbarData';
 import { SidebarData } from './SidebarData';
+import { useAuth } from '../../../contexts/auth';
 
 
 const Main = ({ sidebar = false, footer = false, children }) => {
   const { pathname } = useLocation();
+  const { signed } = useAuth();
+  let navbarData = NavbarData;
 
+  if (!signed) {
+    navbarData = NavbarDataLogout;
+  }
+  
+  
   return (
     <div style={{paddingTop: '70px'}}>
       {/* Narbar */}
@@ -47,7 +55,7 @@ const Main = ({ sidebar = false, footer = false, children }) => {
         )}
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-            {NavbarData.map((item, index) => {
+            {navbarData.map((item, index) => {
               return (
                 <li key={index} className={pathname === item.path ? 'nav-item active ml-3' : 'nav-item ml-3'}>
                   <Link className="nav-link" to={item.path}>{item.title}</Link>
@@ -99,7 +107,7 @@ const Main = ({ sidebar = false, footer = false, children }) => {
                       {collection.items.map((item, indexItem) => {
                         return (
                           <li key={indexItem} className="nav-item">
-                            <Link className="nav-link active text-light" to={'#'}>{item.titleItem}</Link>
+                            <Link className="nav-link active text-light" to={item.path}>{item.titleItem}</Link>
                           </li>
                         )
                       })}
@@ -113,7 +121,7 @@ const Main = ({ sidebar = false, footer = false, children }) => {
         )}
 
         {/* Main */}
-        <main className={`p-3 bg-secondary ${styles.min_height} rounded ${sidebar ? 'col-lg-10 col-md-12 ml-auto' : 'mx-2'} `}>
+        <main className={`p-3 bg-dark ${styles.min_height} rounded ${sidebar ? 'col-lg-10 col-md-12 ml-auto' : 'mx-2'} `}>
           {children}
         </main>
       </div>
