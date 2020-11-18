@@ -1,5 +1,9 @@
 export const NavbarData = [
   {
+    title: 'Criar Vaga',
+    path: '/cadastro-job'
+  },
+  {
     title: 'Feed',
     path: '/feed'
   },
@@ -15,4 +19,19 @@ export const NavbarData = [
     title: 'Sair',
     path: '/logout'
   },
+];
+
+export const NavbarDataLogout = [
+  {
+    title: 'Cadastre-se',
+    path: '/signup'
+  },
+  {
+    title: 'Como funciona',
+    path: ''
+  },
+  {
+    title: 'Fazer Login',
+    path: '/'
+  }
 ];

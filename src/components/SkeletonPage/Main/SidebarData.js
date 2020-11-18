@@ -3,6 +3,10 @@ export const SidebarData = [
     title: 'Perfil',
     items: [
       {
+        titleItem: 'Criar vaga',
+        path: '/cadastro-job'
+      },
+      {
         titleItem: 'Freelancer',
         path: ''
       },
