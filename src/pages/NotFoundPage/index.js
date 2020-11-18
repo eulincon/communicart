@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import './styles.css';
+import styles from './styles.module.css';
 
 
 class NotFound extends Component {
@@ -11,13 +11,13 @@ class NotFound extends Component {
 	render(){
 		// window.addEventListener("DOMContentLoaded",game);
 		return (
-			<main className="body-error">
-				<div className="wrap">
-					<h1 className="title-error">Uh-Oh! Not Found</h1>
-					<canvas width="560" height="312" className="canvas-effect"></canvas>
+			<main className={styles.body_error}>
+				<div className={styles.wrap}>
+					<h1 className={styles.title_error}>Uh-Oh! Not Found</h1>
+					<canvas width="560" height="312" className={styles.canvas_effect}></canvas>
 					<p>Você está no meio do nada. A página que você solicitou foi movida ou não existe.</p>
 					<p>O que você pode fazer:</p>
-					<ul className="todo-list">
+					<ul className={styles.todo_list}>
 						<li>Volte para <Link to="/">home</Link></li>
 						<li>Entre em contato conosco se achar que isso aconteceu por engano</li>
 					</ul>
