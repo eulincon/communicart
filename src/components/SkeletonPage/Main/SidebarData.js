@@ -1,36 +1,36 @@
 export const SidebarData = [
   {
-    title: 'Perfil',
+    title: "Perfil",
     items: [
       {
-        titleItem: 'Freelancer',
-        path: ''
+        titleItem: "Freelancer",
+        path: "",
       },
       {
-        titleItem: 'Contratante',
-        path: ''
-      }
-    ]
+        titleItem: "Contratante",
+        path: "",
+      },
+    ],
   },
   {
-    title: 'Trabalhos',
+    title: "Trabalhos",
     items: [
       {
-        titleItem: 'Em andamento',
-        path: ''
+        titleItem: "Em andamento",
+        path: "",
       },
       {
-        titleItem: 'Conlcuidos',
-        path: ''
+        titleItem: "Concluídos",
+        path: "",
       },
       {
-        titleItem: 'Cancelados',
-        path: ''
-      }
-    ]
+        titleItem: "Cancelados",
+        path: "",
+      },
+    ],
   },
   {
-    title: 'Pagamentos',
-    items: []
-  }
+    title: "Pagamentos",
+    items: [],
+  },
 ];
