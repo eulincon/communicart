@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
-import api from '../../services/api';
+import api from "../../services/api";
 import {
   FaFacebookSquare,
   FaTwitterSquare,
@@ -13,7 +13,7 @@ import Footer from "../../components/Footer";
 import { useAuth } from "../../contexts/auth";
 
 const CreateProfile = () => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   let history = useHistory();
 
   const [perfil, setPerfil] = useState({
@@ -25,14 +25,14 @@ const CreateProfile = () => {
       ilustracao: false,
       edicao: false,
     },
-    website: "",
-    imagemPerfil: "",
+    website: null,
+    imagemPerfil: false,
     interesses: [],
     midiasSociais: {
-      facebook: "",
-      twitter: "",
-      linkedin: "",
-      instagram: "",
+      facebook: null,
+      twitter: null,
+      linkedin: null,
+      instagram: null,
     },
   });
 
@@ -47,6 +47,19 @@ const CreateProfile = () => {
     setPerfil({ ...perfil, interesses: listaInteresses });
   }
 
+  function handleImage(e) {
+    let file = e.target.files[0];
+    let label = document.getElementById("label-imagem");
+    if (!file.type.includes("image")) {
+      setPerfil({ ...perfil, imagemPerfil: false });
+      label.innerHTML = "Anexe uma foto";
+      alert("Só é possível carregar arquivos de imagem.");
+    } else {
+      setPerfil({ ...perfil, imagemPerfil: true });
+      label.innerHTML = file.name;
+    }
+  }
+
   function handleServicos(e) {
     setPerfil({
       ...perfil,
@@ -57,27 +70,43 @@ const CreateProfile = () => {
   function handleSocialMedia(e) {
     setPerfil({
       ...perfil,
-      midiasSociais: { ...perfil.midiasSociais, [e.target.name]: e.target.value },
+      midiasSociais: {
+        ...perfil.midiasSociais,
+        [e.target.name]: e.target.value,
+      },
     });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(perfil);
+    if (perfil.imagemPerfil) {
+      let formData = new FormData();
+      let imageFile = document.getElementById("imagem-perfil").files[0];
+      formData.append("file", imageFile);
+      await api
+        .post("/api/images", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => console.log(res));
+    }
     const bodyRequest = Object.assign({}, perfil);
     delete bodyRequest.imagemPerfil;
     console.log(bodyRequest);
-    const res = await api.put(`/api/perfil/${user.id}`, bodyRequest)
-      .then(response => {
-        console.log('Tudo ok');
+    const res = await api
+      .put(`/api/perfil/${user.id}`, bodyRequest)
+      .then((response) => {
+        console.log("Tudo ok");
         return response;
       })
-      .catch(err => {
-        console.log('Tudo errou');
+      .catch((err) => {
+        console.log("Tudo errou");
         console.log(err);
         alert("Ops! Algo de errado aconteceu. :/");
       });
-      if(res.status === 204) history.push("/feed");
+    if (res.status === 204) history.push("/feed");
   }
 
   return (
@@ -184,11 +213,12 @@ const CreateProfile = () => {
                       className="custom-file-input"
                       id="imagem-perfil"
                       name="imagemPerfil"
-                      onChange={handleChange}
+                      onChange={handleImage}
                     />
                     <label
                       className="custom-file-label"
                       htmlFor="imagem-perfil"
+                      id="label-imagem"
                     >
                       Anexe uma foto
                     </label>
