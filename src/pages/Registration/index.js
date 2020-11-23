@@ -59,7 +59,7 @@ const Registration = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     let erros = validateCadastro(cadastro);
-    if (erros) {
+    if (erros.length > 0) {
       erros.forEach((erro) => alert(erro));
       return;
     }

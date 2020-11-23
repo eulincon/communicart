@@ -1,4 +1,4 @@
-function validarCPF(cpf) {
+export function validarCPF(cpf) {
   cpf = cpf.replace(/[^\d]+/g, "");
   if (cpf == "") return false;
   // Elimina CPFs invalidos conhecidos
@@ -31,7 +31,7 @@ function validarCPF(cpf) {
   return true;
 }
 
-function validarCNPJ(cnpj) {
+export function validarCNPJ(cnpj) {
   cnpj = cnpj.replace(/[^\d]+/g, "");
 
   if (cnpj == "") return false;
@@ -79,6 +79,3 @@ function validarCNPJ(cnpj) {
 
   return true;
 }
-
-module.exports = validarCPF;
-module.exports = validarCNPJ;
