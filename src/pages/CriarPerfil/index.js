@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
 import api from "../../services/api";
@@ -35,6 +35,21 @@ const CreateProfile = () => {
       instagram: null,
     },
   });
+
+  // useEffect(() => {
+  //   const id = JSON.parse(localStorage.getItem("@RNAuth:user")).id;
+  //   async function getPerfil() {
+  //     api.defaults.headers["Authorization"] = `Bearer ${localStorage.getItem(
+  //       "@RNAuth:token"
+  //     )}`;
+  //     await api.get(`/api/perfil/${id}`).then((res) => {
+  //       let currentPerfil = res.data;
+  //       console.log(currentPerfil);
+  //       setPerfil({ ...perfil, ...currentPerfil });
+  //     });
+  //   }
+  //   getPerfil();
+  // }, []);
 
   function handleChange(e) {
     setPerfil({ ...perfil, [e.target.name]: e.target.value });
@@ -85,7 +100,7 @@ const CreateProfile = () => {
       let imageFile = document.getElementById("imagem-perfil").files[0];
       formData.append("file", imageFile);
       await api
-        .post("/api/images", formData, {
+        .post("/api/awss3/images", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

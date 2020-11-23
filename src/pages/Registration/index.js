@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
 import api from "../../services/api";
+import { validarCNPJ, validarCPF } from "../../services/validation";
 
 import { useAuth } from "../../contexts/auth";
 import Footer from "../../components/Footer";
@@ -25,13 +26,43 @@ const Registration = () => {
     console.log(cadastro);
   }
 
+  function validateCadastro(cadastro) {
+    let erros = [];
+    if (cadastro.tipoPessoa === 0) {
+      if (!validarCPF(cadastro.cpf)) {
+        erros.push("CPF inválido.");
+      }
+      if (cadastro.nome.length < 3) {
+        erros.push("O nome deve ter pelo menos 3 caracteres.");
+      }
+      if (cadastro.sobrenome.length < 3) {
+        erros.push("O sobrenome deve ter pelo menos 3 caracteres.");
+      }
+    } else {
+      if (!validarCNPJ(cadastro.cnpj)) {
+        erros.push("CNPJ inválido.");
+      }
+      if (cadastro.nomeFantasia.length < 3) {
+        erros.push("O nome fantasia deve ter pelo menos 3 caracteres.");
+      }
+      if (cadastro.nomeRepresentante.length < 3) {
+        erros.push("O nome do representante deve ter pelo menos 3 caracteres.");
+      }
+    }
+    return erros;
+  }
+
   function handleChange(e) {
     setCadastro({ ...cadastro, [e.target.name]: e.target.value });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(cadastro);
+    let erros = validateCadastro(cadastro);
+    if (erros) {
+      erros.forEach((erro) => alert(erro));
+      return;
+    }
     const res = await api
       .patch(`/api/perfil/${user.id}`, cadastro)
       .then((response) => {
@@ -118,7 +149,7 @@ const Registration = () => {
                     id="cpf-pessoa-fisica"
                     placeholder="Insira seu CPF"
                     onChange={handleChange}
-                    value={cadastro.cpf}
+                    value={cpfMask(cadastro.cpf)}
                     name="cpf"
                     required
                   />
@@ -156,7 +187,7 @@ const Registration = () => {
                     id="cnpj-pj"
                     placeholder="Insira o CNPJ"
                     onChange={handleChange}
-                    value={cadastro.cnpj}
+                    value={cnpjMask(cadastro.cnpj)}
                     name="cnpj"
                     required
                   />
@@ -180,3 +211,22 @@ const Registration = () => {
 };
 
 export default Registration;
+
+const cpfMask = (value) => {
+  return value
+    .replace(/\D/g, "") // substitui qualquer caracter que nao seja numero por nada
+    .replace(/(\d{3})(\d)/, "$1.$2") // captura 2 grupos de numero o primeiro de 3 e o segundo de 1, apos capturar o primeiro grupo ele adiciona um ponto antes do segundo grupo de numero
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+    .replace(/(-\d{2})\d+?$/, "$1"); // captura 2 numeros seguidos de um traço e não deixa ser digitado mais nada
+};
+
+const cnpjMask = (value) => {
+  return value
+    .replace(/\D/g, "") // substitui qualquer caracter que nao seja numero por nada
+    .replace(/(\d{2})(\d{3})/, "$1.$2") // captura 2 grupos de numero o primeiro de 3 e o segundo de 1, apos capturar o primeiro grupo ele adiciona um ponto antes do segundo grupo de numero
+    .replace(/(\d{3})(\d{3})/, "$1.$2")
+    .replace(/(\d{3})(\d{4})/, "$1/$2")
+    .replace(/(\/\d{4})(\d{2})/, "$1-$2")
+    .replace(/(-\d{2})\d+?$/, "$1");
+};
