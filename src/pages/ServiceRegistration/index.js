@@ -97,6 +97,21 @@ function CadastroJob() {
       console.log(arquivoUpload);
       console.log(cadastroJob);
 
+      if (arquivoUpload.length > 0) {
+        arquivoUpload.forEach(async (file) => {
+          let route = file.type.includes("image") ? "images" : "files";
+          let formData = new FormData();
+          formData.append("file", file);
+          await api
+            .post(`/api/awss3/${route}`, formData, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            })
+            .then((res) => console.log(res));
+        });
+      }
+
       await api
         .post("/api/vagas", cadastroJob)
         .then((response) => {
