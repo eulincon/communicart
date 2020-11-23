@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from '../../services/api';
+import api from "../../services/api";
 
 import "./styles.css";
 import SkeletonPage from "../../components/SkeletonPage";
@@ -22,7 +22,7 @@ function CadastroJob() {
   const [contatoInsta, setcontatoInsta] = useState(false);
   const [contatoFacebook, setContatoFacebook] = useState(false);
   const [contatoTwitter, setContatoTwitter] = useState(false);
-  const [arquivoUpload, setArquivoUpload] = useState(false);
+  const [arquivoUpload, setArquivoUpload] = useState([]);
   const contactForms = {
     instagram: contatoInsta,
     linkedin: contatoLinkedin,
@@ -30,7 +30,7 @@ function CadastroJob() {
     facebook: contatoFacebook,
     twitter: contatoTwitter,
     email: contatoEmail,
-    other: "other"
+    other: "other",
   };
 
   function prazoANegociar() {
@@ -47,6 +47,31 @@ function CadastroJob() {
     return date >= today ? true : false;
   }
 
+  function handleFiles(e) {
+    let file = e.target.files[0];
+    if (file === undefined) {
+      return;
+    }
+    if (!file.type.includes("image") && !file.type.includes("pdf")) {
+      alert("Só é possível carregar arquivos de imagem ou PDF.");
+    } else {
+      setArquivoUpload([file, ...arquivoUpload]);
+      let newLi = document.createElement("li");
+      newLi.innerText = file.name;
+      newLi.onclick = handleLiClick;
+      document.getElementById("file-list").appendChild(newLi);
+    }
+  }
+
+  function handleLiClick(e) {
+    setArquivoUpload(
+      arquivoUpload.filter((file) => {
+        return file.name !== e.target.innerText;
+      })
+    );
+    e.target.remove();
+  }
+
   async function handleCadastro(e) {
     e.preventDefault();
     // let data = new Date();
@@ -56,30 +81,31 @@ function CadastroJob() {
     // let resp = compareDates(dataPagamento);
 
     if (prazoNegociar || compareDates(dataPagamento) === true) {
-        const cadastroJob = {
-          titleJob:tituloJob,
-          typeJob: tipoJob,
-          description: descricaoJob,
-          price: propostaPreco,
-          // dataPagamento,
-          // prazoNegociar,
-          paymentType: formaPagamento,
-          paymentToNegotiate: pagamentoNegociar,
-          contactForms,
-          // arquivoUpload,
-        };
+      const cadastroJob = {
+        titleJob: tituloJob,
+        typeJob: tipoJob,
+        description: descricaoJob,
+        price: propostaPreco,
+        // dataPagamento,
+        // prazoNegociar,
+        paymentType: formaPagamento,
+        paymentToNegotiate: pagamentoNegociar,
+        contactForms,
+        // arquivoUpload,
+      };
 
-        console.log(arquivoUpload);
-        console.log(cadastroJob);
+      console.log(arquivoUpload);
+      console.log(cadastroJob);
 
-        await api.post('/api/vagas', cadastroJob)
-        .then(response => {
-          alert('Vaga cadastrada com sucesso!');
-          history.push('feed');
+      await api
+        .post("/api/vagas", cadastroJob)
+        .then((response) => {
+          alert("Vaga cadastrada com sucesso!");
+          history.push("feed");
         })
-        .catch(err => {
-          alert('Ops! Algum erro inesperado ocorreu! :/');
-        })
+        .catch((err) => {
+          alert("Ops! Algum erro inesperado ocorreu! :/");
+        });
     } else {
       alert("data invalida ");
     }
@@ -151,14 +177,16 @@ function CadastroJob() {
                       type="file"
                       class="custom-file-input"
                       id="customFile"
-                      accept="application/pdf"
-                      placeholder="Adicione um arquivo PDF"
-                      onChange={(e) => setArquivoUpload(e.target.files[0])}
+                      accept="application/pdf, image/*"
+                      placeholder="Adicione arquivos de imagem ou PDFs"
+                      multiple="multiple"
+                      onChange={handleFiles}
                     />
                     <label class="custom-file-label" for="customFile">
-                      Anexar Arquivo
+                      Anexe arquivos de imagem ou PDFs
                     </label>
                   </div>
+                  <ul id="file-list" className="mt-2 ml-4 d-block"></ul>
                 </div>
               </section>
 
