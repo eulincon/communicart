@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from '../../services/api';
+import api from "../../services/api";
 
 import "./styles.css";
 import SkeletonPage from "../../components/SkeletonPage";
@@ -22,7 +22,7 @@ function CadastroJob() {
   const [contatoInsta, setcontatoInsta] = useState(false);
   const [contatoFacebook, setContatoFacebook] = useState(false);
   const [contatoTwitter, setContatoTwitter] = useState(false);
-  const [arquivoUpload, setArquivoUpload] = useState(false);
+  const [arquivoUpload, setArquivoUpload] = useState([]);
   const contactForms = {
     instagram: contatoInsta,
     linkedin: contatoLinkedin,
@@ -30,7 +30,7 @@ function CadastroJob() {
     facebook: contatoFacebook,
     twitter: contatoTwitter,
     email: contatoEmail,
-    other: "other"
+    other: "other",
   };
 
   function prazoANegociar() {
@@ -47,6 +47,27 @@ function CadastroJob() {
     return date >= today ? true : false;
   }
 
+  function handleFiles(e) {
+    let file = e.target.files[0];
+    if (file === undefined) {
+      return;
+    }
+    if (!file.type.includes("pdf")) {
+      alert("Só é possível carregar arquivos PDF.");
+    } else {
+      setArquivoUpload([file]);
+      let newLi = document.getElementById("file-name");
+      newLi.innerText = file.name;
+      newLi.classList.remove("d-none");
+      newLi.onclick = handleLiClick;
+    }
+  }
+
+  function handleLiClick(e) {
+    setArquivoUpload([]);
+    e.target.classList.add("d-none");
+  }
+
   async function handleCadastro(e) {
     e.preventDefault();
     // let data = new Date();
@@ -56,30 +77,43 @@ function CadastroJob() {
     // let resp = compareDates(dataPagamento);
 
     if (prazoNegociar || compareDates(dataPagamento) === true) {
-        const cadastroJob = {
-          titleJob:tituloJob,
-          typeJob: tipoJob,
-          description: descricaoJob,
-          price: propostaPreco,
-          // dataPagamento,
-          // prazoNegociar,
-          paymentType: formaPagamento,
-          paymentToNegotiate: pagamentoNegociar,
-          contactForms,
-          // arquivoUpload,
-        };
+      const cadastroJob = {
+        titleJob: tituloJob,
+        typeJob: tipoJob,
+        description: descricaoJob,
+        price: propostaPreco,
+        // dataPagamento,
+        // prazoNegociar,
+        paymentType: formaPagamento,
+        paymentToNegotiate: pagamentoNegociar,
+        contactForms,
+        // arquivoUpload,
+      };
 
-        console.log(arquivoUpload);
-        console.log(cadastroJob);
+      console.log(arquivoUpload);
+      console.log(cadastroJob);
 
-        await api.post('/api/vagas', cadastroJob)
-        .then(response => {
-          alert('Vaga cadastrada com sucesso!');
-          history.push('feed');
+      if (arquivoUpload.length > 0) {
+        let formData = new FormData();
+        formData.append("file", arquivoUpload[0]);
+        await api
+          .post(`/api/awss3/files`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((res) => (cadastroJob.fileURL = res.data));
+      }
+
+      await api
+        .post("/api/vagas", cadastroJob)
+        .then((response) => {
+          alert("Vaga cadastrada com sucesso!");
+          history.push("feed");
         })
-        .catch(err => {
-          alert('Ops! Algum erro inesperado ocorreu! :/');
-        })
+        .catch((err) => {
+          alert("Ops! Algum erro inesperado ocorreu! :/");
+        });
     } else {
       alert("data invalida ");
     }
@@ -152,13 +186,17 @@ function CadastroJob() {
                       class="custom-file-input"
                       id="customFile"
                       accept="application/pdf"
-                      placeholder="Adicione um arquivo PDF"
-                      onChange={(e) => setArquivoUpload(e.target.files[0])}
+                      placeholder="Adicione arquivos PDF"
+                      multiple="multiple"
+                      onChange={handleFiles}
                     />
                     <label class="custom-file-label" for="customFile">
-                      Anexar Arquivo
+                      Anexe arquivos PDF
                     </label>
                   </div>
+                  <ul className="mt-2 ml-4">
+                    <li id="file-name" className="d-none"></li>
+                  </ul>
                 </div>
               </section>
 

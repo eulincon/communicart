@@ -26,3 +26,8 @@
   bottom: 0;
   width: 100%;
 }
+
+#file-name:hover {
+  text-decoration: underline;
+  color: red;
+}
