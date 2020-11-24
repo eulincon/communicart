@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import "./styles.css";
-import Menu from "../../components/Menu";
 import SkeletonPage from "../../components/SkeletonPage";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/auth";
@@ -33,7 +32,7 @@ function PaginaLogin() {
         <div className="form-row mt-4 p-2">
           <div className="form-group col-sm-6">
             <section className="text-center rounded text-light bg-secondary h-100 pt-4 pb-3">
-              <h1>Faça já seu login</h1>
+              <h1>Faça já seu cadastro</h1>
               <p>
                 Ofereça vagas ou serviços de forma segura rápida e prática, gerencie
                 seus anúncios e avalie seus candidatos e vagas.
