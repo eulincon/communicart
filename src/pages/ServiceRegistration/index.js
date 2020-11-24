@@ -52,24 +52,20 @@ function CadastroJob() {
     if (file === undefined) {
       return;
     }
-    if (!file.type.includes("image") && !file.type.includes("pdf")) {
-      alert("Só é possível carregar arquivos de imagem ou PDF.");
+    if (!file.type.includes("pdf")) {
+      alert("Só é possível carregar arquivos PDF.");
     } else {
-      setArquivoUpload([file, ...arquivoUpload]);
-      let newLi = document.createElement("li");
+      setArquivoUpload([file]);
+      let newLi = document.getElementById("file-name");
       newLi.innerText = file.name;
+      newLi.classList.remove("d-none");
       newLi.onclick = handleLiClick;
-      document.getElementById("file-list").appendChild(newLi);
     }
   }
 
   function handleLiClick(e) {
-    setArquivoUpload(
-      arquivoUpload.filter((file) => {
-        return file.name !== e.target.innerText;
-      })
-    );
-    e.target.remove();
+    setArquivoUpload([]);
+    e.target.classList.add("d-none");
   }
 
   async function handleCadastro(e) {
@@ -98,18 +94,15 @@ function CadastroJob() {
       console.log(cadastroJob);
 
       if (arquivoUpload.length > 0) {
-        arquivoUpload.forEach(async (file) => {
-          let route = file.type.includes("image") ? "images" : "files";
-          let formData = new FormData();
-          formData.append("file", file);
-          await api
-            .post(`/api/awss3/${route}`, formData, {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            })
-            .then((res) => console.log(res));
-        });
+        let formData = new FormData();
+        formData.append("file", arquivoUpload[0]);
+        await api
+          .post(`/api/awss3/files`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((res) => (cadastroJob.fileURL = res.data));
       }
 
       await api
@@ -192,16 +185,18 @@ function CadastroJob() {
                       type="file"
                       class="custom-file-input"
                       id="customFile"
-                      accept="application/pdf, image/*"
-                      placeholder="Adicione arquivos de imagem ou PDFs"
+                      accept="application/pdf"
+                      placeholder="Adicione arquivos PDF"
                       multiple="multiple"
                       onChange={handleFiles}
                     />
                     <label class="custom-file-label" for="customFile">
-                      Anexe arquivos de imagem ou PDFs
+                      Anexe arquivos PDF
                     </label>
                   </div>
-                  <ul id="file-list" className="mt-2 ml-4 d-block"></ul>
+                  <ul className="mt-2 ml-4">
+                    <li id="file-name" className="d-none"></li>
+                  </ul>
                 </div>
               </section>
 
