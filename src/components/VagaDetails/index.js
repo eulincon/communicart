@@ -23,15 +23,19 @@ const VagaDetails = (props) => {
     statusVaga,
     titleJob,
     typeJob,
+    paymentDate,
   } = vaga;
-
-  console.log(titleJob);
 
   return (
     <>
       <div className="shadow card">
         <div className="card-body bg-lighter_ text-white">
-          <h5 className="card-title text-center">{titleJob}</h5>
+          <h4 className="card-title text-center">{titleJob} </h4>
+          <h4 className="text-right">
+            <span className="badge badge-info bg-text-complement p-2 ml-auto">
+              {typeJob}
+            </span>
+          </h4>
           <div>
             <span className="font-weight-bold">Nome do contratante: </span>
             {jobOwner}
@@ -45,28 +49,26 @@ const VagaDetails = (props) => {
             {paymentToNegotiate ? "A combinar" : paymentType}
           </div>
           <div>
-            <span className="font-weight-bold">Estimativa de preço: </span>
+            <span className="font-weight-bold">Orçamento aproximado: </span>
             {"R$ "}
             {price.toFixed(2)}
           </div>
-          <hr />
           <div>
-            <span className="font-weight-bold">Habilidades: </span> Pintura em
-            aquarela.
-          </div>
-          <div>
-            <span className="font-weight-bold">Experiências: </span>{" "}
-            intermadiário.
+            <span className="font-weight-bold">Prazo para pagamento: </span>
+            {paymentDate}
           </div>
           <hr />
-          <h2>Imagens e documentos</h2>
-          <div className="row jumbotron">
-            <IconFixingBugs className="col border img-thumbnail" />
-            <IconOptimizeImage className="col border img-thumbnail" />
-            <IconPhotograph className="col border img-thumbnail" />
-            <IconTeamUp className="col border img-thumbnail" />
+          <h2>Documento de especificações</h2>
+          <div className="row w-50">
+            <a
+              href={fileURL != null ? fileURL : "#"}
+              className="col border img-thumbnail"
+              target="_blank"
+            >
+              <IconTeamUp className="col border img-thumbnail" />
+            </a>
           </div>
-
+          <br />
           <button
             type="button"
             data-toggle="modal"
