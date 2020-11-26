@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../../services/api";
 
 import "./styles.css";
@@ -9,11 +9,10 @@ function CadastroJob() {
   const history = useHistory();
   const [propostaPreco, setPropostaPreco] = useState(0.0);
   const [tituloJob, setTituloJob] = useState("");
-  const [tipoJob, setTipoJob] = useState("");
-  const [nivelExpJob, setNivelExpJob] = useState("");
+  const [tipoJob, setTipoJob] = useState("1");
   const [descricaoJob, setDescricaoJob] = useState("");
-  const [dataPagamento, setDataPagamento] = useState("");
-  const [formaPagamento, setFormaPagamento] = useState("");
+  const [dataPagamento, setDataPagamento] = useState(new Date().getDate());
+  const [formaPagamento, setFormaPagamento] = useState("BOLETO");
   const [pagamentoNegociar, setPagamentoNegociar] = useState(false);
   const [prazoNegociar, setPrazoNegociar] = useState(false);
   const [contatoEmail, setContatoEmail] = useState(false);
@@ -33,6 +32,8 @@ function CadastroJob() {
     other: "other",
   };
 
+  useEffect(() => {}, [tipoJob, formaPagamento]);
+
   function prazoANegociar() {
     setPrazoNegociar(!prazoNegociar);
     document.getElementById(
@@ -41,9 +42,8 @@ function CadastroJob() {
   }
 
   function compareDates(date) {
-    let parts = date.split("-");
     let today = new Date();
-    date = new Date(parts[0], parts[1] - 1, parts[2]);
+    date = new Date(date);
     return date >= today ? true : false;
   }
 
@@ -77,21 +77,25 @@ function CadastroJob() {
     // let resp = compareDates(dataPagamento);
 
     if (prazoNegociar || compareDates(dataPagamento) === true) {
+      let date = null;
+      if (dataPagamento !== null) {
+        let paydate = new Date(dataPagamento);
+        date = new Date(
+          paydate.getTime() + 60000 * paydate.getTimezoneOffset()
+        );
+      }
       const cadastroJob = {
         titleJob: tituloJob,
         typeJob: tipoJob,
         description: descricaoJob,
         price: propostaPreco,
-        // dataPagamento,
-        // prazoNegociar,
+        paymentDate: date.getTime(),
         paymentType: formaPagamento,
         paymentToNegotiate: pagamentoNegociar,
         contactForms,
-        // arquivoUpload,
       };
 
-      console.log(arquivoUpload);
-      console.log(cadastroJob);
+      console.log(dataPagamento);
 
       if (arquivoUpload.length > 0) {
         let formData = new FormData();
@@ -149,6 +153,7 @@ function CadastroJob() {
                       id="tipoJob"
                       size="3"
                       value={tipoJob}
+                      defaultValue="1"
                       onChange={(e) => setTipoJob(e.target.value)}
                       required
                     >
@@ -254,6 +259,7 @@ function CadastroJob() {
                   size="3"
                   id="formaPagamento"
                   value={formaPagamento}
+                  defaultValue="BOLETO"
                   onChange={(e) => setFormaPagamento(e.target.value)}
                   required
                 >
