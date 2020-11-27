@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../../services/api";
 
 import "./styles.css";
@@ -9,11 +9,10 @@ function CadastroJob() {
   const history = useHistory();
   const [propostaPreco, setPropostaPreco] = useState(0.0);
   const [tituloJob, setTituloJob] = useState("");
-  const [tipoJob, setTipoJob] = useState("");
-  const [nivelExpJob, setNivelExpJob] = useState("");
+  const [tipoJob, setTipoJob] = useState("1");
   const [descricaoJob, setDescricaoJob] = useState("");
-  const [dataPagamento, setDataPagamento] = useState("");
-  const [formaPagamento, setFormaPagamento] = useState("");
+  const [dataPagamento, setDataPagamento] = useState(new Date().getDate());
+  const [formaPagamento, setFormaPagamento] = useState("BOLETO");
   const [pagamentoNegociar, setPagamentoNegociar] = useState(false);
   const [prazoNegociar, setPrazoNegociar] = useState(false);
   const [contatoEmail, setContatoEmail] = useState(false);
@@ -33,6 +32,8 @@ function CadastroJob() {
     other: "other",
   };
 
+  useEffect(() => {}, [tipoJob, formaPagamento]);
+
   function prazoANegociar() {
     setPrazoNegociar(!prazoNegociar);
     document.getElementById(
@@ -41,9 +42,8 @@ function CadastroJob() {
   }
 
   function compareDates(date) {
-    let parts = date.split("-");
     let today = new Date();
-    date = new Date(parts[0], parts[1] - 1, parts[2]);
+    date = new Date(date);
     return date >= today ? true : false;
   }
 
@@ -52,24 +52,20 @@ function CadastroJob() {
     if (file === undefined) {
       return;
     }
-    if (!file.type.includes("image") && !file.type.includes("pdf")) {
-      alert("Só é possível carregar arquivos de imagem ou PDF.");
+    if (!file.type.includes("pdf")) {
+      alert("Só é possível carregar arquivos PDF.");
     } else {
-      setArquivoUpload([file, ...arquivoUpload]);
-      let newLi = document.createElement("li");
+      setArquivoUpload([file]);
+      let newLi = document.getElementById("file-name");
       newLi.innerText = file.name;
+      newLi.classList.remove("d-none");
       newLi.onclick = handleLiClick;
-      document.getElementById("file-list").appendChild(newLi);
     }
   }
 
   function handleLiClick(e) {
-    setArquivoUpload(
-      arquivoUpload.filter((file) => {
-        return file.name !== e.target.innerText;
-      })
-    );
-    e.target.remove();
+    setArquivoUpload([]);
+    e.target.classList.add("d-none");
   }
 
   async function handleCadastro(e) {
@@ -81,35 +77,36 @@ function CadastroJob() {
     // let resp = compareDates(dataPagamento);
 
     if (prazoNegociar || compareDates(dataPagamento) === true) {
+      let date = null;
+      if (dataPagamento !== null) {
+        let paydate = new Date(dataPagamento);
+        date = new Date(
+          paydate.getTime() + 60000 * paydate.getTimezoneOffset()
+        );
+      }
       const cadastroJob = {
         titleJob: tituloJob,
         typeJob: tipoJob,
         description: descricaoJob,
         price: propostaPreco,
-        // dataPagamento,
-        // prazoNegociar,
+        paymentDate: date.getTime(),
         paymentType: formaPagamento,
         paymentToNegotiate: pagamentoNegociar,
         contactForms,
-        // arquivoUpload,
       };
 
-      console.log(arquivoUpload);
-      console.log(cadastroJob);
+      console.log(dataPagamento);
 
       if (arquivoUpload.length > 0) {
-        arquivoUpload.forEach(async (file) => {
-          let route = file.type.includes("image") ? "images" : "files";
-          let formData = new FormData();
-          formData.append("file", file);
-          await api
-            .post(`/api/awss3/${route}`, formData, {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            })
-            .then((res) => console.log(res));
-        });
+        let formData = new FormData();
+        formData.append("file", arquivoUpload[0]);
+        await api
+          .post(`/api/awss3/files`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((res) => (cadastroJob.fileURL = res.data));
       }
 
       await api
@@ -156,6 +153,7 @@ function CadastroJob() {
                       id="tipoJob"
                       size="3"
                       value={tipoJob}
+                      defaultValue="1"
                       onChange={(e) => setTipoJob(e.target.value)}
                       required
                     >
@@ -192,16 +190,18 @@ function CadastroJob() {
                       type="file"
                       class="custom-file-input"
                       id="customFile"
-                      accept="application/pdf, image/*"
-                      placeholder="Adicione arquivos de imagem ou PDFs"
+                      accept="application/pdf"
+                      placeholder="Adicione arquivos PDF"
                       multiple="multiple"
                       onChange={handleFiles}
                     />
                     <label class="custom-file-label" for="customFile">
-                      Anexe arquivos de imagem ou PDFs
+                      Anexe arquivos PDF
                     </label>
                   </div>
-                  <ul id="file-list" className="mt-2 ml-4 d-block"></ul>
+                  <ul className="mt-2 ml-4">
+                    <li id="file-name" className="d-none"></li>
+                  </ul>
                 </div>
               </section>
 
@@ -259,6 +259,7 @@ function CadastroJob() {
                   size="3"
                   id="formaPagamento"
                   value={formaPagamento}
+                  defaultValue="BOLETO"
                   onChange={(e) => setFormaPagamento(e.target.value)}
                   required
                 >

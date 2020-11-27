@@ -7,23 +7,22 @@ import api from "../../services/api";
 const Feed = () => {
   const [vagas, setVagas] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  async function getVagas() {
-    console.log("running");
-    await api.get("api/vagas")
-    .then((res) => {
-      setVagas([...res.data]);
-      setLoading(false);
-    })
-    .catch(err => {
-      alert("Ops, um erro inesperado aconteceu ao carregas as vagas. :/");
-    });
 
-  
-      console.log(vagas);
+  async function getVagas() {
+    await api
+      .get("api/vagas")
+      .then((res) => {
+        setVagas([...res.data]);
+        setLoading(false);
+      })
+      .catch((err) => {
+        alert("Ops, um erro inesperado aconteceu ao carregas as vagas. :/");
+      });
+
+    console.log(vagas);
   }
-  useEffect(() => {  
-    getVagas()
+  useEffect(() => {
+    getVagas();
   }, []);
 
   if (loading) {

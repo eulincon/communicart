@@ -94,7 +94,7 @@ const CreateProfile = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(perfil);
+
     if (perfil.imagemPerfil) {
       let formData = new FormData();
       let imageFile = document.getElementById("imagem-perfil").files[0];
@@ -105,7 +105,7 @@ const CreateProfile = () => {
             "Content-Type": "multipart/form-data",
           },
         })
-        .then((res) => console.log(res));
+        .then((res) => console.log((perfil.imageURL = res.data)));
     }
     const bodyRequest = Object.assign({}, perfil);
     delete bodyRequest.imagemPerfil;
