@@ -1,10 +1,5 @@
 import React from "react";
 
-import { ReactComponent as IconFixingBugs } from "../../assets/images/vaga_details/undraw_fixing_bugs.svg";
-import { ReactComponent as IconOptimizeImage } from "../../assets/images/vaga_details/undraw_Optimize_image.svg";
-import { ReactComponent as IconPhotograph } from "../../assets/images/vaga_details/undraw_Photograph.svg";
-import { ReactComponent as IconTeamUp } from "../../assets/images/vaga_details/undraw_team_up.svg";
-
 import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
 
 const VagaDetails = (props) => {
@@ -55,19 +50,22 @@ const VagaDetails = (props) => {
           </div>
           <div>
             <span className="font-weight-bold">Prazo para pagamento: </span>
-            {paymentDate}
+            {paymentDate === null ? "A combinar" : paymentDate}
           </div>
           <hr />
-          <h2>Documento de especificações</h2>
-          <div className="row w-50">
-            <a
-              href={fileURL != null ? fileURL : "#"}
-              className="col border img-thumbnail"
-              target="_blank"
-            >
-              <IconTeamUp className="col border img-thumbnail" />
-            </a>
-          </div>
+          {fileURL !== null ? (
+            <>
+              <h2>Documento de especificações</h2>
+              <div className="row ml-2">
+                <a href={fileURL} target="_blank">
+                  <i class="fas fa-file-pdf fa-7x"></i>
+                </a>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+
           <br />
           <button
             type="button"

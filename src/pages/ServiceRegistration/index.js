@@ -89,7 +89,7 @@ function CadastroJob() {
         typeJob: tipoJob,
         description: descricaoJob,
         price: propostaPreco,
-        paymentDate: date.getTime(),
+        paymentDate: prazoANegociar ? null : date.getTime(),
         paymentType: formaPagamento,
         paymentToNegotiate: pagamentoNegociar,
         contactForms,
@@ -182,7 +182,9 @@ function CadastroJob() {
               </section>
               <br />
               <hr />
-              <h3 className="align-self-center">Anexar arquivos</h3>
+              <h3 className="align-self-center">
+                Anexar especificações adicionais
+              </h3>
               <section className="row justify-content-start">
                 <div className="col-6 d-flex flex-column ">
                   <div class="custom-file">
@@ -196,7 +198,7 @@ function CadastroJob() {
                       onChange={handleFiles}
                     />
                     <label class="custom-file-label" for="customFile">
-                      Anexe arquivos PDF
+                      Anexe um arquivo PDF
                     </label>
                   </div>
                   <ul className="mt-2 ml-4">
@@ -210,7 +212,7 @@ function CadastroJob() {
               <h3 className="align-self-center">Datas e pagamento</h3>
               <section className="row">
                 <div className="col-6 justify-content-start">
-                  <label for="faixaPreco">Faixa de preço</label>
+                  <label for="faixaPreco">Estimativa de orçamento</label>
                   <div className="d-flex ">
                     <input
                       type="number"
