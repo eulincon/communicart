@@ -1,98 +1,86 @@
-.corpo{
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    background-color: var(--color-background);
-    height: 100vh;
+.body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  min-height: 75vh;
 }
 
-.informacoes{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.9em;
-    text-align: center;
-    margin-top: 1em;
-    color: var(--color-text-title);
+.informacoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 1em;
+  color: var(--color-text-title);
+  min-height: 50vh;
 }
 
-
-.btnCadastro{
-    background-color: var(--color-text-title);
-    color: white;
-    font-weight: 700;
-    text-align: center;
-    width: 10em;
-    height: 4em;
-    padding: 0.5em;
-    border-radius: 2em;
+.btnCadastro {
+  background-color: var(--color-text-title);
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  width: 10em;
+  height: 4em;
+  padding: 0.5em;
+  border-radius: 2em;
 }
 
-.formularioLogin{
-    display: flex;
-    flex-direction: column;
-    margin-top: 1em;
-    background-color: var(--color-text-base);
-    align-items: center;
-    color: white;
-    font-weight: 700;
-    border-radius: 1em;
-    padding: 1em;
+.formularioLogin {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  background-color: var(--color-text-base);
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  border-radius: 1em;
+  padding: 1em;
+  min-height: 50vh;
 }
 
-.btnRec{
-    color: white;
+.btnRec {
+  color: white;
 }
 
-
-.inputLogin{
- width: 85vw;
- height: 2em;
- border-radius: 0.5em;
- border: none;
+.inputLogin {
+  width: 85vw;
+  height: 2em;
+  border-radius: 0.5em;
+  border: none;
 }
 
-.opcoesLogin{
-    display: flex;
+.opcoesLogin {
+  display: flex;
 }
 
-
-.btnLogin{
-    margin-right: 2em;
-    margin-bottom: 1em;
-    color: white;
-    background-color: var(--color-text-title);
-    font-weight: 700;
-    width: 7em;
-    height: 2.1em;
-    border-radius: 1em;
-    border: 1px var(--color-text-title);
+.btnLogin {
+  margin-right: 2em;
+  margin-bottom: 1em;
+  color: white;
+  background-color: var(--color-text-title);
+  font-weight: 700;
+  width: 7em;
+  height: 2.1em;
+  border-radius: 1em;
+  border: 1px var(--color-text-title);
 }
 
-@media(min-width: 600px){
-    .corpo{
-        flex-direction: row;
-        justify-content: space-around;
-    }
+@media (min-width: 600px) {
+  .body {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 
-    .informacoes{
-        width: 40vw;
-    }
-    .formularioLogin{
-      width: 40vw;
-      height: 40vh;
-    }
+  .inputLogin {
+    width: 35vw;
+    height: 6vh;
+  }
 
-    .inputLogin{
-        width: 35vw; 
-        height: 6vh
-       }
-
-    .opcoesLogin{
-        justify-content: space-between;
-        width: 89%;
-        margin-top: 1.5em;
-    }
-
-    
+  .opcoesLogin {
+    justify-content: space-between;
+    width: 89%;
+    margin-top: 1.5em;
+  }
 }
