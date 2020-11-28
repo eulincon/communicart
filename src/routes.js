@@ -42,13 +42,19 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Login} />
+        <Route path="/login" exact component={Login} />
         <Route path="/recuperacao" exact component={PasswordRecovery} />
         <Route path="/novaSenha" exact component={PasswordRegistration} />
         <Route path="/home" component={Home} exact />
         <PrivateRoute path="/feed" component={Feed} />
         {/* <Route path="/page-default" component={Feed} /> */}
         <PrivateRoute path="/vagas/:id" component={VagaPage} />
-        <Route path="/usuarios/1" component={UserProfile} />
+        <PrivateRoute
+          exact
+          path="/usuarios/meu-perfil"
+          component={UserProfile}
+        />
+        <PrivateRoute path="/usuarios/:id" component={UserProfile} />
         <Route path="/payments" component={Payments} />
         <Route path="/notify" component={Notify} />
         <Route path="/cadastro" component={Registration} />
