@@ -1,32 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
+import { useParams, Redirect } from "react-router-dom";
+import api from "../../services/api";
 
-import MainComponents from "../../components/MainComponents";
 import {
   FaFacebookSquare,
   FaInstagramSquare,
   FaLinkedin,
   FaTwitterSquare,
 } from "react-icons/fa";
+import SkeletonPage from "../../components/SkeletonPage";
+import NoPhoto from "../../assets/images/user_profile/no-image.png";
+import Loading from "../../components/Loading";
 
 const UserProfile = () => {
-  const usuario = {
-    bio: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime
-    soluta saepe dolorem a ratione necessitatibus ipsam incidunt
-    adipisci voluptatibus. Ut iusto eligendi delectus, iure eius sunt
-    temporibus repellendus dicta consequatur? Placeat incidunt impedit
-    culpa asperiores possimus alias illo laudantium accusantium dolore
-    enim veritatis quas id unde dolorum suscipit, porro doloribus.`,
-    servicos: ["Redação", "Edição"],
-    midias: {
-      facebook: "www.facebook.com",
-      instagram: "www.instagram.com",
-    },
-    imagem: "https://i.ibb.co/dJ815rh/pp.jpg",
-    nome: "Hillary Endo",
-    dataCadastro: "08/09/2020",
-    tipo: "Pessoa Física",
-  };
+  const [loading, setLoading] = useState(true);
+  const [perfil, setPerfil] = useState({});
+  let { id } = useParams();
+
+  useEffect(() => {
+    async function getPerfil(perfilID) {
+      if (perfilID === "meu-perfil") {
+        perfilID = JSON.parse(localStorage.getItem("@RNAuth:user")).id;
+      }
+      await api
+        .get(`/api/perfil/${perfilID}`)
+        .then((res) => {
+          console.log(res.data);
+          setPerfil({ ...res.data });
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err.response.status);
+          setLoading(false);
+        });
+    }
+    getPerfil(id);
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  function servicesList(servicos) {
+    let keys = Object.keys(servicos);
+
+    let list = keys.filter((key) => servicos[key] && key != "id");
+
+    return list;
+  }
+
+  function socialMediaList(midias) {
+    let list = Object.entries(midias).filter((midia) => {
+      return midia[1] != null && midia[0] != "id";
+    });
+    console.log(list);
+
+    return list;
+  }
 
   function socialMediaLink(midia) {
     const site = midia[0];
@@ -60,50 +91,77 @@ const UserProfile = () => {
   }
 
   return (
-    <MainComponents>
-      <div className="row">
-        <div className="col-sm-3 img-container d-flex justify-content-center align-content-center">
-          <img
-            src={usuario.imagem}
-            alt="imagem de perfil do usuário"
-            className="img-round w-100"
-          />
-        </div>
-        <div className="col-sm-9 text-white">
-          <h1>{usuario.nome}</h1>
-          <h4>Cadastro feito em {usuario.data}</h4>
-          <h4>Tipo de freelancer: {usuario.tipo}</h4>
-          <h4>Bio:</h4>
-          <p>{usuario.bio}</p>
-        </div>
-      </div>
-      <hr className="divider" />
-      <div className="text-white servicos">
-        <h4>Serviços oferecidos:</h4>
-        <ul className="ml-5">
-          {usuario.servicos ? (
-            usuario.servicos.map((servico, index) => (
-              <li key={index}>{servico}</li>
-            ))
+    <SkeletonPage footer={true} sidebar={true}>
+      {!loading && Object.keys(perfil).length === 0 ? (
+        <h1 className="text-white">Perfil não encontrado...</h1>
+      ) : (
+        <main className="container">
+          <div className="row">
+            <div className="col-sm-3 img-container d-flex justify-content-center align-content-center">
+              <img
+                src={perfil.imageURL == null ? NoPhoto : perfil.imageURL}
+                alt="imagem de perfil do usuário"
+                className="img-round w-100"
+              />
+            </div>
+            <div className="col-sm-9 text-white">
+              <h1>{perfil.nome}</h1>
+              <h4>Tipo de freelancer: {perfil.type}</h4>
+              <h4>Bio:</h4>
+              <p>{perfil.bio}</p>
+            </div>
+          </div>
+          <hr className="divider" />
+          <div className="text-white servicos">
+            <h4>Serviços oferecidos:</h4>
+            <ul className="ml-5">
+              {servicesList(perfil.servicos).length > 0 ? (
+                servicesList(perfil.servicos).map((servico, index) => (
+                  <li key={index}>
+                    {servico.charAt(0).toUpperCase() + servico.slice(1)}
+                  </li>
+                ))
+              ) : (
+                <p>Não há serviços cadastrados</p>
+              )}
+            </ul>
+          </div>
+          {perfil.interesses != null ? (
+            <>
+              <hr className="divider" />
+              <div className="text-white interesses">
+                <h4>Interesses</h4>
+                <ul className="ml-5">
+                  {perfil.interesses.split(",").map((interesse, index) => (
+                    <li key={index}>{interesse}</li>
+                  ))}
+                </ul>
+              </div>
+            </>
           ) : (
-            <p>Não há serviços cadastrados</p>
+            <></>
           )}
-        </ul>
-      </div>
-      <hr className="divider" />
-      <div className="midias-sociais text-white">
-        <h4>Midias sociais</h4>
-        <div className="links">
-          {Object.entries(usuario.midias).map((midia, index) => {
-            return (
-              <span key={index} className="mr-5">
-                {socialMediaLink(midia)}
-              </span>
-            );
-          })}
-        </div>
-      </div>
-    </MainComponents>
+
+          <hr className="divider" />
+          <div className="midias-sociais text-white">
+            <h4>Midias sociais</h4>
+            <div className="links">
+              {socialMediaList(perfil.midiasSociais).length > 0 ? (
+                socialMediaList(perfil.midiasSociais).map((midia, index) => {
+                  return (
+                    <span key={index} className="mr-5">
+                      {socialMediaLink(midia)}
+                    </span>
+                  );
+                })
+              ) : (
+                <p className="ml-5">Não há mídias sociais cadastradas</p>
+              )}
+            </div>
+          </div>
+        </main>
+      )}
+    </SkeletonPage>
   );
 };
 
