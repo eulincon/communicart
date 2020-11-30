@@ -53,7 +53,7 @@ export const SidebarData = [
         path: "/freelancer/vagas/CONCLUIDA",
       },
     ],
-  }
+  },
   // {
   //   title: "Pagamentos",
   //   items: [],
