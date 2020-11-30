@@ -25,6 +25,10 @@ const Registration = () => {
     console.log(cadastro);
   }
 
+  function clean(document) {
+    return document.replace(/\D/g, "");
+  }
+
   function validateCadastro(cadastro) {
     let erros = [];
     if (cadastro.tipoPessoa === 0) {
@@ -55,6 +59,10 @@ const Registration = () => {
     setCadastro({ ...cadastro, [e.target.name]: e.target.value });
   }
 
+  function handleBlur(e) {
+    setCadastro({ ...cadastro, [e.target.name]: clean(e.target.value) });
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     let erros = validateCadastro(cadastro);
@@ -62,6 +70,7 @@ const Registration = () => {
       erros.forEach((erro) => alert(erro));
       return;
     }
+
     const res = await api
       .patch(`/api/perfil/${user.id}`, cadastro)
       .then((response) => {
@@ -147,6 +156,7 @@ const Registration = () => {
                       placeholder="Insira seu CPF"
                       onChange={handleChange}
                       value={cpfMask(cadastro.cpf)}
+                      onBlur={handleBlur}
                       name="cpf"
                       required
                     />
@@ -184,6 +194,7 @@ const Registration = () => {
                       id="cnpj-pj"
                       placeholder="Insira o CNPJ"
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       value={cnpjMask(cadastro.cnpj)}
                       name="cnpj"
                       required

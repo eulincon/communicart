@@ -1,13 +1,12 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 import styles from "./styles.module.css";
-import { ReactComponent as Logo } from '../../../assets/images/logo_menu.svg';
-import { NavbarData, NavbarDataLogout } from './NavbarData';
-import { SidebarData } from './SidebarData';
-import { useAuth } from '../../../contexts/auth';
-
+import { ReactComponent as Logo } from "../../../assets/images/logo_menu.svg";
+import { NavbarData, NavbarDataLogout } from "./NavbarData";
+import { SidebarData } from "./SidebarData";
+import { useAuth } from "../../../contexts/auth";
 
 const Main = ({ sidebar = false, footer = false, children }) => {
   const { pathname } = useLocation();
@@ -17,13 +16,12 @@ const Main = ({ sidebar = false, footer = false, children }) => {
   if (!signed) {
     navbarData = NavbarDataLogout;
   }
-  
-  
+
   return (
-    <div style={{paddingTop: '70px'}}>
+    <div style={{ paddingTop: "70px" }}>
       {/* Narbar */}
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-primary_ mb-2">
-        <Link className="navbar-brand	d-none d-lg-block" to={'#'}>
+        <Link className="navbar-brand	d-none d-lg-block" to={"#"}>
           <Logo width={200} alt="Communicart" />
         </Link>
         <button
@@ -35,7 +33,7 @@ const Main = ({ sidebar = false, footer = false, children }) => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <Link className="navbar-brand" to={'#'}>
+          <Link className="navbar-brand" to={"#"}>
             <Logo width={200} alt="Communicart" />
           </Link>
         </button>
@@ -57,33 +55,58 @@ const Main = ({ sidebar = false, footer = false, children }) => {
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
             {navbarData.map((item, index) => {
               return (
-                <li key={index} className={pathname === item.path ? 'nav-item active ml-3' : 'nav-item ml-3'}>
-                  <Link className="nav-link" to={item.path}>{item.title}</Link>
+                <li
+                  key={index * Math.random()}
+                  className={
+                    pathname === item.path
+                      ? "nav-item active ml-3"
+                      : "nav-item ml-3"
+                  }
+                >
+                  <Link className="nav-link" to={item.path}>
+                    {item.title}
+                  </Link>
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
 
         {/* Sidebar On Toggle */}
         {sidebar && (
-          <div className={`collapse ${styles.tugle} d-lg-none`} id="navbarTogglerDemo02">
+          <div
+            className={`collapse ${styles.tugle} d-lg-none`}
+            id="navbarTogglerDemo02"
+          >
             <div className="border-top h-100 mr-3 d-block d-lg-none">
               <ul className="navbar-nav">
                 {SidebarData.map((collection, indexCollection) => {
                   return (
                     <>
-                      <h4 key={indexCollection} className="text-light ml-3 mt-4">{collection.title}</h4>
+                      <h4
+                        key={indexCollection}
+                        className="text-light ml-3 mt-4"
+                      >
+                        {collection.title}
+                      </h4>
                       {collection.items.map((item, indexItem) => {
                         return (
-                          <li key={collection.title+indexItem} className="ml-3 nav-item">
-                            <Link className="nav-link active text-light" to={item.path}>{item.titleItem}</Link>
+                          <li
+                            key={collection.title + indexItem}
+                            className="ml-3 nav-item"
+                          >
+                            <Link
+                              className="nav-link active text-light"
+                              to={item.path}
+                            >
+                              {item.titleItem}
+                            </Link>
                           </li>
-                        )
+                        );
                       })}
                       <br />
                     </>
-                  )
+                  );
                 })}
               </ul>
             </div>
@@ -103,17 +126,27 @@ const Main = ({ sidebar = false, footer = false, children }) => {
                 {SidebarData.map((collection, indexCollection) => {
                   return (
                     <>
-                      <h5 key={indexCollection} className="ml-2 mt-3">{collection.title}</h5>
+                      <h5 key={indexCollection} className="ml-2 mt-3">
+                        {collection.title}
+                      </h5>
                       {collection.items.map((item, indexItem) => {
                         return (
-                          <li key={collection.title+indexItem} className="nav-item">
-                            <Link className="ml-3 active text-light" to={item.path}>{item.titleItem}</Link>
+                          <li
+                            key={collection.title + indexItem}
+                            className="nav-item"
+                          >
+                            <Link
+                              className="ml-3 active text-light"
+                              to={item.path}
+                            >
+                              {item.titleItem}
+                            </Link>
                           </li>
-                        )
+                        );
                       })}
                       <br />
                     </>
-                  )
+                  );
                 })}
               </ul>
             </div>
@@ -121,21 +154,29 @@ const Main = ({ sidebar = false, footer = false, children }) => {
         )}
 
         {/* Main */}
-        <main className={`p-3 bg-dark ${styles.min_height} rounded ${sidebar ? 'col-lg-10 col-md-12 ml-auto' : 'mx-2'} `}>
+        <main
+          className={`p-3 bg-dark ${styles.min_height} rounded ${
+            sidebar ? "col-lg-10 col-md-12 ml-auto" : "mx-2"
+          } `}
+        >
           {children}
         </main>
       </div>
 
       {/* Footer */}
       {footer && (
-        <footer className="page-footer font-small blue bg-primary_ position-sticky" >
-          <div className="footer-copyright text-center py-3 text-light">© 2020 Copyright:
-                    <Link to="https://mdbootstrap.com/" className="text-light"> Communicart.com.br</Link>
+        <footer className="page-footer font-small blue bg-primary_ position-sticky">
+          <div className="footer-copyright text-center py-3 text-light">
+            © 2020 Copyright:
+            <Link to="https://mdbootstrap.com/" className="text-light">
+              {" "}
+              Communicart.com.br
+            </Link>
           </div>
         </footer>
       )}
     </div>
-  )
+  );
 };
 
 export default Main;

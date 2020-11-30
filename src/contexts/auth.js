@@ -39,7 +39,6 @@ export const AuthProvider = ({ children }) => {
     const res = await api
       .post("/api/login", data)
       .then((response) => {
-        console.log(JSON.stringify(response));
         localStorage.setItem(
           "@RNAuth:user",
           JSON.stringify(response.data.user)
@@ -50,12 +49,27 @@ export const AuthProvider = ({ children }) => {
         return true;
       })
       .catch((error) => {
-        console.log("erro ao fazer login");
+        console.log("Erro ao fazer login");
         console.log(error);
         return false;
       });
 
     return res;
+  }
+
+  async function validate() {
+    await api
+      .get("/api/validate")
+      .then((response) => {
+        if (!response.data) {
+          signOut();
+        }
+      })
+      .catch((err) => {
+        alert("Erro de validação");
+        console.log(err);
+        signOut();
+      });
   }
 
   function signOut() {
@@ -67,7 +81,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, signIn, signOut, loading }}
+      value={{ signed: !!user, user, signIn, signOut, validate, loading }}
     >
       {children}
     </AuthContext.Provider>
