@@ -25,7 +25,7 @@ import Vagas from "./pages/Vagas";
 import CandidatosVagaPage from "./pages/CandidatosVagaPage";
 
 function PrivateRoute({ ...rest }) {
-  const { signed, user, loading } = useAuth();
+  const { signed, user, loading, validate, signOut } = useAuth();
   console.log(`is signed: ${signed} - user: ${user}`);
   if (loading) {
     return <Loading />;
@@ -34,6 +34,7 @@ function PrivateRoute({ ...rest }) {
   if (!signed) {
     return <Redirect to="/" />;
   }
+  validate();
   return <Route {...rest} />;
 }
 
@@ -50,7 +51,10 @@ function Routes() {
         <Route path="/home" component={Home} exact />
         <PrivateRoute path="/feed" component={Feed} />
         {/* <Route path="/page-default" component={Feed} /> */}
-        <Route path="/contratante/vagas/:id/candidaturas/:perfilId" component={UserProfile} />
+        <Route
+          path="/contratante/vagas/:id/candidaturas/:perfilId"
+          component={UserProfile}
+        />
         <Route path="/contratante/vagas/:id" component={CandidatosVagaPage} />
         <Route path="/usuarios/1" component={UserProfile} />
         <PrivateRoute path="/vagas/:id" component={VagaPage} />
