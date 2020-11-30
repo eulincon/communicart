@@ -1,0 +1,19 @@
+.img-round {
+  border-radius: 50%;
+  align-self: flex-start;
+  justify-self: center;
+}
+
+.divider {
+  border-top: 3px solid white;
+}
+
+.social-media-link {
+  color: white;
+  text-decoration: none;
+}
+
+.social-media-link:hover {
+  color: var(--color-text-complement);
+  text-decoration: none;
+}

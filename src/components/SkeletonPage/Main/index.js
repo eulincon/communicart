@@ -76,8 +76,8 @@ const Main = ({ sidebar = false, footer = false, children }) => {
                       <h4 key={indexCollection} className="text-light ml-3 mt-4">{collection.title}</h4>
                       {collection.items.map((item, indexItem) => {
                         return (
-                          <li key={indexItem} className="ml-3 nav-item">
-                            <Link className="nav-link active text-light" to={'#'}>{item.titleItem}</Link>
+                          <li key={collection.title+indexItem} className="ml-3 nav-item">
+                            <Link className="nav-link active text-light" to={item.path}>{item.titleItem}</Link>
                           </li>
                         )
                       })}
@@ -103,11 +103,11 @@ const Main = ({ sidebar = false, footer = false, children }) => {
                 {SidebarData.map((collection, indexCollection) => {
                   return (
                     <>
-                      <h4 key={indexCollection} className="ml-3 mt-4">{collection.title}</h4>
+                      <h5 key={indexCollection} className="ml-2 mt-3">{collection.title}</h5>
                       {collection.items.map((item, indexItem) => {
                         return (
-                          <li key={indexItem} className="nav-item">
-                            <Link className="nav-link active text-light" to={item.path}>{item.titleItem}</Link>
+                          <li key={collection.title+indexItem} className="nav-item">
+                            <Link className="ml-3 active text-light" to={item.path}>{item.titleItem}</Link>
                           </li>
                         )
                       })}

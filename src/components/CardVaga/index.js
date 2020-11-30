@@ -20,8 +20,8 @@ const CardVaga = (vaga) => {
             </span>
           </h4>
         </div>
-        <span>{jobOwner}</span>
-        <p className="card-text">{description}</p>
+        <span>Contratante: {jobOwner}</span>
+        <p className="card-text">Descrição: {description}</p>
         <div>
           <Link to={`/vagas/${id}`} className={`btn btn-secondary_`}>
             Ver mais
@@ -37,10 +37,9 @@ const CardVaga = (vaga) => {
               <button className={"btn btn-danger ml-2"}>Desativar</button>
             </>
           ) : (
-            <></>
+            <ButtonLikeVaga />
           )}
         </div>
-        <ButtonLikeVaga />
       </div>
     </div>
   );

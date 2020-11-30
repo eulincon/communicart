@@ -17,24 +17,45 @@ export const SidebarData = [
     ],
   },
   {
-    title: "Trabalhos",
+    title: "Jobs - Contratante",
     items: [
       {
+        titleItem: "Ativos",
+        path: "/contratante/vagas/ATIVA",
+      },
+      {
         titleItem: "Em andamento",
-        path: "",
+        path: "/contratante/vagas/EM_ANDAMENTO",
       },
       {
         titleItem: "Concluídos",
-        path: "",
+        path: "/contratante/vagas/CONCLUIDA",
       },
       {
-        titleItem: "Cancelados",
-        path: "",
+        titleItem: "Bloqueada",
+        path: "/contratante/vagas/BLOQUEADA",
       },
     ],
   },
   {
-    title: "Pagamentos",
-    items: [],
-  },
+    title: "Jobs - Freelancer",
+    items: [
+      {
+        titleItem: "Inscrições",
+        path: "/freelancer/vagas/ativa",
+      },
+      {
+        titleItem: "Em andamento",
+        path: "/freelancer/vagas/EM_ANDAMENTO",
+      },
+      {
+        titleItem: "Concluídos",
+        path: "/freelancer/vagas/CONCLUIDA",
+      },
+    ],
+  }
+  // {
+  //   title: "Pagamentos",
+  //   items: [],
+  // },
 ];

@@ -59,31 +59,72 @@ const UserProfile = () => {
     return list;
   }
 
+  // const naoHaServicos = () => {
+  //   if(perfil.servicos.design === false &&
+  //     perfil.servicos.edicao === false &&
+  //     perfil.servicos.fotografia === false &&
+  //     perfil.servicos.ilustracao === false &&
+  //     perfil.servicos.redacao === false
+  //     ){
+  //       return true
+  //     } else {
+  //       return false
+  //     }
+  // }
+  
+  // useEffect(() => {
+  //   console.log('primeiro useEffect')
+  //   async function getProposta(){
+  //     // console.log(`url /api/vagas/${id}/candidaturas/${perfilId}`)
+  //     await api.get(`/api/vagas/${id}/candidaturas/${perfilId}`)
+  //     .then(response => {
+  //       setProposta(response.data);
+  //       getPerfil(response.data.id)
+  //     })
+  //     .catch(err => {
+  //       alert('Ops! Ocorreu um erro ao obter os dados da proposta.')
+  //       console.log(err.response.data);
+  //     });
+  //   }
+  //   async function getPerfil(idPerfil){
+  //     // console.log(`url /api/vagas/candidaturas/${proposta.id}/perfilCandidato`)
+  //     await api.get(`/api/vagas/candidaturas/${idPerfil}/perfilCandidato`)
+  //     .then(response => {
+  //       setPerfil(response.data)
+  //       setLoading(false)
+  //     })
+  //     .catch(err => {
+  //       alert('Ops! Ocorreu um erro ao obter os dados do perfil.')
+  //       console.log(err.response.data)
+  //     });
+  //   }
+  //   getProposta();
+  //   },[])
+  
   function socialMediaLink(midia) {
     const site = midia[0];
     const link = midia[1];
     if (site === "facebook") {
-      console.log(site);
       return (
-        <a href={link} className="social-media-link">
+        <a href={`https://${link}`} target="_blank" rel="noreferrer" className="social-media-link">
           <FaFacebookSquare size={36} />
         </a>
       );
     } else if (site === "twitter") {
       return (
-        <a href={link} className="social-media-link">
+        <a href={`https://${link}`} target="_blank" rel="noreferrer" className="social-media-link">
           <FaTwitterSquare size={36} />
         </a>
       );
     } else if (site === "instagram") {
       return (
-        <a href={link} className="social-media-link">
+        <a href={`https://${link}`} target="_blank" rel="noreferrer" className="social-media-link">
           <FaInstagramSquare size={36} />
         </a>
       );
     } else if (site === "linkedin") {
       return (
-        <a href={link} className="social-media-link">
+        <a href={`https://${link}`} target="_blank" rel="noreferrer" className="social-media-link">
           <FaLinkedin size={36} />
         </a>
       );

@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import api from '../../services/api';
 
 import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
+import { useHistory } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import { useAuth } from "../../contexts/auth";
 
 const VagaDetails = (props) => {
+  const {user} = useAuth();
+  const history = useHistory();
   let { vaga } = props;
+  const [deliveryDate, setDeliveryDate] = useState(Date);
+  const [observations, setObservations] = useState('');
+  const [propostaPrice, setPropostaPrice] = useState(0);
 
   if (vaga === null)
     return <h3 className="text-white text-center">Vaga não encontrada...</h3>;
@@ -20,6 +29,18 @@ const VagaDetails = (props) => {
     typeJob,
     paymentDate,
   } = vaga;
+
+  async function propostaSubmit() {
+    const date = new Date(deliveryDate)
+    const body = {deliveryDate: date.toISOString(), price: propostaPrice, observations}
+    await api.post(`/api/vagas/${vaga.id}/candidatarse`, body)
+      .then(response => {
+        console.log(response)
+        alert("Candidatura cadastrada com sucesso");
+        history.push('/feed')
+      })
+      .catch(err => alert(err.response.data.message))
+  }
 
   return (
     <>
@@ -50,7 +71,7 @@ const VagaDetails = (props) => {
           </div>
           <div>
             <span className="font-weight-bold">Prazo para pagamento: </span>
-            {paymentDate === null ? "A combinar" : paymentDate}
+            {paymentDate === undefined ? "A combinar" : paymentDate}
           </div>
           <hr />
           {fileURL !== null ? (
@@ -58,7 +79,7 @@ const VagaDetails = (props) => {
               <h2>Documento de especificações</h2>
               <div className="row ml-2">
                 <a href={fileURL} target="_blank">
-                  <i class="fas fa-file-pdf fa-7x"></i>
+                  <i className="fas fa-file-pdf fa-7x"></i>
                 </a>
               </div>
             </>
@@ -67,15 +88,19 @@ const VagaDetails = (props) => {
           )}
 
           <br />
-          <button
-            type="button"
-            data-toggle="modal"
-            data-target="#exampleModal"
-            className="btn btn-secondary_"
-          >
-            Candidatar-me
-          </button>
-          <ButtonLikeVaga />
+          {user.id === vaga.perfilId ? null : (
+            <>
+              <button
+                type="button"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                className="btn btn-secondary_"
+              >
+                Candidatar-me
+              </button>
+              <ButtonLikeVaga />
+            </>
+          )}
         </div>
       </div>
 
@@ -103,6 +128,7 @@ const VagaDetails = (props) => {
               </button>
             </div>
             <div className="modal-body bg-lighter_ text-white">
+              {/* Form proposta */}
               <form>
                 <div className="form-row">
                   <div className="form-group col">
@@ -116,6 +142,7 @@ const VagaDetails = (props) => {
                       step="0.10"
                       className="form-control"
                       id="recipient-name"
+                      onChange={(e) => setPropostaPrice(e.target.value)}
                       required
                     />
                   </div>
@@ -127,6 +154,7 @@ const VagaDetails = (props) => {
                       type="date"
                       className="form-control"
                       id="recipient-name"
+                      onChange={(e) => setDeliveryDate(e.target.value)}
                       required
                     />
                   </div>
@@ -138,6 +166,7 @@ const VagaDetails = (props) => {
                   <textarea
                     className="form-control"
                     id="message-text"
+                    onChange={(e) => setObservations(e.target.value)}
                     placeholder="O que você quer que o contratante saiba?"
                   ></textarea>
                 </div>
@@ -151,7 +180,7 @@ const VagaDetails = (props) => {
               >
                 Fechar
               </button>
-              <button type="button" className="btn btn-primary bg-secondary_">
+              <button type="button" onClick={propostaSubmit} className="btn btn-primary bg-secondary_">
                 Enviar proposta
               </button>
             </div>

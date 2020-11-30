@@ -21,6 +21,8 @@ import ServiceRegistration from "./pages/ServiceRegistration";
 import JobOffers from "./pages/JobOffers";
 import Teste from "./components/SkeletonPage/Teste";
 import Loading from "./components/Loading";
+import Vagas from "./pages/Vagas";
+import CandidatosVagaPage from "./pages/CandidatosVagaPage";
 
 function PrivateRoute({ ...rest }) {
   const { signed, user, loading } = useAuth();
@@ -48,6 +50,9 @@ function Routes() {
         <Route path="/home" component={Home} exact />
         <PrivateRoute path="/feed" component={Feed} />
         {/* <Route path="/page-default" component={Feed} /> */}
+        <Route path="/contratante/vagas/:id/candidaturas/:perfilId" component={UserProfile} />
+        <Route path="/contratante/vagas/:id" component={CandidatosVagaPage} />
+        <Route path="/usuarios/1" component={UserProfile} />
         <PrivateRoute path="/vagas/:id" component={VagaPage} />
         <PrivateRoute
           exact
@@ -61,12 +66,13 @@ function Routes() {
         <Route path="/signup" component={Signup} />
         <Route path="/criar-perfil" component={CreateProfile} />
         <Route path="/wishlist" component={Wishlist} />
+        <Route path="/:tipoUsuario/vagas/:status" exact component={Vagas} />
         <PrivateRoute
           path="/cadastro-job"
           exact
           component={ServiceRegistration}
         />
-        <Route path="/job-offers/1" component={JobOffers} />
+        <Route path="/job-offers" component={JobOffers} />
         <Route path="/logout" render={signOut} />
         {/* Apenas para teste e criação de componentes */}
         <Route path="/lincon-dev" component={Feed} />
