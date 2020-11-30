@@ -21,6 +21,8 @@ import ServiceRegistration from "./pages/ServiceRegistration";
 import JobOffers from "./pages/JobOffers";
 import Teste from "./components/SkeletonPage/Teste";
 import Loading from "./components/Loading";
+import Vagas from "./pages/Vagas";
+import CandidatosVagaPage from "./pages/CandidatosVagaPage";
 
 function PrivateRoute({ ...rest }) {
   const { signed, user, loading } = useAuth();
@@ -47,7 +49,9 @@ function Routes() {
         <Route path="/home" component={Home} exact />
         <PrivateRoute path="/feed" component={Feed} />
         {/* <Route path="/page-default" component={Feed} /> */}
-        <PrivateRoute path="/vagas/:id" component={VagaPage} />
+        <PrivateRoute path="/vagas/:id" exact component={VagaPage} />
+        <Route path="/contratante/vagas/:id/candidaturas/:perfilId" component={UserProfile} />
+        <Route path="/contratante/vagas/:id" component={CandidatosVagaPage} />
         <Route path="/usuarios/1" component={UserProfile} />
         <Route path="/payments" component={Payments} />
         <Route path="/notify" component={Notify} />
@@ -55,6 +59,7 @@ function Routes() {
         <Route path="/signup" component={Signup} />
         <Route path="/criar-perfil" component={CreateProfile} />
         <Route path="/wishlist" component={Wishlist} />
+        <Route path="/:tipoUsuario/vagas/:status" exact component={Vagas} />
         <PrivateRoute
           path="/cadastro-job"
           exact

@@ -8,20 +8,19 @@ const Feed = () => {
   const [vagas, setVagas] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  async function getVagas() {
-    await api
-      .get("api/vagas")
-      .then((res) => {
-        setVagas([...res.data]);
-        setLoading(false);
-      })
-      .catch((err) => {
-        alert("Ops, um erro inesperado aconteceu ao carregas as vagas. :/");
-      });
-
-    console.log(vagas);
-  }
   useEffect(() => {
+    async function getVagas() {
+      await api
+        .get("api/vagas/listByStatus?statusVaga=ATIVA")
+        .then((res) => {
+          setVagas([...res.data]);
+          setLoading(false);
+        })
+        .catch((err) => {
+          alert("Ops, um erro inesperado aconteceu ao carregas as vagas. :/");
+        });
+    }
+
     getVagas();
   }, []);
 

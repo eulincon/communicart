@@ -19,7 +19,7 @@ function PaginaLogin() {
   async function handleLogin(e) {
     e.preventDefault();
     let res = await signIn({ email, password });
-    if (res === false) alert("Ops! Algo de errado aconteceu. :/");
+    if (res === false) alert("Ops! Algo de errado aconteceu. :/ Credenciais incorretas.");
   }
 
   if (loading) {

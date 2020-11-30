@@ -109,6 +109,8 @@ function CadastroJob() {
           .then((res) => (cadastroJob.fileURL = res.data));
       }
 
+      console.log(cadastroJob);
+
       await api
         .post("/api/vagas", cadastroJob)
         .then((response) => {
@@ -261,7 +263,7 @@ function CadastroJob() {
                   size="3"
                   id="formaPagamento"
                   value={formaPagamento}
-                  defaultValue="BOLETO"
+                  defaultValue=""
                   onChange={(e) => setFormaPagamento(e.target.value)}
                   required
                 >

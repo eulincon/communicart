@@ -5,11 +5,14 @@ import api from "../../services/api";
 import SkeletonPage from "../../components/SkeletonPage";
 import VagaDetails from "../../components/VagaDetails";
 import Loading from "../../components/Loading";
+import { useAuth } from "../../contexts/auth";
+import TableCandidatura from "../../components/VagaDetails/TableCandidatura";
 
 const VagaPage = () => {
   const [loading, setLoading] = useState(true);
   const [vaga, setVaga] = useState({});
   let { id } = useParams();
+  const {user} = useAuth();
 
   useEffect(() => {
     async function carregarVaga(vagaId) {
@@ -40,6 +43,14 @@ const VagaPage = () => {
     <SkeletonPage sidebar={true} footer={true}>
       <h1 className="text-center text-white">Detalhes da vaga</h1>
       <VagaDetails vaga={vaga} />
+      {user.id === vaga.perfilId ? (
+        <>
+          <br/><hr style={{backgroundColor:'white'}}/>
+          <h3 className="text-light text-center">Candidatos</h3>
+          <TableCandidatura idVaga={vaga.id}/>
+        </>
+      ) : null}
+      
     </SkeletonPage>
   );
 };

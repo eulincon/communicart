@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         console.log("erro ao fazer login");
-        console.log(error.response);
+        console.log(error);
         return false;
       });
 
