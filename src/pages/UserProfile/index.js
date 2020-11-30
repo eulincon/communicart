@@ -9,10 +9,8 @@ import {
 import { BiUserCircle } from 'react-icons/bi'
 import SkeletonPage from "../../components/SkeletonPage";
 import api from "../../services/api";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
-import userEvent from "@testing-library/user-event";
-import { GiEgyptianProfile } from "react-icons/gi";
 
 const UserProfile = () => {
   const {id, perfilId} = useParams();
