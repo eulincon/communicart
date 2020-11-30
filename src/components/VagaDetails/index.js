@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from '../../services/api';
+import api from "../../services/api";
 
 import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
 import { useHistory } from "react-router-dom";
@@ -7,11 +7,11 @@ import userEvent from "@testing-library/user-event";
 import { useAuth } from "../../contexts/auth";
 
 const VagaDetails = (props) => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const history = useHistory();
   let { vaga } = props;
   const [deliveryDate, setDeliveryDate] = useState(Date);
-  const [observations, setObservations] = useState('');
+  const [observations, setObservations] = useState("");
   const [propostaPrice, setPropostaPrice] = useState(0);
 
   if (vaga === null)
@@ -31,15 +31,19 @@ const VagaDetails = (props) => {
   } = vaga;
 
   async function propostaSubmit() {
-    const date = new Date(deliveryDate)
-    const body = {deliveryDate: date.toISOString(), price: propostaPrice, observations}
-    await api.post(`/api/vagas/${vaga.id}/candidatarse`, body)
-      .then(response => {
-        console.log(response)
+    const date = new Date(deliveryDate);
+    const body = {
+      deliveryDate: date.toISOString(),
+      price: propostaPrice,
+      observations,
+    };
+    await api
+      .post(`/api/vagas/${vaga.id}/candidatarse`, body)
+      .then((response) => {
         alert("Candidatura cadastrada com sucesso");
-        history.push('/feed')
+        history.push("/feed");
       })
-      .catch(err => alert(err.response.data.message))
+      .catch((err) => alert(err.response.data.message));
   }
 
   return (
@@ -180,7 +184,13 @@ const VagaDetails = (props) => {
               >
                 Fechar
               </button>
-              <button type="button" onClick={propostaSubmit} className="btn btn-primary bg-secondary_">
+              <button
+                type="button"
+                onClick={propostaSubmit}
+                className="btn btn-primary bg-secondary_"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
                 Enviar proposta
               </button>
             </div>

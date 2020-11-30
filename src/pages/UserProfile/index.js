@@ -71,7 +71,7 @@ const UserProfile = () => {
   //       return false
   //     }
   // }
-  
+
   // useEffect(() => {
   //   console.log('primeiro useEffect')
   //   async function getProposta(){
@@ -100,31 +100,51 @@ const UserProfile = () => {
   //   }
   //   getProposta();
   //   },[])
-  
+
   function socialMediaLink(midia) {
     const site = midia[0];
     const link = midia[1];
     if (site === "facebook") {
       return (
-        <a href={`https://${link}`} target="_blank" rel="noreferrer" className="social-media-link">
+        <a
+          href={`https://${link}`}
+          target="_blank"
+          rel="noreferrer"
+          className="social-media-link"
+        >
           <FaFacebookSquare size={36} />
         </a>
       );
     } else if (site === "twitter") {
       return (
-        <a href={`https://${link}`} target="_blank" rel="noreferrer" className="social-media-link">
+        <a
+          href={`https://${link}`}
+          target="_blank"
+          rel="noreferrer"
+          className="social-media-link"
+        >
           <FaTwitterSquare size={36} />
         </a>
       );
     } else if (site === "instagram") {
       return (
-        <a href={`https://${link}`} target="_blank" rel="noreferrer" className="social-media-link">
+        <a
+          href={`https://${link}`}
+          target="_blank"
+          rel="noreferrer"
+          className="social-media-link"
+        >
           <FaInstagramSquare size={36} />
         </a>
       );
     } else if (site === "linkedin") {
       return (
-        <a href={`https://${link}`} target="_blank" rel="noreferrer" className="social-media-link">
+        <a
+          href={`https://${link}`}
+          target="_blank"
+          rel="noreferrer"
+          className="social-media-link"
+        >
           <FaLinkedin size={36} />
         </a>
       );
