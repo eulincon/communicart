@@ -52,11 +52,10 @@ function Routes() {
         <PrivateRoute path="/feed" component={Feed} />
         {/* <Route path="/page-default" component={Feed} /> */}
         <Route
-          path="/contratante/vagas/:id/candidaturas/:perfilId"
+          path="/contratante/vaga/:id/candidaturas/:perfilId"
           component={UserProfile}
         />
-        <Route path="/contratante/vagas/:id" component={CandidatosVagaPage} />
-        <Route path="/usuarios/1" component={UserProfile} />
+        <Route path="/contratante/vaga/:id" component={CandidatosVagaPage} />
         <PrivateRoute path="/vagas/:id" component={VagaPage} />
         <PrivateRoute
           exact
@@ -70,7 +69,11 @@ function Routes() {
         <Route path="/signup" component={Signup} />
         <Route path="/criar-perfil" component={CreateProfile} />
         <Route path="/wishlist" component={Wishlist} />
-        <Route path="/:tipoUsuario/vagas/:status" exact component={Vagas} />
+        <PrivateRoute
+          path="/:tipoUsuario/vagas/:status"
+          exact
+          component={Vagas}
+        />
         <PrivateRoute
           path="/cadastro-job"
           exact
