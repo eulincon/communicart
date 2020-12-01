@@ -38,7 +38,11 @@ const TableCandidatura = ({ idVaga }) => {
               return (
                 <tr key={index}>
                   <th scope="row">{i++}</th>
-                  <td>{perfil.pf.nome}</td>
+                  <td>
+                    {perfil.pf
+                      ? perfil.pf.nomeCompleto
+                      : perfil.pj.nomeFantasia}
+                  </td>
                   <td>
                     <Link
                       to={`/contratante/vaga/${idVaga}/candidaturas/${perfil.id}`}

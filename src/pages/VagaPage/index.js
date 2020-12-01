@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
+import { Link } from "react-router-dom";
 
 import SkeletonPage from "../../components/SkeletonPage";
 import VagaDetails from "../../components/VagaDetails";
@@ -12,7 +13,7 @@ const VagaPage = () => {
   const [loading, setLoading] = useState(true);
   const [vaga, setVaga] = useState({});
   let { id } = useParams();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     async function carregarVaga(vagaId) {
@@ -39,18 +40,44 @@ const VagaPage = () => {
     return <Loading />;
   }
 
+  console.log(vaga.selectedFreelancer);
+
   return (
     <SkeletonPage sidebar={true} footer={true}>
       <h1 className="text-center text-white">Detalhes da vaga</h1>
       <VagaDetails vaga={vaga} />
       {user.id === vaga.perfilId ? (
-        <>
-          <br/><hr style={{backgroundColor:'white'}}/>
-          <h3 className="text-light text-center">Candidatos</h3>
-          <TableCandidatura idVaga={vaga.id}/>
-        </>
+        vaga.selectedFreelancer !== null ? (
+          <>
+            <br />
+            <hr style={{ backgroundColor: "white" }} />
+            <h3 className="text-light text-center">
+              Candidato selecionado {"- "}
+              {vaga.selectedFreelancer.pf
+                ? vaga.selectedFreelancer.pf.nomeCompleto
+                : `${vaga.selectedFreelancer.pj.nomeRepresentante}, ${vaga.selectedFreelancer.pj.nomeFantasia}`}
+            </h3>
+            <div className="d-flex justify-content-center">
+              <Link
+                to={{
+                  pathname: `/contratante/vaga/${vaga.id}/candidaturas/${vaga.selectedFreelancer.id}`,
+                  state: { selecionado: true },
+                }}
+                className="btn btn-primary"
+              >
+                Ver candidato selecionado
+              </Link>
+            </div>
+          </>
+        ) : (
+          <>
+            <br />
+            <hr style={{ backgroundColor: "white" }} />
+            <h3 className="text-light text-center">Candidatos</h3>
+            <TableCandidatura idVaga={vaga.id} />
+          </>
+        )
       ) : null}
-      
     </SkeletonPage>
   );
 };
