@@ -8,7 +8,7 @@ export const SidebarData = [
       },
       {
         titleItem: "Freelancer",
-        path: `/usuarios/meu-perfil`,
+        path: `/usuarios/${0}`,
       },
       {
         titleItem: "Contratante",
