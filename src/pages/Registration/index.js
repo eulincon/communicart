@@ -82,6 +82,12 @@ const Registration = () => {
         alert("Ops! Algo de errado aconteceu. :/");
       });
     if (res.status === 200) {
+      let user = JSON.parse(localStorage.getItem("@RNAuth:user"));
+      user.nome =
+        cadastro.tipoPessoa === 0
+          ? `${cadastro.nome} ${cadastro.sobrenome}`
+          : `${cadastro.nomeRepresentante}, ${cadastro.nomeFantasia}`;
+      localStorage.setItem("@RNAuth:user", JSON.stringify(user));
       history.push("/criar-perfil");
     }
   }

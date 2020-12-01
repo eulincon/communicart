@@ -34,9 +34,12 @@ const Vagas = () => {
   useEffect(() => {
     async function getVagas() {
       const url =
-        tipoUsuario === "freelancer" && status === "ativa"
-          ? "/api/vagas/candidaturas/freelancer"
-          : `/api/vagas/contratante/${user.id}?statusVaga=${status.toUpperCase()}`;
+        tipoUsuario === "freelancer"
+          ? `/api/vagas/candidaturas/freelancer?statusVaga=${status.toUpperCase()}`
+          : `/api/vagas/contratante/${
+              user.id
+            }?statusVaga=${status.toUpperCase()}`;
+      console.log(url);
       await api
         .get(url)
         .then((response) => {
