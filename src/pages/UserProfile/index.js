@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { useParams, Redirect } from "react-router-dom";
 import api from "../../services/api";
+import { useAuth } from "../../contexts/auth";
 
 import {
   FaFacebookSquare,
@@ -17,14 +18,12 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true);
   const [perfil, setPerfil] = useState({});
   let { id } = useParams();
+  const { user } = useAuth();
 
   useEffect(() => {
     async function getPerfil(perfilID) {
-      if (perfilID === "meu-perfil") {
-        perfilID = JSON.parse(localStorage.getItem("@RNAuth:user")).id;
-      }
       await api
-        .get(`/api/perfil/${perfilID}`)
+        .get(`/api/perfil/${perfilID == 0 ? user.id : perfilID}`)
         .then((res) => {
           console.log(res.data);
           setPerfil({ ...res.data });

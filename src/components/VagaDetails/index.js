@@ -30,6 +30,27 @@ const VagaDetails = (props) => {
     paymentDate,
   } = vaga;
 
+  console.log(paymentDate);
+
+  function statusBadge() {
+    let color =
+      statusVaga === "ATIVA" || statusVaga === "EM_ANDAMENTO"
+        ? "bg-secondary_"
+        : statusVaga === "CONCLUIDA"
+        ? "bg-primary-lighter"
+        : "bg-danger";
+    let text =
+      statusVaga === "CONCLUIDA"
+        ? "Concluída"
+        : statusVaga === "EM_ANDAMENTO"
+        ? "Em andamento"
+        : statusVaga.charAt(0) + statusVaga.slice(1).toLowerCase();
+
+    return (
+      <span className={`badge badge-info ${color} p-2 ml-auto`}>{text}</span>
+    );
+  }
+
   async function propostaSubmit() {
     const date = new Date(deliveryDate);
     const body = {
@@ -52,7 +73,8 @@ const VagaDetails = (props) => {
         <div className="card-body bg-lighter_ text-white">
           <h4 className="card-title text-center">{titleJob} </h4>
           <h4 className="text-right">
-            <span className="badge badge-info bg-text-complement p-2 ml-auto">
+            {statusBadge()}
+            <span className="badge badge-info bg-text-complement p-2 ml-2">
               {typeJob}
             </span>
           </h4>
@@ -75,7 +97,7 @@ const VagaDetails = (props) => {
           </div>
           <div>
             <span className="font-weight-bold">Prazo para pagamento: </span>
-            {paymentDate === undefined ? "A combinar" : paymentDate}
+            {paymentDate === null ? "A combinar" : paymentDate}
           </div>
           <hr />
           {fileURL !== null ? (
