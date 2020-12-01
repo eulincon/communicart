@@ -11,7 +11,7 @@ function CadastroJob() {
   const [tituloJob, setTituloJob] = useState("");
   const [tipoJob, setTipoJob] = useState("1");
   const [descricaoJob, setDescricaoJob] = useState("");
-  const [dataPagamento, setDataPagamento] = useState(new Date().getDate());
+  const [dataPagamento, setDataPagamento] = useState(new Date());
   const [formaPagamento, setFormaPagamento] = useState("BOLETO");
   const [pagamentoNegociar, setPagamentoNegociar] = useState(false);
   const [prazoNegociar, setPrazoNegociar] = useState(false);
@@ -39,6 +39,13 @@ function CadastroJob() {
     document.getElementById(
       "dataPagamento"
     ).disabled = !document.getElementById("dataPagamento").disabled;
+  }
+
+  function pagamentoAnegociar() {
+    setPagamentoNegociar(!pagamentoNegociar);
+    document.getElementById(
+      "formaPagamento"
+    ).disabled = !document.getElementById("formaPagamento").disabled;
   }
 
   function compareDates(date) {
@@ -89,13 +96,11 @@ function CadastroJob() {
         typeJob: tipoJob,
         description: descricaoJob,
         price: propostaPreco,
-        paymentDate: prazoANegociar ? null : date.getTime(),
+        paymentDate: prazoNegociar ? null : date.getTime(),
         paymentType: formaPagamento,
         paymentToNegotiate: pagamentoNegociar,
         contactForms,
       };
-
-      console.log(dataPagamento);
 
       if (arquivoUpload.length > 0) {
         let formData = new FormData();
@@ -281,7 +286,7 @@ function CadastroJob() {
                         type="checkbox"
                         id="PagamentoNegociar"
                         value={pagamentoNegociar}
-                        onChange={(e) => setPagamentoNegociar(e.target.value)}
+                        onChange={pagamentoAnegociar}
                       />
                       <label
                         className="form-check-label"
