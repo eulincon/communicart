@@ -11,6 +11,7 @@ import SkeletonPage from "../../components/SkeletonPage";
 import api from "../../services/api";
 import { useHistory, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
+import { Rating } from "@material-ui/lab";
 
 const UserProfile = ({ location }) => {
   const history = useHistory();
@@ -205,7 +206,7 @@ const UserProfile = ({ location }) => {
                         {socialMediaLink(midia)}
                       </span>
                       <a
-                        href={`http://${midia[1]}`}
+                        href={`${midia[1]}`}
                         target="_blank"
                         rel="noreferrer"
                         className="text-light"
@@ -229,6 +230,12 @@ const UserProfile = ({ location }) => {
               .replace(/\//g, "-")}
           </p>
           <p>Observações: {proposta.observations}</p>
+          {proposta.rateContratante != null ? (
+            <div className="d-flex">
+              <span className="mr-2">Avaliação: </span>
+              <Rating name="simple-controlled" readOnly defaultValue={proposta.rateContratante}/>
+            </div> 
+          ) : null}
           {selecionado ? null : (
             <div className="d-flex justify-content-center">
               <button

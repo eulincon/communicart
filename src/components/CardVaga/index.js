@@ -1,11 +1,21 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useAuth } from "../../contexts/auth";
+import{ Modal } from '@material-ui/core';
+import{ Rating } from '@material-ui/lab';
+import { makeStyles } from '@material-ui/core/styles';
 
 import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
 import api from "../../services/api";
 
 const CardVaga = (vaga) => {
+  const history = useHistory();
+  const { tipoUsuario } = useParams();
+  const { user } = useAuth();
+  const [showModalAvaliarFreelancer, setShowModalAvaliarFreelancer] = useState(false);
+  const [showModalAvaliarContratante, setShowModalAvaliarContratante] = useState(false);
+  const [rating, setRating] = useState(3);
+  
   const {
     titleJob,
     description,
@@ -15,6 +25,20 @@ const CardVaga = (vaga) => {
     typeJob,
     statusVaga,
   } = vaga.vaga;
+  
+  const modalStyles = makeStyles((theme) => ({
+    paper: {
+      marginTop: '20%',
+      position: 'relative',
+      margin: 'auto',
+      width: 400,
+      backgroundColor: 'grey',
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  }));
+  const classes = modalStyles();
 
   function statusBadge() {
     let color =
@@ -35,19 +59,45 @@ const CardVaga = (vaga) => {
     );
   }
 
-  const history = useHistory();
-  const { user } = useAuth();
-
-  async function handleDesativarVaga(idVaga){
-    await api.patch(`/api/vagas/${idVaga}?statusUpdate=BLOQUEADA`)
+  async function handleChangeStatusVaga(idVaga, statusVaga){
+    await api.patch(`/api/vagas/${idVaga}?statusUpdate=${statusVaga}`)
     .then(() => {
-      alert('Vaga bloqueada com sucesso!')
-      history.push('/contratante/vagas/bloqueada')
+      if(statusVaga === 'ATIVA'){
+        alert('Vaga ativada com sucesso!')
+        history.push('/contratante/vagas/ATIVA')
+      }else if(statusVaga === 'BLOQUEADA'){
+        alert('Vaga bloqueada com sucesso!')
+        history.push('/contratante/vagas/BLOQUEADA')
+      }
     })
     .catch(err => {
       console.log(err)
       alert('Erro ao alterar status da vaga.')
     })
+  }
+
+  function handleModalFinalizarVaga(){
+    setShowModalAvaliarFreelancer(!showModalAvaliarFreelancer)
+  }
+  function handleModalAvaliarContratante(){
+    setShowModalAvaliarContratante(!showModalAvaliarContratante)
+  }
+
+  async function handleFinalizarVaga(idVaga, rateContratante) {
+    console.log('idVaga: ' + idVaga, 'rateContratante: ' + rateContratante)
+    await api.patch(`/api/vagas/${idVaga}/concluirVaga?rateContratante=${rateContratante}`)
+    .then(response => {
+      alert('Vaga finalizada com sucesso!')
+      history.go('/contratante/vagas/ativa')
+    })
+    .catch(err => {
+      console.log(err)
+      alert("Ocorreu um erro ao finalizar a vaga");
+    })
+  }
+
+  async function handleAvaliarContratante(){
+    console.log('Avaliar contratante')
   }
 
   return (
@@ -76,20 +126,71 @@ const CardVaga = (vaga) => {
               >
                 Editar
               </Link>
-              {vaga.vaga.statusVaga !== 'EM_ANDAMENTO' ?
-                <Link onClick={() => handleDesativarVaga(vaga.vaga.id)} className={"btn btn-danger ml-2"}>Bloquear</Link>
-                : null
+              {vaga.vaga.statusVaga === 'CONCLUIDA' ? null : 
+                (vaga.vaga.statusVaga !== 'EM_ANDAMENTO' && vaga.vaga.statusVaga !== 'BLOQUEADA' ?
+                  <Link onClick={() => handleChangeStatusVaga(vaga.vaga.id, 'BLOQUEADA')} className={"btn btn-danger ml-2"}>Bloquear</Link>
+                  : 
+                vaga.vaga.statusVaga === 'BLOQUEADA' ? 
+                  <Link onClick={() => handleChangeStatusVaga(vaga.vaga.id, 'ATIVA')} className={"btn btn-primary ml-2"}>Desbloquear</Link>
+                  : ''
+                )
               }
               {vaga.vaga.statusVaga === 'EM_ANDAMENTO' ? 
-                <Link className={"btn btn-primary ml-2"}>Finalizar Job</Link> 
+                <Link className={"btn btn-primary ml-2"} onClick={handleModalFinalizarVaga}>Finalizar Job</Link> 
                 : null
               }
             </>
           ) : (
             <ButtonLikeVaga />
           )}
+          {tipoUsuario === 'freelancer' && vaga.vaga.rateContratante !== null && vaga.vaga.rateFreela == null ? (
+            <button className="btn btn-primary ml-2" onClick={handleModalAvaliarContratante}>Avaliar contratante</button>
+          ) : null}
         </div>
       </div>
+      <Modal
+        open={showModalAvaliarFreelancer}
+        // onClose={handleModalFinalizarVaga}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      ><div className={`text-light ${classes.paper}`}>
+          <div className="d-flex">
+            <button className="ml-auto btn btn-secondary_" onClick={handleModalFinalizarVaga}>x</button>
+          </div>
+          <hr/>
+          <div className="text-center">
+            <p>Avalie o freelancer</p>
+            <Rating 
+              name="size-large"
+              defaultValue={3}
+              size="large"
+              onChange={(event, newValue) => setRating(newValue)}/>
+              <button className="btn btn-secondary_ mt-1" onClick={() => handleFinalizarVaga(vaga.vaga.id, rating)}>Confirmar Avaliação</button>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        open={showModalAvaliarContratante}
+        // onClose={handleModalFinalizarVaga}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      ><div className={`text-light ${classes.paper}`}>
+          <div className="d-flex">
+            <button className="ml-auto btn btn-secondary_" onClick={handleModalAvaliarContratante}>x</button>
+          </div>
+          <hr/>
+          <div className="text-center">
+            <p>Avalie o contratante</p>
+            <Rating 
+              name="size-large"
+              defaultValue={3}
+              size="large"
+              onChange={(event, newValue) => setRating(newValue)}/>
+              <button className="btn btn-secondary_ mt-1" onClick={() => handleAvaliarContratante(vaga.vaga.id, rating)}>Confirmar Avaliação</button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
