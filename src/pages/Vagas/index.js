@@ -36,8 +36,7 @@ const Vagas = () => {
       const url =
         tipoUsuario === "freelancer" && status === "ativa"
           ? "/api/vagas/candidaturas/freelancer"
-          : `/api/vagas/listByStatus?statusVaga=${status.toUpperCase()}`;
-      console.log(url);
+          : `/api/vagas/contratante/${user.id}?statusVaga=${status.toUpperCase()}`;
       await api
         .get(url)
         .then((response) => {
@@ -49,12 +48,11 @@ const Vagas = () => {
         });
     }
     getVagas();
-    console.log(vagas);
-  }, []);
+  }, [status, tipoUsuario]);
 
   return (
     <SkeletonPage sidebar={true} footer={false}>
-      {titulo()};
+      {titulo()}
       {vagas.length > 0 ? (
         vagas.map((vaga) => {
           return <CardVaga key={vaga.id} vaga={vaga} />;

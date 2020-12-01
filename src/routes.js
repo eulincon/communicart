@@ -13,6 +13,7 @@ import Registration from "./pages/Registration";
 import Signup from "./pages/Signup";
 import CreateProfile from "./pages/CriarPerfil";
 import UserProfile from "./pages/UserProfile";
+import UserProfile2 from "./pages/UserProfile2";
 import Login from "./pages/Login";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PasswordRegistration from "./pages/PasswordRegistration";
@@ -26,7 +27,7 @@ import CandidatosVagaPage from "./pages/CandidatosVagaPage";
 
 function PrivateRoute({ ...rest }) {
   const { signed, user, loading, validate, signOut } = useAuth();
-  console.log(`is signed: ${signed} - user: ${user}`);
+  // console.log(`is signed: ${signed} - user: ${user}`);
   if (loading) {
     return <Loading />;
     // return <h1 className="text-light">Loading</h1>
@@ -53,7 +54,7 @@ function Routes() {
         {/* <Route path="/page-default" component={Feed} /> */}
         <Route
           path="/contratante/vaga/:id/candidaturas/:perfilId"
-          component={UserProfile}
+          component={UserProfile2}
         />
         <Route path="/contratante/vaga/:id" component={CandidatosVagaPage} />
         <PrivateRoute path="/vagas/:id" component={VagaPage} />

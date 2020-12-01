@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/auth";
 
 import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
+import api from "../../services/api";
 
 const CardVaga = (vaga) => {
   const {
@@ -34,7 +35,20 @@ const CardVaga = (vaga) => {
     );
   }
 
+  const history = useHistory();
   const { user } = useAuth();
+
+  async function handleDesativarVaga(idVaga){
+    await api.patch(`/api/vagas/${idVaga}?statusUpdate=BLOQUEADA`)
+    .then(() => {
+      alert('Vaga bloqueada com sucesso!')
+      history.push('/contratante/vagas/bloqueada')
+    })
+    .catch(err => {
+      console.log(err)
+      alert('Erro ao alterar status da vaga.')
+    })
+  }
 
   return (
     <div className="card my-4 bg-lighter_ text-white shadow">
@@ -62,7 +76,14 @@ const CardVaga = (vaga) => {
               >
                 Editar
               </Link>
-              <button className={"btn btn-danger ml-2"}>Desativar</button>
+              {vaga.vaga.statusVaga !== 'EM_ANDAMENTO' ?
+                <Link onClick={() => handleDesativarVaga(vaga.vaga.id)} className={"btn btn-danger ml-2"}>Bloquear</Link>
+                : null
+              }
+              {vaga.vaga.statusVaga === 'EM_ANDAMENTO' ? 
+                <Link className={"btn btn-primary ml-2"}>Finalizar Job</Link> 
+                : null
+              }
             </>
           ) : (
             <ButtonLikeVaga />

@@ -106,7 +106,7 @@ const UserProfile = () => {
     if (site === "facebook") {
       return (
         <a
-          href={`https://${link}`}
+          href={`${link}`}
           target="_blank"
           rel="noreferrer"
           className="social-media-link"
@@ -117,7 +117,7 @@ const UserProfile = () => {
     } else if (site === "twitter") {
       return (
         <a
-          href={`https://${link}`}
+          href={`${link}`}
           target="_blank"
           rel="noreferrer"
           className="social-media-link"
@@ -128,7 +128,7 @@ const UserProfile = () => {
     } else if (site === "instagram") {
       return (
         <a
-          href={`https://${link}`}
+          href={`${link}`}
           target="_blank"
           rel="noreferrer"
           className="social-media-link"
@@ -139,7 +139,7 @@ const UserProfile = () => {
     } else if (site === "linkedin") {
       return (
         <a
-          href={`https://${link}`}
+          href={`${link}`}
           target="_blank"
           rel="noreferrer"
           className="social-media-link"
