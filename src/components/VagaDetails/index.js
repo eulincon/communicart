@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../../services/api";
 
 import ButtonLikeVaga from "../../components/CardVaga/ButtonLikeVaga";
@@ -29,8 +30,6 @@ const VagaDetails = (props) => {
     typeJob,
     paymentDate,
   } = vaga;
-
-  console.log(paymentDate);
 
   function statusBadge() {
     let color =
@@ -65,6 +64,19 @@ const VagaDetails = (props) => {
         history.push("/feed");
       })
       .catch((err) => alert(err.response.data.message));
+  }
+
+  async function handleDesativarVaga(idVaga) {
+    await api
+      .patch(`/api/vagas/${idVaga}?statusUpdate=BLOQUEADA`)
+      .then(() => {
+        alert("Vaga bloqueada com sucesso!");
+        history.push("/contratante/vagas/bloqueada");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Erro ao alterar status da vaga.");
+      });
   }
 
   return (
@@ -114,7 +126,16 @@ const VagaDetails = (props) => {
           )}
 
           <br />
-          {user.id === vaga.perfilId ? null : (
+          {user.id === vaga.perfilId ||
+          statusVaga !== "ATIVA" ? null : user.id === vaga.perfilId &&
+            statusVaga === "ATIVA" ? (
+            <Link
+              onClick={() => handleDesativarVaga(vaga.vaga.id)}
+              className={"btn btn-danger"}
+            >
+              Bloquear
+            </Link>
+          ) : (
             <>
               <button
                 type="button"

@@ -53,7 +53,7 @@ function Routes() {
         <PrivateRoute path="/feed" component={Feed} />
         {/* <Route path="/page-default" component={Feed} /> */}
         <Route
-          path="/contratante/vaga/:id/candidaturas/:perfilId"
+          path="/contratante/vaga/:id/candidaturas/:perfilId/"
           component={UserProfile2}
         />
         <Route path="/contratante/vaga/:id" component={CandidatosVagaPage} />
