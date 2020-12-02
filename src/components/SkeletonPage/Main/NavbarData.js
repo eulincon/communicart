@@ -28,7 +28,7 @@ export const NavbarDataLogout = [
   },
   {
     title: 'Como funciona',
-    path: ''
+    path: '/como-funciona'
   },
   {
     title: 'Fazer Login',

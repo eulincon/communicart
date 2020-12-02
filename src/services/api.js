@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: "https://communicart-backend.herokuapp.com/",
   withCredentials: false,
   headers: {
     "Access-Control-Allow-Origin": "*",
