@@ -66,11 +66,11 @@ function Routes() {
         <PrivateRoute path="/usuarios/:id" component={UserProfile} />
         <Route path="/como-funciona" component={Teste} />
         <Route path="/payments" component={Payments} />
-        <Route path="/notify" component={Notify} />
+        <Route path="/notify" component={NotFoundPage} />
         <Route path="/cadastro" component={Registration} />
         <Route path="/signup" component={Signup} />
         <Route path="/criar-perfil" component={CreateProfile} />
-        <Route path="/wishlist" component={Wishlist} />
+        <Route path="/wishlist" component={NotFoundPage} />
         <PrivateRoute
           path="/:tipoUsuario/vagas/:status"
           exact

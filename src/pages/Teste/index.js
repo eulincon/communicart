@@ -54,18 +54,18 @@ const Teste = () => {
 			<div className={`h-100 d-flex ${styles.gradient}`}>
 				<div className={`bg-light text-center rounded text-center shadow container align-self-center ${styles.gradient_card}`}>
 					<h1>Como Funciona?</h1>
-					<p>Anuncie o seu trabalho facilmente, contrate freelancers e pague com segurança.</p>
-					<div className="row">
-						<div className="col-8">
+					<div><strong>Anuncie</strong> o seu trabalho facilmente, contrate freelancers e avalie seus trabalhos.</div>
+					<div><strong>Candidate-se</strong> às vagas, realize-as e receba uma avaliação.</div>
+						<div>
 							<p>Milhares de freelancers prontos para começar a trabalhar no seu projeto</p>
 							<div className="row pl-2 d-flex justify-content-between">
 								<div className="col-3 rounded shadow bg-light">
 									Publique
 								</div>
-								<div className="col-3 card shadow">
+								<div className="col-3 rounded shadow bg-light">
 									Selecione
 								</div>
-								<div className="col-3 card">
+								<div className="col-3 rounded shadow bg-light">
 									Finalize
 								</div>
 							</div>
@@ -73,7 +73,6 @@ const Teste = () => {
 						<div className="col">
 							<img src="https://blush.design/api/download?shareUri=64gcawovZ&s=0.1%7EB28B67-0.2%7EEAC7A8-0.3%7EB28B67&w=800&h=800&fm=png" alt="" width="500vw"/>
 						</div>
-					</div>
 				</div>
 			</div>
 		</>

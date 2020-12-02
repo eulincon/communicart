@@ -71,7 +71,7 @@ function PaginaLogin() {
                   <button className="btn btn-secondary_" type="submit">
                     Logar
                   </button>
-                  <Link className="btn btn-secondary_" to="/recuperacao">
+                  <Link className="btn btn-secondary_" style={{pointerEvents: 'none', opacity: '0.4'}} to="/recuperacao">
                     recuperar minha senha
                   </Link>
                 </div>
