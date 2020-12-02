@@ -230,7 +230,7 @@ const UserProfile = ({ location }) => {
               .replace(/\//g, "-")}
           </p>
           <p>Observações: {proposta.observations}</p>
-          {proposta.rateContratante != null ? (
+          {proposta.rateContratante !== 0 ? (
             <div className="d-flex">
               <span className="mr-2">Avaliação: </span>
               <Rating name="simple-controlled" readOnly defaultValue={proposta.rateContratante}/>

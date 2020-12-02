@@ -16,7 +16,6 @@ function CadastroJob() {
   const [pagamentoNegociar, setPagamentoNegociar] = useState(false);
   const [prazoNegociar, setPrazoNegociar] = useState(false);
   const [contatoEmail, setContatoEmail] = useState(false);
-  const [contatoTelefone, setContatoTelefone] = useState(false);
   const [contatoLinkedin, setcontatoLinkedin] = useState(false);
   const [contatoInsta, setcontatoInsta] = useState(false);
   const [contatoFacebook, setContatoFacebook] = useState(false);
@@ -173,7 +172,6 @@ function CadastroJob() {
                     </select>
                   </section>
                   <br />
-                  <hr />
                 </div>
                 <div className="col-6">
                   <label for="descricaoJob">Descrição</label>
@@ -220,7 +218,10 @@ function CadastroJob() {
               <section className="row">
                 <div className="col-6 justify-content-start">
                   <label for="faixaPreco">Estimativa de orçamento</label>
-                  <div className="d-flex ">
+                  <div className="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">R$</span>
+                    </div>
                     <input
                       type="number"
                       className="form-control mr-3"
@@ -259,12 +260,12 @@ function CadastroJob() {
                     </section>
                   </div>
                   <br />
-                  <label for="prazoPagamento"> Forma de pagamento</label>
-                </div>
+                <label for="prazoPagamento"> Forma de pagamento</label>
+              </div>
               </section>
               <div className="row ml-1">
                 <select
-                  class="custom-select col-4"
+                  className="form-control col-4"
                   size="3"
                   id="formaPagamento"
                   value={formaPagamento}
@@ -280,7 +281,7 @@ function CadastroJob() {
                 </select>
                 <section className="col ml-3">
                   <div className="row">
-                    <div className="col-4">
+                    <div className="col-5">
                       <input
                         className="form-check-input"
                         type="checkbox"
@@ -314,18 +315,6 @@ function CadastroJob() {
 
                     <label className="form-check-label" for="contatoEmail">
                       E-mail
-                    </label>
-                  </section>
-                  <section>
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      value={true}
-                      id="contatoTelefone"
-                      onChange={(e) => setContatoTelefone(e.target.value)}
-                    />
-                    <label className="form-check-label" for="contatoTelefone">
-                      Telefone
                     </label>
                   </section>
                   <section>

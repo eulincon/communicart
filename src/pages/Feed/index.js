@@ -38,6 +38,10 @@ const Feed = () => {
 
   return (
     <SkeletonPage sidebar={true} footer={false}>
+      <div className="text-light d-flex justify-content-center">
+        <h2>Feed de vagas disponíveis</h2>
+      </div>
+      <hr className="bg-light"/>
       {vagas.length > 0 ? (
         vagas.map((vaga) => {
           return <CardVaga key={vaga.id} vaga={vaga} />;

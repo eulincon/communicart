@@ -7,13 +7,13 @@ export const SidebarData = [
         path: "/cadastro-job",
       },
       {
-        titleItem: "Freelancer",
+        titleItem: "Perfil",
         path: `/usuarios/${0}`,
       },
-      {
-        titleItem: "Contratante",
-        path: "",
-      },
+      // {
+      //   titleItem: "Contratante",
+      //   path: "",
+      // },
     ],
   },
   {
@@ -45,7 +45,7 @@ export const SidebarData = [
         path: "/freelancer/vagas/ativa",
       },
       {
-        titleItem: "Em andamento",
+        titleItem: "Selecionado",
         path: "/freelancer/vagas/EM_ANDAMENTO",
       },
       {

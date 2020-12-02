@@ -56,6 +56,7 @@ const Vagas = () => {
   return (
     <SkeletonPage sidebar={true} footer={false}>
       {titulo()}
+      <hr className="bg-light"/>
       {vagas.length > 0 ? (
         vagas.map((vaga) => {
           return <CardVaga key={vaga.id} vaga={vaga}/>;

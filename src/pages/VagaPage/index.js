@@ -78,6 +78,13 @@ const VagaPage = () => {
           </>
         )
       ) : null}
+      {vaga.selectedFreelancer != null && vaga.selectedFreelancer.id === user.id? (
+        <div className="d-flex justify-content-center">
+          <Link to={`/usuarios/${vaga.perfilId}`} className="mt-3 btn btn-secondary_">
+            Visitar perfil do contratante
+          </Link>
+        </div> 
+        ) : ''}
     </SkeletonPage>
   );
 };

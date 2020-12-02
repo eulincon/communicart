@@ -96,8 +96,16 @@ const CardVaga = (vaga) => {
     })
   }
 
-  async function handleAvaliarContratante(){
-    console.log('Avaliar contratante')
+  async function handleAvaliarContratante(idVaga, rateFreelancer){
+    await api.patch(`/api/vagas/${idVaga}/setRateFreela?rateFreelancer=${rateFreelancer}`)
+    .then(() => {
+      alert('Avaliação cadastrada com sucesso!')
+      history.go('/feed')
+    })
+    .catch(err => {
+      console.log(err)
+      alert('Erro ao cadastrar avaliação!')
+    });
   }
 
   return (
@@ -143,7 +151,7 @@ const CardVaga = (vaga) => {
           ) : (
             <ButtonLikeVaga />
           )}
-          {tipoUsuario === 'freelancer' && vaga.vaga.rateContratante !== null && vaga.vaga.rateFreela == null ? (
+          {tipoUsuario === 'freelancer' && vaga.vaga.statusVaga === 'CONCLUIDA' && vaga.vaga.rateFreela === 0 ? (
             <button className="btn btn-primary ml-2" onClick={handleModalAvaliarContratante}>Avaliar contratante</button>
           ) : null}
         </div>
