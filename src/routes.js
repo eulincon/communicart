@@ -20,7 +20,7 @@ import PasswordRegistration from "./pages/PasswordRegistration";
 import Wishlist from "./pages/Wishlist";
 import ServiceRegistration from "./pages/ServiceRegistration";
 import JobOffers from "./pages/JobOffers";
-import Teste from "./components/SkeletonPage/Teste";
+import Teste from "./pages/Teste";
 import Loading from "./components/Loading";
 import Vagas from "./pages/Vagas";
 import CandidatosVagaPage from "./pages/CandidatosVagaPage";
@@ -64,6 +64,7 @@ function Routes() {
           component={UserProfile}
         />
         <PrivateRoute path="/usuarios/:id" component={UserProfile} />
+        <Route path="/como-funciona" component={Teste} />
         <Route path="/payments" component={Payments} />
         <Route path="/notify" component={Notify} />
         <Route path="/cadastro" component={Registration} />

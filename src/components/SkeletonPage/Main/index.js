@@ -21,7 +21,7 @@ const Main = ({ sidebar = false, footer = false, children }) => {
     <div style={{ paddingTop: "70px" }}>
       {/* Narbar */}
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-primary_ mb-2">
-        <Link className="navbar-brand	d-none d-lg-block" to={"#"}>
+        <Link className="navbar-brand	d-none d-lg-block" to={"/"}>
           <Logo width={200} alt="Communicart" />
         </Link>
         <button
