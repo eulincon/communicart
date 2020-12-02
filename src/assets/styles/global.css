@@ -101,6 +101,10 @@ body,
   color: var(--color-secondary);
 }
 
+.text-secondary_ {
+  color: var(--color-secondary);
+}
+
 .txt-secondary-dark {
   color: var(--color-secondary-dark);
 }

@@ -63,7 +63,10 @@ const Main = ({ sidebar = false, footer = false, children }) => {
                       : "nav-item ml-3"
                   }
                 >
-                  <Link className="nav-link" to={item.path}>
+                  <Link 
+                    className={`nav-link`} 
+                    style={pathname === item.path ? {color:'#04d361'} : {}}
+                    to={item.path}>
                     {item.title}
                   </Link>
                 </li>
@@ -95,8 +98,9 @@ const Main = ({ sidebar = false, footer = false, children }) => {
                             key={collection.title + indexItem}
                             className="ml-3 nav-item"
                           >
-                            <Link
-                              className="nav-link active text-light"
+                            <Link 
+                              className={`nav-link`}
+                              style={pathname === item.path ? {color:'#04d361'} : {}}
                               to={item.path}
                             >
                               {item.titleItem}
@@ -136,7 +140,7 @@ const Main = ({ sidebar = false, footer = false, children }) => {
                             className="nav-item"
                           >
                             <Link
-                              className="ml-3 active text-light"
+                              className={`ml-3 text-${pathname === item.path ? 'secondary_ active' : 'light'}`}
                               to={item.path}
                             >
                               {item.titleItem}
