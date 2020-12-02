@@ -143,10 +143,10 @@ const UserProfile = ({ location }) => {
         <div className="rounded bg-secondary p-3">
           <div className="row">
             <div className="col-sm-3 img-container d-flex justify-content-center align-content-center">
-              {/* <img
-                src=""
-                alt="imagem de perfil do usuário">
-              </img> */}
+              <img
+                src={perfil.imageURL}
+                alt="imagem de perfil do usuário"
+              ></img>
               <BiUserCircle className="img-round w-100 text-light" size={170} />
             </div>
             <div className="col-sm-9 text-white">
