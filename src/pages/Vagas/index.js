@@ -10,6 +10,7 @@ const Vagas = () => {
   let { status, tipoUsuario } = useParams();
   let { user } = useAuth();
   const [vagas, setVagas] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const titulo = () => {
     let usuario =
@@ -44,14 +45,24 @@ const Vagas = () => {
         .get(url)
         .then((response) => {
           setVagas(response.data);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
+          setLoading(false);
           return [];
         });
     }
     getVagas();
   }, [status, tipoUsuario]);
+
+  if (loading) {
+    return (
+      <SkeletonPage sidebar={true} footer={false}>
+        <Loading />
+      </SkeletonPage>
+    );
+  }
 
   return (
     <SkeletonPage sidebar={true} footer={false}>
