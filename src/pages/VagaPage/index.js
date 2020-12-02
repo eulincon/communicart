@@ -78,19 +78,23 @@ const VagaPage = () => {
           </>
         )
       ) : null}
-      {vaga.selectedFreelancer !== null &&
+      {vaga.selectedFreelancer != null &&
       vaga.selectedFreelancer.id === user.id ? (
-        <>
-          <br />
-          <hr style={{ backgroundColor: "white" }} />
-          <span>
-            <h4 className="text-light text-left ml-3">
-              E-mail do contrante:{" "}
-              <a href={`mailto:${vaga.email}`}>{vaga.email}</a>
-            </h4>{" "}
-          </span>
-        </>
-      ) : null}
+        <div className="d-flex justify-content-center">
+          <h4 className="text-light text-left ml-3">
+            E-mail do contrante:{" "}
+            <a href={`mailto:${vaga.email}`}>{vaga.email}</a>
+          </h4>{" "}
+          <Link
+            to={`/usuarios/${vaga.perfilId}`}
+            className="mt-3 btn btn-secondary_"
+          >
+            Visitar perfil do contratante
+          </Link>
+        </div>
+      ) : (
+        ""
+      )}
     </SkeletonPage>
   );
 };

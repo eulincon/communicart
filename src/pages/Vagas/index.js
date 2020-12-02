@@ -67,12 +67,13 @@ const Vagas = () => {
   return (
     <SkeletonPage sidebar={true} footer={false}>
       {titulo()}
+      <hr className="bg-light"/>
       {vagas.length > 0 ? (
         vagas.map((vaga) => {
-          return <CardVaga key={vaga.id} vaga={vaga} />;
+          return <CardVaga key={vaga.id} vaga={vaga}/>;
         })
       ) : (
-        <h3 className="text-light">Ainda não há vagas publicadas...</h3>
+        <h3 className="text-light">Não há vagas com status "{status}"...</h3>
       )}
     </SkeletonPage>
   );
